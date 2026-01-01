@@ -9,46 +9,56 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className='sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-slate-200'>
-      <div className='container mx-auto px-4 py-4 flex items-center justify-between'>
+    <nav className='sticky top-0 z-50 w-full bg-white/85 backdrop-blur-xl border-b border-slate-200/60 shadow-sm'>
+      <div className='container mx-auto px-6 py-4 flex items-center justify-between'>
         <Link
           href='/'
-          className='flex items-center space-x-2'>
-          <div className='w-8 h-8 bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] rounded-md flex items-center justify-center'>
-            <span className='text-white font-bold'>C</span>
+          className='flex items-center space-x-3 group transition-all duration-300'>
+          <div className='w-10 h-10 bg-gradient-to-br from-[#2dcbc5] to-[#2ab7ca] rounded-xl flex items-center justify-center shadow-lg shadow-[#2dcbc5]/25 group-hover:shadow-xl group-hover:shadow-[#2dcbc5]/30 transition-all duration-300 group-hover:scale-105'>
+            <span className='text-white font-bold text-lg'>C</span>
           </div>
-          <span className='text-xl font-bold bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] bg-clip-text text-transparent'>
+          <span className='text-2xl font-bold bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] bg-clip-text text-transparent tracking-tight'>
             CareerBuddy
           </span>
         </Link>
 
         {/* Desktop Navigation */}
-        <div className='hidden md:flex items-center space-x-8'>
+        <div className='hidden md:flex items-center space-x-1'>
           <Link
             href='#features'
-            className='text-slate-700 hover:text-[#2dcbc5] transition-colors'>
+            className='relative px-4 py-2.5 text-[15px] font-medium text-slate-700 hover:text-[#2dcbc5] transition-all duration-300 rounded-lg group'>
             Features
+            <span className='absolute inset-x-0 -bottom-px h-0.5 bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-full'></span>
           </Link>
           <Link
             href='#use-cases'
-            className='text-slate-700 hover:text-[#2dcbc5] transition-colors'>
+            className='relative px-4 py-2.5 text-[15px] font-medium text-slate-700 hover:text-[#2dcbc5] transition-all duration-300 rounded-lg group'>
             Use Cases
+            <span className='absolute inset-x-0 -bottom-px h-0.5 bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-full'></span>
           </Link>
           <Link
             href='#pricing'
-            className='text-slate-700 hover:text-[#2dcbc5] transition-colors'>
+            className='relative px-4 py-2.5 text-[15px] font-medium text-slate-700 hover:text-[#2dcbc5] transition-all duration-300 rounded-lg group'>
             Pricing
+            <span className='absolute inset-x-0 -bottom-px h-0.5 bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-full'></span>
           </Link>
           <Link
             href='#testimonials'
-            className='text-slate-700 hover:text-[#2dcbc5] transition-colors'>
+            className='relative px-4 py-2.5 text-[15px] font-medium text-slate-700 hover:text-[#2dcbc5] transition-all duration-300 rounded-lg group'>
             Testimonials
+            <span className='absolute inset-x-0 -bottom-px h-0.5 bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-full'></span>
           </Link>
         </div>
 
-        <div className='hidden md:flex items-center space-x-4'>
-          <Button variant='ghost'>Log in</Button>
-          <Button className='bg-[#2dcbc5] hover:bg-[#2ab7ca] text-white'>Get Started</Button>
+        <div className='hidden md:flex items-center space-x-3'>
+          <Button
+            variant='ghost'
+            className='font-medium text-[15px] text-slate-700 hover:text-[#2dcbc5] hover:bg-[#2dcbc5]/5 transition-all duration-300 rounded-lg'>
+            Log in
+          </Button>
+          <Button className='bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] hover:from-[#2ab7ca] hover:to-[#2dcbc5] text-white font-semibold text-[15px] px-6 py-2.5 rounded-lg shadow-lg shadow-[#2dcbc5]/30 hover:shadow-xl hover:shadow-[#2dcbc5]/40 transition-all duration-300 hover:scale-105'>
+            Get Started
+          </Button>
         </div>
 
         {/* Mobile Menu Button */}

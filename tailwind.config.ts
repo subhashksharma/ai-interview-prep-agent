@@ -21,6 +21,8 @@ const config = {
     extend: {
       fontFamily: {
         sans: [
+          'var(--font-inter)',
+          'Inter',
           'ui-sans-serif',
           'system-ui',
           'sans-serif',
@@ -39,6 +41,23 @@ const config = {
           '"Courier New"',
           'monospace',
         ],
+      },
+      fontSize: {
+        xs: ['0.75rem', { lineHeight: '1.5', letterSpacing: '0.01em' }],
+        sm: ['0.875rem', { lineHeight: '1.6', letterSpacing: '0.01em' }],
+        base: ['1rem', { lineHeight: '1.7', letterSpacing: '0.01em' }],
+        lg: ['1.125rem', { lineHeight: '1.7', letterSpacing: '0' }],
+        xl: ['1.25rem', { lineHeight: '1.7', letterSpacing: '-0.01em' }],
+        '2xl': ['1.5rem', { lineHeight: '1.6', letterSpacing: '-0.02em' }],
+        '3xl': ['1.875rem', { lineHeight: '1.5', letterSpacing: '-0.02em' }],
+        '4xl': ['2.25rem', { lineHeight: '1.4', letterSpacing: '-0.02em' }],
+        '5xl': ['3rem', { lineHeight: '1.3', letterSpacing: '-0.03em' }],
+        '6xl': ['3.75rem', { lineHeight: '1.2', letterSpacing: '-0.03em' }],
+      },
+      boxShadow: {
+        glossy: '0 4px 20px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.1)',
+        'glossy-lg': '0 10px 40px rgba(0, 0, 0, 0.1), 0 0 1px rgba(0, 0, 0, 0.1)',
+        'glossy-xl': '0 20px 60px rgba(0, 0, 0, 0.15), 0 0 1px rgba(0, 0, 0, 0.1)',
       },
       colors: {
         border: 'hsl(var(--border))',

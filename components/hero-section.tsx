@@ -2,61 +2,82 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Bot, Sparkles, Zap } from 'lucide-react';
+import { ArrowRight, Bot, Sparkles, Zap, PlayCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function HeroSection() {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <section className='py-20 md:py-28 overflow-hidden'>
-      <div className='container mx-auto px-4'>
-        <div className='flex flex-col md:flex-row items-center'>
-          <div className='md:w-1/2 mb-12 md:mb-0'>
+    <section className='py-24 md:py-32 overflow-hidden relative'>
+      <div className='container mx-auto px-6'>
+        <div className='flex flex-col md:flex-row items-center gap-12'>
+          <div className='md:w-1/2'>
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}>
-              <div className='inline-flex items-center px-3 py-1 rounded-full bg-[#2dcbc5]/10 text-[#2dcbc5] mb-6'>
+              transition={{ duration: 0.6, ease: 'easeOut' }}>
+              <motion.div
+                className='inline-flex items-center px-4 py-2 rounded-full bg-[#2dcbc5]/10 border border-[#2dcbc5]/20 backdrop-blur-sm text-[#2dcbc5] mb-8 shadow-sm'
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 10 }}>
                 <Sparkles
                   size={16}
                   className='mr-2'
                 />
-                <span className='text-sm font-medium'>Next-Gen AI Agents</span>
-              </div>
-              <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 bg-gradient-to-r from-slate-900 via-[#2dcbc5] to-[#2ab7ca] bg-clip-text text-transparent'>
+                <span className='text-sm font-semibold'>Next-Gen AI Agents</span>
+              </motion.div>
+              <h1 className='text-[2.75rem] leading-[1.15] md:text-5xl lg:text-6xl font-bold mb-8 bg-gradient-to-r from-slate-900 via-[#2dcbc5] to-[#2ab7ca] bg-clip-text text-transparent tracking-tight'>
                 AI Agents That Work For You
               </h1>
-              <p className='text-lg md:text-xl text-slate-600 mb-8 max-w-lg'>
+              <p className='text-lg md:text-xl text-slate-600 mb-10 max-w-xl leading-relaxed'>
                 Automate complex workflows, make decisions, and solve problems with our agentic AI
                 platform. Your digital workforce is here.
               </p>
               <div className='flex flex-col sm:flex-row gap-4'>
-                <Button
-                  className='bg-[#2dcbc5] hover:bg-[#2ab7ca] text-white px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1'
-                  onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}>
-                  <span>Start Building</span>
-                  <ArrowRight
-                    size={20}
-                    className={`ml-2 transition-transform duration-300 ${
-                      isHovered ? 'translate-x-1' : ''
-                    }`}
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}>
+                  <Button
+                    className='bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] hover:from-[#2ab7ca] hover:to-[#2dcbc5] text-white px-8 py-4 text-lg font-semibold shadow-xl shadow-[#2dcbc5]/30 hover:shadow-2xl hover:shadow-[#2dcbc5]/40 transition-all duration-300 rounded-lg w-full sm:w-auto'
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}>
+                    <span>Start Building</span>
+                    <ArrowRight
+                      size={20}
+                      className={`ml-2 transition-transform duration-300 ${
+                        isHovered ? 'translate-x-1' : ''
+                      }`}
+                    />
+                  </Button>
+                </motion.div>
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}>
+                  <Button
+                    variant='outline'
+                    className='px-8 py-4 text-lg font-semibold border-2 border-slate-300 hover:border-[#2dcbc5] hover:bg-[#2dcbc5]/5 text-slate-700 hover:text-[#2dcbc5] transition-all duration-300 rounded-lg w-full sm:w-auto'>
+                    <PlayCircle
+                      size={20}
+                      className='mr-2'
+                    />
+                    Watch Demo
+                  </Button>
+                </motion.div>
+              </div>
+              <motion.div
+                className='mt-10 flex items-center text-slate-500 text-sm'
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4, duration: 0.6 }}>
+                <div className='flex items-center bg-green-50 text-green-700 px-3 py-2 rounded-lg border border-green-200/50 shadow-sm'>
+                  <Zap
+                    size={16}
+                    className='mr-2 text-green-600'
                   />
-                </Button>
-                <Button
-                  variant='glow'
-                  className='px-8 py-6 text-lg'>
-                  Watch Demo
-                </Button>
-              </div>
-              <div className='mt-8 flex items-center text-slate-500 text-sm'>
-                <Zap
-                  size={16}
-                  className='mr-2 text-yellow-500'
-                />
-                <span>No credit card required • Free tier available</span>
-              </div>
+                  <span className='font-medium'>No credit card required • Free tier available</span>
+                </div>
+              </motion.div>
             </motion.div>
           </div>
           <div className='md:w-1/2'>
