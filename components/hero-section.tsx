@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Bot, Sparkles, Zap, PlayCircle, Heading1 } from 'lucide-react';
+import { Bot, Sparkles, Zap, PlayCircle, UploadCloud, Heading1 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function HeroSection() {
@@ -86,16 +86,25 @@ export default function HeroSection() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}>
                   <Button
-                    className='bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] hover:from-[#2ab7ca] hover:to-[#2dcbc5] text-white px-8 py-4 text-lg font-semibold shadow-xl shadow-[#2dcbc5]/30 hover:shadow-2xl hover:shadow-[#2dcbc5]/40 transition-all duration-300 rounded-lg w-full sm:w-auto'
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}>
-                    <span>Upload your resume</span>
-                    <ArrowRight
-                      size={20}
-                      className={`ml-2 transition-transform duration-300 ${
-                        isHovered ? 'translate-x-1' : ''
-                      }`}
-                    />
+                    variant='ghost'
+                    className='group flex items-center gap-4 px-4 py-3 rounded-lg w-full sm:w-auto text-left bg-transparent hover:bg-transparent focus:bg-transparent'
+                    aria-label='Upload resume - get tailored resume bullets'>
+                    <div className='flex-shrink-0 w-10 h-10 rounded-full border-2 border-slate-900/90 flex items-center justify-center transition-all duration-200 group-hover:bg-gradient-to-r group-hover:from-[#2dcbc5] group-hover:to-[#2ab7ca] group-hover:border-transparent group-hover:scale-105'>
+                      <UploadCloud
+                        size={16}
+                        className='text-slate-900 group-hover:text-white transition-colors duration-200'
+                      />
+                    </div>
+                    <div className='leading-tight'>
+                      <div className='inline-block px-0 py-0 rounded-sm transition-colors duration-200'>
+                        <div className='text-sm font-semibold text-slate-900 transition-colors duration-200 group-hover:text-[#2dcbc5]'>
+                          Upload Resume
+                        </div>
+                        <div className='text-sm text-slate-500 transition-colors duration-200 group-hover:text-[#2dcbc5]/80'>
+                          Get tailored resume bullets
+                        </div>
+                      </div>
+                    </div>
                   </Button>
                 </motion.div>
                 <motion.div
