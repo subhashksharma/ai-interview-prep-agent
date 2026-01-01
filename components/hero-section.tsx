@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Bot, Sparkles, Zap, PlayCircle } from 'lucide-react';
+import { ArrowRight, Bot, Sparkles, Zap, PlayCircle, Heading1 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function HeroSection() {
@@ -29,7 +29,7 @@ export default function HeroSection() {
                 />
                 <span className='text-sm font-semibold'>Next-Gen AI Agents</span>
               </motion.div>
-              <h1 className='text-[2.75rem] leading-[1.15] md:text-5xl lg:text-6xl font-bold mb-8 text-slate-900 tracking-tight drop-shadow-sm'>
+              <h1 className='text-[2.75rem] leading-[1.15] md:text-5xl lg:text-5xl font-bold mb-8 text-slate-900 tracking-tight drop-shadow-sm'>
                 AI Agents That Work For You
               </h1>
               <p className='text-lg md:text-xl text-slate-700 mb-10 max-w-xl leading-relaxed drop-shadow-sm'>
