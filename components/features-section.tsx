@@ -46,9 +46,9 @@ export default function FeaturesSection() {
   return (
     <section
       id='features'
-      className='py-24 bg-gradient-to-b from-slate-50 to-white relative overflow-hidden'>
+      className='min-h-screen flex items-center py-20 md:py-24 bg-gradient-to-b from-slate-50 to-white relative overflow-hidden'>
       <div className='absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#2dcbc5]/5 rounded-full blur-3xl pointer-events-none' />
-      <div className='container mx-auto px-6 relative z-10'>
+      <div className='w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
         <div className='text-center mb-20'>
           <motion.div
             initial={{ opacity: 0, y: 30 }}

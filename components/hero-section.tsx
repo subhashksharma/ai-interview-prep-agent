@@ -9,10 +9,10 @@ export default function HeroSection() {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <section className='py-24 md:py-32 overflow-hidden relative'>
+    <section className='min-h-screen flex items-center py-20 md:py-24 overflow-hidden relative'>
       {/* Add white overlay for better text visibility */}
       <div className='absolute inset-0 bg-white/40 backdrop-blur-[2px]' />
-      <div className='container mx-auto px-6 relative z-10'>
+      <div className='w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
         <div className='flex flex-col md:flex-row items-center gap-12'>
           <div className='md:w-1/2'>
             <motion.div
