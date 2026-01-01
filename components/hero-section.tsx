@@ -97,7 +97,7 @@ export default function HeroSection() {
                     </div>
                     <div className='leading-tight'>
                       <div className='inline-block px-0 py-0 rounded-sm transition-colors duration-200'>
-                        <div className='text-sm font-semibold text-slate-900 transition-colors duration-200 group-hover:text-[#2dcbc5]'>
+                        <div className='inline-block bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] text-white px-3 py-1 rounded-full text-sm font-semibold shadow-sm'>
                           Upload Resume
                         </div>
                         <div className='text-sm text-slate-500 transition-colors duration-200 group-hover:text-[#2dcbc5]/80'>

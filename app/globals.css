@@ -66,6 +66,11 @@
   animation-play-state: paused !important;
 }
 
+/* Pause all descendant animations without changing visibility */
+.paused-animations > * {
+  animation-play-state: paused !important;
+}
+
 .animation-delay-1000 {
   animation-delay: 1s;
 }

@@ -30,7 +30,7 @@ export default function Home() {
 
         <div
           className={`absolute inset-0 transition-opacity duration-[2000ms] ease-out ${
-            isPaused ? 'opacity-0' : 'opacity-100'
+            isPaused ? 'paused-animations opacity-100' : 'opacity-100'
           }`}>
           {/* Echo Ripples - Sound Wave Effect */}
           <div className='absolute top-1/4 left-1/4 w-[700px] h-[700px] border-[3px] border-[#2dcbc5]/30 rounded-full animate-ripple' />
