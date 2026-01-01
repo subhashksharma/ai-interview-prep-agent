@@ -44,7 +44,7 @@ export default function HeroSection() {
                     className='bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] hover:from-[#2ab7ca] hover:to-[#2dcbc5] text-white px-8 py-4 text-lg font-semibold shadow-xl shadow-[#2dcbc5]/30 hover:shadow-2xl hover:shadow-[#2dcbc5]/40 transition-all duration-300 rounded-lg w-full sm:w-auto'
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}>
-                    <span>Start Building</span>
+                    <span>Take a Interview</span>
                     <ArrowRight
                       size={20}
                       className={`ml-2 transition-transform duration-300 ${
@@ -57,13 +57,25 @@ export default function HeroSection() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}>
                   <Button
-                    variant='outline'
-                    className='px-8 py-4 text-lg font-semibold border-2 border-slate-300 hover:border-[#2dcbc5] hover:bg-[#2dcbc5]/5 text-slate-700 hover:text-[#2dcbc5] transition-all duration-300 rounded-lg w-full sm:w-auto'>
-                    <PlayCircle
-                      size={20}
-                      className='mr-2'
-                    />
-                    Watch Demo
+                    variant='ghost'
+                    className='group flex items-center gap-4 px-4 py-3 rounded-lg w-full sm:w-auto text-left bg-transparent hover:bg-transparent focus:bg-transparent'
+                    aria-label='Watch demo - see how it works'>
+                    <div className='flex-shrink-0 w-12 h-12 rounded-full border-2 border-slate-900/90 flex items-center justify-center transition-all duration-200 group-hover:bg-[#2dcbc5] group-hover:border-transparent group-hover:scale-105'>
+                      <PlayCircle
+                        size={16}
+                        className='text-slate-900 group-hover:text-white transition-colors duration-200'
+                      />
+                    </div>
+                    <div className='leading-tight'>
+                      <div className='inline-block px-0 py-0 rounded-sm transition-colors duration-200'>
+                        <div className='text-sm font-semibold text-slate-900 transition-colors duration-200 group-hover:text-[#2dcbc5]'>
+                          Watch Demo
+                        </div>
+                        <div className='text-sm text-slate-500 transition-colors duration-200 group-hover:text-[#2dcbc5]/80'>
+                          See how it works
+                        </div>
+                      </div>
+                    </div>
                   </Button>
                 </motion.div>
               </div>
