@@ -71,12 +71,12 @@ export default function HeroSection() {
                   size={16}
                   className='mr-2'
                 />
-                <span className='text-sm font-semibold'>Next-Gen AI Agents</span>
+                <span className='text-sm font-semibold'>This is buddy 🤖 I can help you.</span>
               </motion.div>
-              <h1 className='text-[2.75rem] leading-[1.15] md:text-5xl lg:text-5xl font-bold mb-8 text-slate-900 tracking-tight drop-shadow-sm'>
-                An Empathetic AI Career Companion
+              <h1 className='md:text-4xl lg:text-4xl font-bold mb-8 text-slate-900 tracking-tight drop-shadow-sm'>
+                Let's walk this journey together. Let's get to know each ohter.
               </h1>
-              <p className='text-lg md:text-xl text-slate-700 mb-10 max-w-xl leading-relaxed drop-shadow-sm'>
+              <p className='text-xl text-slate-500 mb-10 max-w-xl leading-relaxed drop-shadow-sm'>
                 CareerBuddy guides you end‑to‑end—from self‑discovery and role exploration to job
                 tracking, mock interviews, tailored docs, negotiation, and 30‑60‑90 success. Built
                 to support you at every stage, with empathy.
@@ -89,7 +89,7 @@ export default function HeroSection() {
                     className='bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] hover:from-[#2ab7ca] hover:to-[#2dcbc5] text-white px-8 py-4 text-lg font-semibold shadow-xl shadow-[#2dcbc5]/30 hover:shadow-2xl hover:shadow-[#2dcbc5]/40 transition-all duration-300 rounded-lg w-full sm:w-auto'
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}>
-                    <span>Start My Career Plan</span>
+                    <span>Upload your resume</span>
                     <ArrowRight
                       size={20}
                       className={`ml-2 transition-transform duration-300 ${
