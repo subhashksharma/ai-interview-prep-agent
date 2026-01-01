@@ -1,45 +1,45 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Brain, Workflow, Layers, Shield, Zap, Code } from 'lucide-react';
+import { Compass, Search, ListChecks, MessageSquare, FileText, Handshake } from 'lucide-react';
 
 export default function FeaturesSection() {
   const features = [
     {
-      icon: <Brain className='h-6 w-6 text-blue-600' />,
-      title: 'Autonomous Decision Making',
+      icon: <Compass className='h-6 w-6 text-blue-600' />,
+      title: 'Onboarding & Self‑Discovery',
       description:
-        'Our agents make intelligent decisions based on your goals and constraints without constant supervision.',
+        'Capture skills, values, motivators, preferences, and availability to build a living career persona.',
     },
     {
-      icon: <Workflow className='h-6 w-6 text-blue-600' />,
-      title: 'Complex Workflow Automation',
+      icon: <Search className='h-6 w-6 text-blue-600' />,
+      title: 'Career & Role Exploration',
       description:
-        'Automate multi-step processes that require judgment, adaptation, and coordination between systems.',
+        'AI‑powered role suggestions, comfort vs. stretch paths, market demand, salary ranges, and skill gaps.',
     },
     {
-      icon: <Layers className='h-6 w-6 text-blue-600' />,
-      title: 'Multi-Agent Collaboration',
+      icon: <ListChecks className='h-6 w-6 text-blue-600' />,
+      title: 'Jobs Dashboard',
       description:
-        'Deploy teams of specialized agents that work together to solve complex problems.',
+        'Import jobs from anywhere, parse JDs, track progress, and get dynamic master + job‑specific prep plans.',
     },
     {
-      icon: <Shield className='h-6 w-6 text-blue-600' />,
-      title: 'Secure & Compliant',
+      icon: <MessageSquare className='h-6 w-6 text-blue-600' />,
+      title: 'Mock Interviews & Quizzes',
       description:
-        'Enterprise-grade security with fine-grained permissions and audit logs for all agent actions.',
+        'AI recruiter + technical rounds, pop‑up quizzes, and feedback loops that sharpen answers and confidence.',
     },
     {
-      icon: <Zap className='h-6 w-6 text-blue-600' />,
-      title: 'Rapid Integration',
+      icon: <FileText className='h-6 w-6 text-blue-600' />,
+      title: 'Tailored Documents',
       description:
-        'Connect to your existing tools and data sources in minutes with our extensive API library.',
+        'ATS‑ready resumes, role‑specific cover letters, and evolving “Tell me about yourself” scripts per job.',
     },
     {
-      icon: <Code className='h-6 w-6 text-blue-600' />,
-      title: 'Customizable Agents',
+      icon: <Handshake className='h-6 w-6 text-blue-600' />,
+      title: 'Offer Negotiation',
       description:
-        'Build and customize agents with our intuitive interface or advanced programming options.',
+        'Break down offers, compare markets, and generate empathetic yet assertive negotiation scripts.',
     },
   ];
 
@@ -56,14 +56,14 @@ export default function FeaturesSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}>
             <div className='inline-flex items-center px-4 py-2 rounded-full bg-[#2dcbc5]/10 border border-[#2dcbc5]/20 text-[#2dcbc5] mb-6'>
-              <span className='text-sm font-semibold'>Core Features</span>
+              <span className='text-sm font-semibold'>Built for Your Career Journey</span>
             </div>
             <h2 className='text-4xl md:text-5xl font-bold mb-6 text-slate-900 tracking-tight'>
-              Powerful Agentic AI Features
+              End‑to‑End Support, Powered by Empathy
             </h2>
             <p className='text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed'>
-              Our platform provides everything you need to build, deploy, and manage intelligent AI
-              agents that get work done.
+              From discovery to offer, CareerBuddy brings structure, confidence, and guidance to
+              every step.
             </p>
           </motion.div>
         </div>

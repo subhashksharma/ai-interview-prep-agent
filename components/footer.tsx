@@ -12,14 +12,15 @@ export default function Footer() {
             <Link
               href='/'
               className='flex items-center space-x-2 mb-6'>
-              <div className='w-8 h-8 bg-gradient-to-r from-blue-600 to-violet-600 rounded-md flex items-center justify-center'>
-                <span className='text-white font-bold'>A</span>
+              <div className='w-8 h-8 bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] rounded-md flex items-center justify-center'>
+                <span className='text-white font-bold'>C</span>
               </div>
-              <span className='text-xl font-bold text-white'>AgentAI</span>
+              <span className='text-xl font-bold text-white'>CareerBuddy</span>
             </Link>
             <p className='mb-6 max-w-md'>
-              Building the future of work with autonomous AI agents that help businesses automate
-              complex tasks and make better decisions.
+              An empathetic, AI‑powered career companion that supports you end‑to‑end—from
+              self‑discovery and role exploration to job tracking, mock interviews, tailored docs,
+              negotiation, and day‑90 success.
             </p>
             <div className='flex space-x-4'>
               <a
@@ -174,7 +175,7 @@ export default function Footer() {
         </div>
 
         <div className='border-t border-slate-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center'>
-          <p>&copy; {currentYear} AgentAI. All rights reserved.</p>
+          <p>&copy; {currentYear} CareerBuddy. All rights reserved.</p>
           <div className='flex space-x-6 mt-4 md:mt-0'>
             <Link
               href='#'

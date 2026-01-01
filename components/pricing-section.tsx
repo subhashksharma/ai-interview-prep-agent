@@ -6,58 +6,52 @@ import { Button } from '@/components/ui/button';
 import { Check } from 'lucide-react';
 
 export default function PricingSection() {
-  const [isAnnual, setIsAnnual] = useState(true);
+  const [isAnnual, setIsAnnual] = useState(false);
 
   const plans = [
     {
-      name: 'Starter',
-      description: 'Perfect for individuals and small projects',
-      monthlyPrice: 29,
-      annualPrice: 290,
+      name: 'US',
+      description: 'Simple monthly price for US users',
+      monthlyPrice: 8,
+      annualPrice: 8 * 12,
       features: [
-        '2 AI agents',
-        '100 agent runs per month',
-        'Basic integrations',
-        'Email support',
-        '7-day history',
+        'Full end‑to‑end career workflow',
+        'Mock interviews + pop‑up quizzes',
+        'ATS‑ready resume + cover letters',
+        'Job import + progress tracking',
+        'Offer breakdown + negotiation scripts',
       ],
-      cta: 'Start Free Trial',
-      highlighted: false,
-    },
-    {
-      name: 'Professional',
-      description: 'Ideal for growing teams and businesses',
-      monthlyPrice: 99,
-      annualPrice: 990,
-      features: [
-        '10 AI agents',
-        '1,000 agent runs per month',
-        'Advanced integrations',
-        'Priority support',
-        '30-day history',
-        'Custom agent training',
-        'Team collaboration',
-      ],
-      cta: 'Start Free Trial',
+      cta: 'Start Free',
       highlighted: true,
     },
     {
-      name: 'Enterprise',
-      description: 'For organizations with advanced needs',
-      monthlyPrice: null,
-      annualPrice: null,
+      name: 'UK',
+      description: 'Affordable monthly price for UK users',
+      monthlyPrice: 5,
+      annualPrice: 5 * 12,
       features: [
-        'Unlimited AI agents',
-        'Custom agent runs',
-        'All integrations',
-        'Dedicated support',
-        'Unlimited history',
-        'Custom agent training',
-        'Advanced security',
-        'SLA guarantees',
-        'On-premise deployment',
+        'Self‑discovery + role exploration',
+        'Dynamic prep plans (master + job)',
+        'Communication templates',
+        'Curated resources + summaries',
+        'Career journal + checkpoints',
       ],
-      cta: 'Contact Sales',
+      cta: 'Start Free',
+      highlighted: false,
+    },
+    {
+      name: 'India',
+      description: 'Localized pricing for India',
+      monthlyPrice: 300,
+      annualPrice: 300 * 12,
+      features: [
+        'All modules included',
+        'Empathetic guidance throughout',
+        'Daily plan updates',
+        'Email support',
+        'Cancel anytime',
+      ],
+      cta: 'Start Free',
       highlighted: false,
     },
   ];
@@ -73,9 +67,12 @@ export default function PricingSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}>
-            <h2 className='text-3xl md:text-4xl font-bold mb-4'>Simple, Transparent Pricing</h2>
+            <h2 className='text-3xl md:text-4xl font-bold mb-4'>
+              Accessible Pricing, Global First
+            </h2>
             <p className='text-lg text-slate-600 max-w-2xl mx-auto'>
-              Choose the plan that's right for your business, with no hidden fees or surprises.
+              CareerBuddy starts at US $8/mo, UK £5/mo, and India ₹300/mo. Start free—cancel
+              anytime.
             </p>
 
             <div className='flex items-center justify-center mt-8 mb-12'>
@@ -126,12 +123,18 @@ export default function PricingSection() {
                   {plan.monthlyPrice !== null ? (
                     <>
                       <span className='text-4xl font-bold'>
-                        ${isAnnual ? (plan.annualPrice / 12).toFixed(2) : plan.monthlyPrice}
+                        {plan.name === 'US' && '$'}
+                        {plan.name === 'UK' && '£'}
+                        {plan.name === 'India' && '₹'}
+                        {isAnnual ? (plan.annualPrice / 12).toFixed(0) : plan.monthlyPrice}
                       </span>
                       <span className='text-slate-600'>/month</span>
                       {isAnnual && (
                         <div className='text-sm text-slate-500 mt-1'>
-                          Billed annually (${plan.annualPrice}/year)
+                          Billed annually ({plan.name === 'US' && '$'}
+                          {plan.name === 'UK' && '£'}
+                          {plan.name === 'India' && '₹'}
+                          {plan.annualPrice}/year)
                         </div>
                       )}
                     </>

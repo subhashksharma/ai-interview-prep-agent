@@ -30,11 +30,12 @@ export default function HeroSection() {
                 <span className='text-sm font-semibold'>Next-Gen AI Agents</span>
               </motion.div>
               <h1 className='text-[2.75rem] leading-[1.15] md:text-5xl lg:text-5xl font-bold mb-8 text-slate-900 tracking-tight drop-shadow-sm'>
-                AI Agents That Work For You
+                An Empathetic AI Career Companion
               </h1>
               <p className='text-lg md:text-xl text-slate-700 mb-10 max-w-xl leading-relaxed drop-shadow-sm'>
-                Automate complex workflows, make decisions, and solve problems with our agentic AI
-                platform. Your digital workforce is here.
+                CareerBuddy guides you end‑to‑end—from self‑discovery and role exploration to job
+                tracking, mock interviews, tailored docs, negotiation, and 30‑60‑90 success. Built
+                to support you at every stage, with empathy.
               </p>
               <div className='flex flex-col sm:flex-row gap-4'>
                 <motion.div
@@ -44,7 +45,7 @@ export default function HeroSection() {
                     className='bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] hover:from-[#2ab7ca] hover:to-[#2dcbc5] text-white px-8 py-4 text-lg font-semibold shadow-xl shadow-[#2dcbc5]/30 hover:shadow-2xl hover:shadow-[#2dcbc5]/40 transition-all duration-300 rounded-lg w-full sm:w-auto'
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}>
-                    <span>Take a Interview</span>
+                    <span>Start My Career Plan</span>
                     <ArrowRight
                       size={20}
                       className={`ml-2 transition-transform duration-300 ${
@@ -113,7 +114,7 @@ export default function HeroSection() {
                       <div className='w-8 h-8 rounded-full bg-[#2dcbc5]/10 flex items-center justify-center mr-3'>
                         <span className='text-[#2dcbc5] font-medium'>U</span>
                       </div>
-                      <p className='text-slate-800'>Schedule meetings with clients next week</p>
+                      <p className='text-slate-800'>I have a Product Manager interview next Thursday — help me prepare.</p>
                     </div>
                   </div>
                   <div className='bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] rounded-lg p-4 mb-4 text-white'>
@@ -121,15 +122,13 @@ export default function HeroSection() {
                       <div className='w-8 h-8 rounded-full bg-white/20 flex items-center justify-center mr-3'>
                         <span className='text-white font-medium'>A</span>
                       </div>
-                      <p>I'll help you schedule those meetings.</p>
+                      <p>I'll create a focused prep plan and mock interview tailored to the role.</p>
                     </div>
                     <div className='pl-11 space-y-2 text-sm'>
-                      <p className='bg-white/10 rounded p-2'>
-                        ✓ Checking your calendar availability
-                      </p>
-                      <p className='bg-white/10 rounded p-2'>✓ Drafting emails to 5 clients</p>
-                      <p className='bg-white/10 rounded p-2'>✓ Suggesting optimal meeting times</p>
-                      <p className='bg-white/10 rounded p-2'>✓ Creating calendar events</p>
+                      <p className='bg-white/10 rounded p-2'>✓ Analyze the job description and highlight key skills</p>
+                      <p className='bg-white/10 rounded p-2'>✓ Draft tailored resume bullets and talking points</p>
+                      <p className='bg-white/10 rounded p-2'>✓ Create a 30‑minute mock interview with feedback</p>
+                      <p className='bg-white/10 rounded p-2'>✓ Suggest focused resources and a 5‑day study plan</p>
                     </div>
                   </div>
                   <div className='bg-white rounded-lg p-4 border border-slate-200'>
@@ -137,7 +136,7 @@ export default function HeroSection() {
                       <div className='w-8 h-8 rounded-full bg-[#2dcbc5]/10 flex items-center justify-center mr-3'>
                         <span className='text-[#2dcbc5] font-medium font-manrope'>U</span>
                       </div>
-                      <p className='text-slate-800 font-inter'>Perfect, thank you!</p>
+                      <p className='text-slate-800 font-inter'>Perfect — that sounds great, thank you!</p>
                     </div>
                   </div>
                 </div>
