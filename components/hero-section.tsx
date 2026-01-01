@@ -10,7 +10,9 @@ export default function HeroSection() {
 
   return (
     <section className='py-24 md:py-32 overflow-hidden relative'>
-      <div className='container mx-auto px-6'>
+      {/* Add white overlay for better text visibility */}
+      <div className='absolute inset-0 bg-white/40 backdrop-blur-[2px]' />
+      <div className='container mx-auto px-6 relative z-10'>
         <div className='flex flex-col md:flex-row items-center gap-12'>
           <div className='md:w-1/2'>
             <motion.div
@@ -27,10 +29,10 @@ export default function HeroSection() {
                 />
                 <span className='text-sm font-semibold'>Next-Gen AI Agents</span>
               </motion.div>
-              <h1 className='text-[2.75rem] leading-[1.15] md:text-5xl lg:text-6xl font-bold mb-8 bg-gradient-to-r from-slate-900 via-[#2dcbc5] to-[#2ab7ca] bg-clip-text text-transparent tracking-tight'>
+              <h1 className='text-[2.75rem] leading-[1.15] md:text-5xl lg:text-6xl font-bold mb-8 text-slate-900 tracking-tight drop-shadow-sm'>
                 AI Agents That Work For You
               </h1>
-              <p className='text-lg md:text-xl text-slate-600 mb-10 max-w-xl leading-relaxed'>
+              <p className='text-lg md:text-xl text-slate-700 mb-10 max-w-xl leading-relaxed drop-shadow-sm'>
                 Automate complex workflows, make decisions, and solve problems with our agentic AI
                 platform. Your digital workforce is here.
               </p>
