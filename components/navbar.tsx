@@ -15,10 +15,10 @@ export default function Navbar() {
           href='/'
           className='flex items-center space-x-2'>
           <div className='w-8 h-8 bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] rounded-md flex items-center justify-center'>
-            <span className='text-white font-bold'>A</span>
+            <span className='text-white font-bold'>C</span>
           </div>
           <span className='text-xl font-bold bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] bg-clip-text text-transparent'>
-            AgentAI
+            CareerBuddy
           </span>
         </Link>
 
