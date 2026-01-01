@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { GraduationCap, Repeat, AlertTriangle, Undo2, TrendingUp, Search } from 'lucide-react';
@@ -104,6 +104,89 @@ export default function UseCasesSection() {
     },
   };
 
+  // short sample dialogues for a few roles — used for the interactive preview
+  const conversations: Record<
+    string,
+    {
+      scenario: string;
+      messages: { from: 'user' | 'assistant'; text: string }[];
+    }
+  > = {
+    'fresh-graduates': {
+      scenario:
+        'You have a 20‑minute recruiter screen. Practice a quick intro and one impact story to lead with.',
+      messages: [
+        { from: 'user', text: "Hi — I'm Sam, a recent CS graduate focused on backend systems." },
+        {
+          from: 'assistant',
+          text: 'Nice to meet you, Sam — tell me about a project where you improved performance.',
+        },
+        {
+          from: 'user',
+          text: 'I refactored a caching layer and reduced latency by 40% for our API.',
+        },
+        {
+          from: 'assistant',
+          text: 'Great — frame the challenge, your action, and the measurable result.',
+        },
+      ],
+    },
+    'career-switchers': {
+      scenario:
+        'Moving from marketing into product. Frame transferable skills and a short learning plan for interviews.',
+      messages: [
+        { from: 'user', text: 'I led growth experiments and want to move into PM roles.' },
+        {
+          from: 'assistant',
+          text: 'Emphasize hypothesis design, metrics, and stakeholder alignment.',
+        },
+        { from: 'user', text: 'Which projects should I highlight?' },
+        {
+          from: 'assistant',
+          text: 'Pick 2 projects: one showing product intuition and one showing measurable impact.',
+        },
+      ],
+    },
+    'mid-senior': {
+      scenario:
+        'Interviewing for a senior IC or manager role—practice leadership stories and compensation framing.',
+      messages: [
+        { from: 'user', text: 'I led a cross‑functional launch that lifted retention by 18%.' },
+        {
+          from: 'assistant',
+          text: 'Structure it: context, challenge, action, outcome, and learning.',
+        },
+        { from: 'user', text: 'How should I discuss compensation expectations?' },
+        {
+          from: 'assistant',
+          text: 'Share a range anchored to market data and be clear about priorities.',
+        },
+      ],
+    },
+  };
+
+  const [visibleCount, setVisibleCount] = useState(0);
+
+  // autoplay preview for selected role conversations
+  useEffect(() => {
+    const convo = conversations[activeTab];
+    if (!convo) {
+      setVisibleCount(0);
+      return;
+    }
+    setVisibleCount(1);
+    let i = 1;
+    const id = setInterval(() => {
+      i += 1;
+      if (i > convo.messages.length) {
+        clearInterval(id);
+        return;
+      }
+      setVisibleCount(i);
+    }, 1400);
+    return () => clearInterval(id);
+  }, [activeTab]);
+
   return (
     <section
       id='use-cases'
@@ -185,11 +268,39 @@ export default function UseCasesSection() {
               </Button>
             </div>
             <div className='lg:w-1/2 bg-slate-100 flex items-center justify-center p-8'>
-              <img
-                src={useCases[activeTab].image || '/placeholder.svg'}
-                alt={`${useCases[activeTab].title} illustration`}
-                className='rounded-lg shadow-md max-w-full h-auto'
-              />
+              {conversations[activeTab] ? (
+                <div className='w-full max-w-md'>
+                  <h4 className='text-sm text-slate-500 mb-2'>Scenario</h4>
+                  <p className='text-slate-700 mb-4'>{conversations[activeTab].scenario}</p>
+
+                  <div className='bg-white rounded-lg p-4 shadow-inner border border-slate-200 space-y-3 max-h-64 overflow-auto'>
+                    {conversations[activeTab].messages.slice(0, visibleCount).map((m, i) => (
+                      <div
+                        key={i}
+                        className={`flex ${m.from === 'assistant' ? 'justify-end' : ''}`}>
+                        <div
+                          className={`px-4 py-2 rounded-lg max-w-[80%] ${
+                            m.from === 'assistant'
+                              ? 'bg-blue-600 text-white'
+                              : 'bg-slate-100 text-slate-900'
+                          }`}>
+                          {m.text}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className='mt-3 text-sm text-slate-500'>
+                    Auto preview — messages reveal sequentially.
+                  </div>
+                </div>
+              ) : (
+                <img
+                  src={useCases[activeTab].image || '/placeholder.svg'}
+                  alt={`${useCases[activeTab].title} illustration`}
+                  className='rounded-lg shadow-md max-w-full h-auto'
+                />
+              )}
             </div>
           </div>
         </motion.div>
