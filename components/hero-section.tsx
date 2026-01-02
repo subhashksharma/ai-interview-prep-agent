@@ -14,6 +14,7 @@ export default function HeroSection() {
   const [visibleMessages, setVisibleMessages] = useState(0);
   const [showTyping, setShowTyping] = useState(false);
   const [chatStarted, setChatStarted] = useState(false);
+  const [typedText, setTypedText] = useState('');
 
   // Simulate real-time chat conversation
   const messages = [
@@ -35,6 +36,28 @@ export default function HeroSection() {
       setChatStarted(true);
     }, 1500);
     return () => clearTimeout(startTimer);
+  }, []);
+
+  // Typing effect for the small intro pill
+  useEffect(() => {
+    const full = 'This is buddy 🤖 I can help you.';
+    if (
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
+      setTypedText(full);
+      return;
+    }
+
+    setTypedText('');
+    let idx = 0;
+    const tick = () => {
+      idx += 1;
+      setTypedText(full.slice(0, idx));
+      if (idx >= full.length) clearInterval(id);
+    };
+    const id = setInterval(tick, 40);
+    return () => clearInterval(id);
   }, []);
 
   // Animate messages appearing one by one with typing indicators
@@ -75,7 +98,13 @@ export default function HeroSection() {
                   size={16}
                   className='mr-2'
                 />
-                <span className='text-sm font-semibold'>This is buddy 🤖 I can help you.</span>
+                <span className='text-sm font-semibold flex items-center'>
+                  {typedText}
+                  <span
+                    className='ml-2 inline-block w-[6px] h-4 bg-slate-900 rounded-sm align-middle animate-pulse'
+                    aria-hidden
+                  />
+                </span>
               </motion.div>
               <h1 className='md:text-4xl lg:text-4xl font-bold mb-8 text-slate-900 tracking-tight drop-shadow-sm'>
                 Let's walk this journey together. Let's get to know each ohter.
@@ -85,8 +114,9 @@ export default function HeroSection() {
                 tracking, mock interviews, tailored docs, negotiation, and 30‑60‑90 success. Built
                 to support you at every stage, with empathy.
               </p>
-              <div className='flex flex-col sm:flex-row gap-4'>
+              <div className='flex flex-col sm:flex-row gap-4 items-stretch'>
                 <motion.div
+                  className='w-full sm:w-auto'
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}>
                   <Button
@@ -112,6 +142,7 @@ export default function HeroSection() {
                   </Button>
                 </motion.div>
                 <motion.div
+                  className='w-full sm:w-auto'
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}>
                   <ArrowButton />

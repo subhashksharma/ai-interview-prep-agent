@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ServiceBubble from './service-bubble';
 
 type Item = { label: string; dotColor?: string; from?: string; to?: string };
@@ -62,7 +62,9 @@ export default function ServicesCluster({
         {/* Center decorative rings (simple) */}
         <div className='absolute inset-0 flex items-center justify-center'>
           <div className='w-[260px] h-[260px] rounded-full bg-gradient-to-br from-[#ecfeff] to-white/80 border border-[#2dcbc5]/10 flex items-center justify-center'>
-            <div className='w-28 h-28 rounded-full bg-gradient-to-br from-[#2dcbc5] to-[#2ab7ca] shadow-lg' />
+            <div className='w-28 h-28 rounded-full bg-gradient-to-br from-[#2dcbc5] to-[#2ab7ca] shadow-lg flex items-center justify-center px-4'>
+              <CenterTyping />
+            </div>
           </div>
         </div>
 
@@ -113,5 +115,40 @@ export default function ServicesCluster({
         ))}
       </div>
     </>
+  );
+}
+
+function CenterTyping() {
+  const [typed, setTyped] = useState('');
+
+  useEffect(() => {
+    const full = 'This is buddy 🤖 I can help you.';
+    if (
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
+      setTyped(full);
+      return;
+    }
+    let i = 0;
+    setTyped('');
+    const id = setInterval(() => {
+      i += 1;
+      setTyped(full.slice(0, i));
+      if (i >= full.length) clearInterval(id);
+    }, 40);
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <div className='text-center'>
+      <div className='text-xs text-white font-semibold leading-tight'>{typed}</div>
+      <div className='h-3'>
+        <span
+          className='inline-block w-1 h-3 bg-white rounded-sm align-middle ml-1 animate-pulse'
+          aria-hidden
+        />
+      </div>
+    </div>
   );
 }
