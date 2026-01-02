@@ -6,7 +6,7 @@ import { ArrowRight } from 'lucide-react';
 
 export default function CtaSection() {
   return (
-    <section className='py-20 md:py-24 bg-gradient-to-br from-[#2dcbc5] via-[#2ab7ca] to-blue-600'>
+    <section className='py-20 md:py-24 bg-slate-50'>
       <div className='w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -14,44 +14,42 @@ export default function CtaSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className='relative'>
-          <div className='relative px-8 py-20 md:p-20'>
-            {/* Enhanced Background Pattern */}
-            <div className='absolute inset-0 overflow-hidden'>
-              <div className='absolute -top-1/4 -left-1/4 w-1/2 h-1/2 bg-white/10 rounded-full blur-3xl'></div>
-              <div className='absolute -bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-white/10 rounded-full blur-3xl'></div>
-            </div>
+          <div className='relative px-6 py-12 md:px-10 md:py-16'>
+            <div className='relative z-10 mx-auto max-w-4xl rounded-2xl bg-gradient-to-br from-white/70 to-white/60 border border-slate-200 shadow-xl p-8 md:p-12'>
+              <div className='flex flex-col md:flex-row items-center gap-6 md:gap-12'>
+                <div className='flex-1 text-center md:text-left'>
+                  <h2 className='text-2xl md:text-3xl lg:text-4xl font-extrabold text-slate-900 mb-3 tracking-tight'>
+                    Ready to move your career forward?
+                  </h2>
+                  <p className='text-slate-600 text-base md:text-lg'>
+                    Start free with CareerBuddy — an empathetic AI companion for role prep, tailored
+                    docs, interview practice, and 30–60–90 success.
+                  </p>
+                </div>
 
-            <div className='relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8'>
-              <div className='text-center lg:text-left max-w-xl'>
-                <h2 className='text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight tracking-tight'>
-                  Ready to move your career forward?
-                </h2>
-                <p className='text-white/90 text-lg md:text-xl max-w-xl leading-relaxed'>
-                  Start free with CareerBuddy—your empathetic AI companion for job search to day‑90
-                  success.
-                </p>
-              </div>
-              <div className='flex flex-col gap-4 min-w-fit'>
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}>
-                  <Button className='bg-white text-[#2dcbc5] hover:bg-slate-50 px-8 py-4 text-lg font-semibold rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 w-full sm:w-auto'>
-                    Start My Career Plan
-                  </Button>
-                </motion.div>
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}>
-                  <Button
-                    variant='outline'
-                    className='bg-transparent border-2 border-white/40 text-white hover:bg-white/10 px-8 py-4 text-lg font-semibold rounded-lg backdrop-blur-sm transition-all duration-300 w-full sm:w-auto group'>
-                    <span>Try a Mock Interview</span>
-                    <ArrowRight
-                      size={20}
-                      className='ml-2 group-hover:translate-x-1 transition-transform duration-300'
-                    />
-                  </Button>
-                </motion.div>
+                <div className='flex-shrink-0 flex flex-col sm:flex-row gap-3 md:gap-4'>
+                  <motion.div
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}>
+                    <Button className='bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] text-white px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-semibold shadow-xl shadow-[#2dcbc5]/25 transition-all'>
+                      Start My Career Plan
+                    </Button>
+                  </motion.div>
+
+                  <motion.div
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}>
+                    <Button
+                      variant='ghost'
+                      className='group flex items-center gap-3 px-4 py-3 rounded-lg bg-transparent border border-slate-200 text-slate-800 hover:bg-[#f8fafb] transition'>
+                      <span className='text-sm font-medium'>Try a Mock Interview</span>
+                      <ArrowRight
+                        size={18}
+                        className='text-slate-700 group-hover:translate-x-1 transition-transform duration-200'
+                      />
+                    </Button>
+                  </motion.div>
+                </div>
               </div>
             </div>
           </div>
