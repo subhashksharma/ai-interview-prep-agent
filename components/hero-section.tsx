@@ -1,12 +1,12 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Sparkles, Zap, UploadCloud, Heading1 } from 'lucide-react';
+import { Sparkles, Zap } from 'lucide-react';
 import BotDemoChatbox from '@/components/ui/bot-demo-chatbox';
 import ServicesCluster from '@/components/ui/services-cluster';
 import WatchButton from '@/components/ui/watch-button';
 import ArrowButton from '@/components/ui/arrow-button';
+import UploadButton from '@/components/ui/upload-button';
 import { motion } from 'framer-motion';
 
 export default function HeroSection() {
@@ -119,27 +119,7 @@ export default function HeroSection() {
                   className='w-full sm:w-auto'
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}>
-                  <Button
-                    variant='ghost'
-                    className='group flex items-center gap-4 px-4 py-3 rounded-lg w-full sm:w-auto text-left bg-transparent hover:bg-transparent focus:bg-transparent'
-                    aria-label='Upload resume - get tailored resume bullets'>
-                    <div className='flex-shrink-0 w-10 h-10 rounded-full border-2 border-slate-900/90 flex items-center justify-center transition-all duration-200 group-hover:bg-gradient-to-r group-hover:from-[#2dcbc5] group-hover:to-[#2ab7ca] group-hover:border-transparent group-hover:scale-105'>
-                      <UploadCloud
-                        size={16}
-                        className='text-slate-900 group-hover:text-white transition-colors duration-200'
-                      />
-                    </div>
-                    <div className='leading-tight'>
-                      <div className='inline-block px-0 py-0 rounded-sm transition-colors duration-200'>
-                        <div className='inline-block bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] text-white px-3 py-1 rounded-full text-sm font-semibold shadow-sm'>
-                          Upload Resume
-                        </div>
-                        <div className='text-sm text-slate-500 transition-colors duration-200 group-hover:text-[#2dcbc5]/80'>
-                          Get tailored resume bullets
-                        </div>
-                      </div>
-                    </div>
-                  </Button>
+                  <UploadButton className='group flex items-center gap-4 px-4 py-3 rounded-lg w-full sm:w-auto text-left bg-transparent hover:bg-transparent focus:bg-transparent' />
                 </motion.div>
                 <motion.div
                   className='w-full sm:w-auto'
