@@ -10,6 +10,7 @@ import TestimonialsSection from '@/components/testimonials-section';
 import CtaSection from '@/components/cta-section';
 import Footer from '@/components/footer';
 import Btn from '@/components/btn-download';
+import StepperSection from '@/components/stepper-section';
 
 export default function Home() {
   const [isPaused, setIsPaused] = useState(false);
@@ -104,6 +105,7 @@ export default function Home() {
         <Navbar />
         <main>
           <HeroSection />
+          <StepperSection />
           <FeaturesSection />
           <UseCasesSection />
           <TestimonialsSection />

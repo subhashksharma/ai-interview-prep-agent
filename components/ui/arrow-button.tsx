@@ -15,11 +15,21 @@ export default function ArrowButton({
   title = 'Click Me',
   subtitle = 'See how it works',
   className = '',
+  onClick,
   ...rest
 }: ArrowButtonProps) {
+  const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    if (onClick) onClick(e as any);
+    const target = document.getElementById('stepper');
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <Button
       variant='ghost'
+      onClick={handleClick}
       className={
         className ||
         'group flex items-center gap-4 px-4 py-3 rounded-lg w-full sm:w-auto text-left bg-transparent hover:bg-transparent focus:bg-transparent'

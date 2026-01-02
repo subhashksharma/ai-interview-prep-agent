@@ -107,7 +107,7 @@ export default function HeroSection() {
                 </span>
               </motion.div>
               <h1 className='md:text-4xl lg:text-4xl font-bold mb-8 text-slate-900 tracking-tight drop-shadow-sm'>
-                Let's walk this journey together. Let's get to know each ohter.
+                Let's walk this journey together. Let's get to know each other.
               </h1>
               <p className='text-[15px] text-slate-600 mb-10 max-w-xl leading-relaxed drop-shadow-sm'>
                 CareerBuddy guides you end‑to‑end—from self‑discovery and role exploration to job
