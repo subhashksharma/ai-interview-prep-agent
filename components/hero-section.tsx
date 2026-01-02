@@ -114,15 +114,15 @@ export default function HeroSection() {
                 tracking, mock interviews, tailored docs, negotiation, and 30‑60‑90 success. Built
                 to support you at every stage, with empathy.
               </p>
-              <div className='flex flex-col sm:flex-row gap-4 items-stretch'>
+              <div className='flex flex-col sm:flex-row gap-4 items-start'>
                 <motion.div
-                  className='w-full sm:w-auto'
+                  className='w-auto'
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}>
-                  <UploadButton className='group flex items-center gap-4 px-4 py-3 rounded-lg w-full sm:w-auto text-left bg-transparent hover:bg-transparent focus:bg-transparent' />
+                  <UploadButton className='group flex items-center gap-4 px-4 py-3 rounded-lg w-auto text-left bg-transparent hover:bg-transparent focus:bg-transparent' />
                 </motion.div>
                 <motion.div
-                  className='w-full sm:w-auto'
+                  className='w-auto'
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}>
                   <ArrowButton />
