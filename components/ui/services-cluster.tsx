@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import ServiceBubble from './service-bubble';
+import { Bot } from 'lucide-react';
 
 type Item = { label: string; dotColor?: string; from?: string; to?: string };
 
@@ -62,8 +63,24 @@ export default function ServicesCluster({
         {/* Center decorative rings (simple) */}
         <div className='absolute inset-0 flex items-center justify-center'>
           <div className='w-[260px] h-[260px] rounded-full bg-gradient-to-br from-[#ecfeff] to-white/80 border border-[#2dcbc5]/10 flex items-center justify-center'>
-            <div className='w-28 h-28 rounded-full bg-gradient-to-br from-[#2dcbc5] to-[#2ab7ca] shadow-lg flex items-center justify-center px-4'>
-              <CenterTyping />
+            <div className='w-44 h-36 rounded-2xl bg-gradient-to-br from-white to-[#f7ffff] border border-[#e6fdfc]/40 shadow-inner flex items-center justify-center relative'>
+              {/* Monitor bezel */}
+              {/* <div className='absolute -top-8 flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-[#2dcbc5] to-[#2ab7ca] shadow-lg border-2 border-white'>
+                <Bot
+                  size={34}
+                  className='text-white'
+                />
+              </div> */}
+
+              {/* Screen */}
+              <div className='w-36 h-20 bg-slate-900 rounded-md flex items-center justify-center p-2'>
+                <div className='w-full text-center'>
+                  <CenterTyping textClass='text-white' />
+                </div>
+              </div>
+
+              {/* Stand */}
+              <div className='absolute bottom-[-10px] w-24 h-4 bg-white/90 rounded-b-md border border-[#ecfeff]/40' />
             </div>
           </div>
         </div>
@@ -118,7 +135,7 @@ export default function ServicesCluster({
   );
 }
 
-function CenterTyping() {
+function CenterTyping({ textClass = 'text-slate-900' }: { textClass?: string }) {
   const [typed, setTyped] = useState('');
 
   useEffect(() => {
@@ -140,12 +157,17 @@ function CenterTyping() {
     return () => clearInterval(id);
   }, []);
 
+  const pulseClass = textClass.includes('white') ? 'bg-white' : 'bg-slate-700';
+
   return (
-    <div className='text-center'>
-      <div className='text-xs text-white font-semibold leading-tight'>{typed}</div>
+    <div
+      className='text-center'
+      role='status'
+      aria-live='polite'>
+      <div className={`text-xs ${textClass} font-semibold leading-tight`}>{typed}</div>
       <div className='h-3'>
         <span
-          className='inline-block w-1 h-3 bg-white rounded-sm align-middle ml-1 animate-pulse'
+          className={`inline-block w-1 h-3 ${pulseClass} rounded-sm align-middle ml-1 animate-pulse`}
           aria-hidden
         />
       </div>
