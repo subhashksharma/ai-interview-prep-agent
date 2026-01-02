@@ -6,6 +6,7 @@ import { Sparkles, Zap, UploadCloud, Heading1 } from 'lucide-react';
 import BotDemoChatbox from '@/components/ui/bot-demo-chatbox';
 import ServicesCluster from '@/components/ui/services-cluster';
 import WatchButton from '@/components/ui/watch-button';
+import ArrowButton from '@/components/ui/arrow-button';
 import { motion } from 'framer-motion';
 
 export default function HeroSection() {
@@ -113,7 +114,7 @@ export default function HeroSection() {
                 <motion.div
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}>
-                  <WatchButton />
+                  <ArrowButton />
                 </motion.div>
               </div>
               <motion.div
