@@ -20,7 +20,7 @@ export default function ArrowButton({
 }: ArrowButtonProps) {
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     if (onClick) onClick(e as any);
-    const target = document.getElementById('stepper');
+    const target = document.getElementById('journey');
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }

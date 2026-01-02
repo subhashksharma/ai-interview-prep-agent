@@ -11,6 +11,7 @@ import Footer from '@/components/footer';
 import Btn from '@/components/btn-download';
 import StepperSection from '@/components/stepper-section';
 import VideoBackground from '@/components/video-background';
+import JourneyWorkflow from '@/components/journey-workflow';
 
 export default function Home() {
   return (
@@ -31,9 +32,10 @@ export default function Home() {
         <Navbar />
         <main>
           <HeroSection />
-          <StepperSection />
+          <JourneyWorkflow />
           <FeaturesSection />
           <UseCasesSection />
+          <StepperSection />
           <TestimonialsSection />
           <PricingSection />
           <CtaSection />
