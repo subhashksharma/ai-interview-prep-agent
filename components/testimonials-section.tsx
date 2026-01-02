@@ -8,26 +8,26 @@ export default function TestimonialsSection() {
   const testimonials = [
     {
       quote:
-        'AgentAI has transformed how we handle customer support. Our response times dropped by 80% while customer satisfaction increased by 25%.',
-      author: 'Sarah Johnson',
-      title: 'Customer Success Director',
-      company: 'TechCorp Inc.',
+        'CareerBuddy helped me land my dream PM role. The mock interviews felt real and the feedback was incredibly detailed — I felt prepared walking into every round.',
+      author: 'Priya Sharma',
+      title: 'Product Manager',
+      company: 'TechStartup',
       avatar: './images/avatar/avatar-1.jpg',
     },
     {
       quote:
-        "The sales automation agents have been game-changing for our team. We've seen a 40% increase in qualified leads and our sales cycle has shortened significantly.",
-      author: 'Michael Chen',
-      title: 'VP of Sales',
-      company: 'GrowthWave',
+        "After being laid off, I felt overwhelmed. CareerBuddy's structured approach helped me organize my job search and the tailored resume bullets made a huge difference.",
+      author: 'James Mitchell',
+      title: 'Senior Engineer',
+      company: 'CloudScale',
       avatar: './images/avatar/avatar-2.jpg',
     },
     {
       quote:
-        'Our legal team now reviews contracts in minutes instead of hours. The accuracy and consistency of the AI agents have exceeded our expectations.',
-      author: 'Elena Rodriguez',
-      title: 'General Counsel',
-      company: 'LegalEdge',
+        'Switching from marketing to product felt impossible until CareerBuddy mapped my transferable skills and gave me a clear prep plan. Got offers from 3 companies!',
+      author: 'Maria Garcia',
+      title: 'Associate PM',
+      company: 'FinanceApp',
       avatar: './images/avatar/avatar-3.jpg',
     },
   ];
@@ -68,10 +68,10 @@ export default function TestimonialsSection() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
             className='bg-white rounded-2xl p-8 md:p-12 shadow-lg border border-slate-200'>
-            <div className='absolute -top-6 left-8 text-blue-600'>
+            <div className='absolute -top-6 left-8 text-[#2dcbc5]'>
               <Quote
                 size={48}
-                className='opacity-20'
+                className='opacity-30'
               />
             </div>
             <div className='relative z-10'>
@@ -83,13 +83,13 @@ export default function TestimonialsSection() {
                   <img
                     src={testimonials[currentIndex].avatar || '/placeholder.svg'}
                     alt={testimonials[currentIndex].author}
-                    className='w-16 h-16 rounded-full object-cover border-2 border-blue-100'
+                    className='w-16 h-16 rounded-full object-cover border-2 border-[#2dcbc5]/30'
                   />
                 </div>
                 <div>
                   <h4 className='font-bold text-lg'>{testimonials[currentIndex].author}</h4>
                   <p className='text-slate-600'>{testimonials[currentIndex].title}</p>
-                  <p className='text-blue-600'>{testimonials[currentIndex].company}</p>
+                  <p className='text-[#2dcbc5]'>{testimonials[currentIndex].company}</p>
                 </div>
               </div>
             </div>
@@ -107,8 +107,8 @@ export default function TestimonialsSection() {
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index)}
-                  className={`w-3 h-3 rounded-full ${
-                    index === currentIndex ? 'bg-blue-600' : 'bg-slate-300'
+                  className={`w-3 h-3 rounded-full transition-colors duration-200 ${
+                    index === currentIndex ? 'bg-[#2dcbc5]' : 'bg-slate-300'
                   }`}
                   aria-label={`Go to testimonial ${index + 1}`}
                 />

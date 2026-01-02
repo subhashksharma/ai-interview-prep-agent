@@ -6,37 +6,37 @@ import { Compass, Search, ListChecks, MessageSquare, FileText, Handshake } from 
 export default function FeaturesSection() {
   const features = [
     {
-      icon: <Compass className='h-6 w-6 text-blue-600' />,
+      icon: <Compass className='h-6 w-6 text-[#2dcbc5]' />,
       title: 'Onboarding & Self‑Discovery',
       description:
         'Capture skills, values, motivators, preferences, and availability to build a living career persona.',
     },
     {
-      icon: <Search className='h-6 w-6 text-blue-600' />,
+      icon: <Search className='h-6 w-6 text-[#2dcbc5]' />,
       title: 'Career & Role Exploration',
       description:
         'AI‑powered role suggestions, comfort vs. stretch paths, market demand, salary ranges, and skill gaps.',
     },
     {
-      icon: <ListChecks className='h-6 w-6 text-blue-600' />,
+      icon: <ListChecks className='h-6 w-6 text-[#2dcbc5]' />,
       title: 'Jobs Dashboard',
       description:
         'Import jobs from anywhere, parse JDs, track progress, and get dynamic master + job‑specific prep plans.',
     },
     {
-      icon: <MessageSquare className='h-6 w-6 text-blue-600' />,
+      icon: <MessageSquare className='h-6 w-6 text-[#2dcbc5]' />,
       title: 'Mock Interviews & Quizzes',
       description:
         'AI recruiter + technical rounds, pop‑up quizzes, and feedback loops that sharpen answers and confidence.',
     },
     {
-      icon: <FileText className='h-6 w-6 text-blue-600' />,
+      icon: <FileText className='h-6 w-6 text-[#2dcbc5]' />,
       title: 'Tailored Documents',
       description:
         'ATS‑ready resumes, role‑specific cover letters, and evolving “Tell me about yourself” scripts per job.',
     },
     {
-      icon: <Handshake className='h-6 w-6 text-blue-600' />,
+      icon: <Handshake className='h-6 w-6 text-[#2dcbc5]' />,
       title: 'Offer Negotiation',
       description:
         'Break down offers, compare markets, and generate empathetic yet assertive negotiation scripts.',

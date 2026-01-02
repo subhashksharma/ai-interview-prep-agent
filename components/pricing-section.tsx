@@ -108,11 +108,11 @@ export default function PricingSection() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className={`rounded-xl overflow-hidden ${
                 plan.highlighted
-                  ? 'border-2 border-blue-600 shadow-lg shadow-blue-100'
+                  ? 'border-2 border-[#2dcbc5] shadow-lg shadow-[#2dcbc5]/20'
                   : 'border border-slate-200 shadow-sm'
               }`}>
               {plan.highlighted && (
-                <div className='bg-blue-600 text-white text-center py-2 text-sm font-medium'>
+                <div className='bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] text-white text-center py-2 text-sm font-medium'>
                   Most Popular
                 </div>
               )}
@@ -145,8 +145,8 @@ export default function PricingSection() {
                 <Button
                   className={`w-full ${
                     plan.highlighted
-                      ? 'bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white'
-                      : 'bg-white border border-slate-300 hover:bg-slate-50 text-slate-800'
+                      ? 'bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] hover:from-[#2ab7ca] hover:to-[#2dcbc5] text-white shadow-lg shadow-[#2dcbc5]/25'
+                      : 'bg-white border border-slate-300 hover:bg-slate-50 hover:border-[#2dcbc5] text-slate-800'
                   }`}>
                   {plan.cta}
                 </Button>

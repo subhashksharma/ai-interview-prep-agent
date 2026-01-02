@@ -213,14 +213,16 @@ export default function UseCasesSection() {
             <Button
               key={key}
               variant={activeTab === key ? 'default' : 'outline'}
-              className={`flex items-center gap-2 ${
-                activeTab === key ? 'bg-blue-600 hover:bg-blue-700' : 'border-slate-300'
+              className={`flex items-center gap-2 text-sm sm:text-base ${
+                activeTab === key
+                  ? 'bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] hover:from-[#2ab7ca] hover:to-[#2dcbc5] shadow-lg shadow-[#2dcbc5]/20'
+                  : 'border-slate-300 hover:border-[#2dcbc5] hover:text-[#2dcbc5]'
               }`}
               onClick={() => setActiveTab(key)}>
               <span className={activeTab === key ? 'text-white' : 'text-slate-700'}>
                 {useCase.icon}
               </span>
-              <span>{useCase.title}</span>
+              <span className='hidden sm:inline'>{useCase.title}</span>
             </Button>
           ))}
         </div>
@@ -242,7 +244,7 @@ export default function UseCasesSection() {
                   <li
                     key={index}
                     className='flex items-start'>
-                    <div className='mr-2 mt-1 text-blue-600'>
+                    <div className='mr-2 mt-1 text-[#2dcbc5]'>
                       <svg
                         width='16'
                         height='16'
@@ -263,7 +265,7 @@ export default function UseCasesSection() {
                 ))}
               </ul>
 
-              <Button className='bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white'>
+              <Button className='bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] hover:from-[#2ab7ca] hover:to-[#2dcbc5] text-white shadow-lg shadow-[#2dcbc5]/25'>
                 Learn More
               </Button>
             </div>
@@ -281,7 +283,7 @@ export default function UseCasesSection() {
                         <div
                           className={`px-4 py-2 rounded-lg max-w-[80%] ${
                             m.from === 'assistant'
-                              ? 'bg-blue-600 text-white'
+                              ? 'bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] text-white'
                               : 'bg-slate-100 text-slate-900'
                           }`}>
                           {m.text}

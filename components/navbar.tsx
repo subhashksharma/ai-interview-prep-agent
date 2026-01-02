@@ -91,39 +91,39 @@ export default function Navbar() {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className='md:hidden bg-white border-t border-slate-200 py-4'>
-          <div className='container mx-auto px-4 flex flex-col space-y-4'>
+        <div className='md:hidden bg-white/95 backdrop-blur-lg border-t border-slate-200/60 py-6 shadow-lg'>
+          <div className='max-w-7xl mx-auto px-4 flex flex-col space-y-1'>
             <Link
               href='#features'
-              className='text-slate-700 hover:text-blue-600 transition-colors py-2'
+              className='text-slate-700 hover:text-[#2dcbc5] hover:bg-[#2dcbc5]/5 transition-all duration-200 py-3 px-4 rounded-lg font-medium'
               onClick={() => setIsMenuOpen(false)}>
               Features
             </Link>
             <Link
               href='#use-cases'
-              className='text-slate-700 hover:text-blue-600 transition-colors py-2'
+              className='text-slate-700 hover:text-[#2dcbc5] hover:bg-[#2dcbc5]/5 transition-all duration-200 py-3 px-4 rounded-lg font-medium'
               onClick={() => setIsMenuOpen(false)}>
               Use Cases
             </Link>
             <Link
               href='#pricing'
-              className='text-slate-700 hover:text-blue-600 transition-colors py-2'
+              className='text-slate-700 hover:text-[#2dcbc5] hover:bg-[#2dcbc5]/5 transition-all duration-200 py-3 px-4 rounded-lg font-medium'
               onClick={() => setIsMenuOpen(false)}>
               Pricing
             </Link>
             <Link
               href='#testimonials'
-              className='text-slate-700 hover:text-blue-600 transition-colors py-2'
+              className='text-slate-700 hover:text-[#2dcbc5] hover:bg-[#2dcbc5]/5 transition-all duration-200 py-3 px-4 rounded-lg font-medium'
               onClick={() => setIsMenuOpen(false)}>
               Testimonials
             </Link>
-            <div className='flex flex-col space-y-2 pt-2 border-t border-slate-200'>
+            <div className='flex flex-col space-y-3 pt-4 mt-2 border-t border-slate-200/60'>
               <Button
                 variant='outline'
-                className='w-full border-slate-300'>
+                className='w-full border-slate-300 hover:border-[#2dcbc5] hover:text-[#2dcbc5] transition-all duration-200'>
                 Log in
               </Button>
-              <Button className='w-full bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white'>
+              <Button className='w-full bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] hover:from-[#2ab7ca] hover:to-[#2dcbc5] text-white font-semibold shadow-lg shadow-[#2dcbc5]/25'>
                 Get Started
               </Button>
             </div>

@@ -109,7 +109,7 @@ export default function HeroSection() {
               <h1 className='md:text-4xl lg:text-4xl font-bold mb-8 text-slate-900 tracking-tight drop-shadow-sm'>
                 Let's walk this journey together. Let's get to know each ohter.
               </h1>
-              <p className='text-xl text-slate-500 mb-10 max-w-xl leading-relaxed drop-shadow-sm'>
+              <p className='text-[15px] text-slate-600 mb-10 max-w-xl leading-relaxed drop-shadow-sm'>
                 CareerBuddy guides you end‑to‑end—from self‑discovery and role exploration to job
                 tracking, mock interviews, tailored docs, negotiation, and 30‑60‑90 success. Built
                 to support you at every stage, with empathy.
