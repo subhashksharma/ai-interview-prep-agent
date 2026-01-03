@@ -4,8 +4,6 @@ A modern, responsive landing page template built with Next.js, Tailwind CSS, and
 
 ## Live Demo
 
-https://codescandy.github.io/ai-agent-landing-page/
-
 ## Tech Stack
 
 - **Framework:** Next.js
