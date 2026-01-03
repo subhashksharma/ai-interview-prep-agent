@@ -33,6 +33,8 @@ jobs:
           rm -rf docs
           mkdir -p docs
           cp -r out/. docs/
+          # prevent GitHub Pages from running Jekyll on the published folder
+          touch docs/.nojekyll
 
       - name: Commit and push `docs/` to `main`
         env:
