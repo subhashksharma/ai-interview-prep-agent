@@ -22,16 +22,16 @@ A modern, responsive landing page template built with Next.js, Tailwind CSS, and
 1. Clone this repo and install dependencies:
 
 ```bash
-git clone https://github.com/codescandy/ai-agent-landing-page.git ai-agent
-cd ai-agent
-pnpm install
+git clone https://github.com/subhashksharma/ai-interview-prep-agent.git ai-interview-prep
+cd ai-interview-prep
+npm install
 # or: npm install
 ```
 
 2. Run the development server:
 
 ```bash
-pnpm dev
+npm dev
 # or: npm run dev
 ```
 
