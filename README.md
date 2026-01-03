@@ -1,66 +1,75 @@
-# AI Agent Landing Page
+# Career Buddy
 
-Welcome to the AI Agent Landing Page project! This is a modern, responsive landing page template built with Next.js, Tailwind CSS, and Radix UI. It's designed to showcase AI-powered SaaS products and services, featuring smooth animations, a clean layout, and a user-friendly interface..
+A modern, responsive landing page template built with Next.js, Tailwind CSS, and Radix UI — designed to showcase AI-powered products and services with smooth animations and a clean UI.
 
+## Live Demo
 
-## 🚀 Live Demo
+https://codescandy.github.io/ai-agent-landing-page/
 
-Check out the live demo here:
-[https://codescandy.github.io/ai-agent-landing-page/](https://codescandy.github.io/ai-agent-landing-page/)
+## Tech Stack
 
----
+- **Framework:** Next.js
+- **Styling:** Tailwind CSS
+- **UI components:** Radix UI
+- **Animations:** Framer Motion
+- **Language:** TypeScript
 
-## 🧱 Tech Stack
+## Prerequisites
 
-- **Framework**: [Next.js](https://nextjs.org/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **UI Components**: [Radix UI](https://www.radix-ui.com/)
-- **Animations**: [Framer Motion](https://www.framer.com/motion/)
-- **TypeScript**: Type-safe development
+- Node.js v18 or newer
+- pnpm (recommended) or npm / yarn
 
----
+## Quick start (local)
 
-### Prerequisites
-- Node.js (v18 or newer recommended)
-- pnpm (or npm/yarn)
-
-## 📦 Installation
-
-Follow these steps to run the project locally:
-
-1. Clone the repository:
+1. Clone this repo and install dependencies:
 
 ```bash
-git clone https://github.com/codescandy/ai-agent-landing-page.git
-cd ai-agent-landing-page
-
-pnpm install or npm install or yarn install
+git clone https://github.com/codescandy/ai-agent-landing-page.git ai-agent
+cd ai-agent
+pnpm install
+# or: npm install
 ```
 
-### Running Locally
-Start the development server:
+2. Run the development server:
 
 ```bash
-pnpm or npm run dev or yarn dev
+pnpm dev
+# or: npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to view the dashboard.
+3. Open `http://localhost:3000` in your browser.
 
-### Building for Production
+## Build & preview (production)
 
 ```bash
-pnpm or npm run build or yarn build
+pnpm build
+pnpm start    # or: npm run build && npm run start
 ```
 
-### Deployment
-You can deploy this app to Vercel, Netlify, or GitHub Pages. For GitHub Pages, make sure to set the correct `basePath` and `assetPrefix` in `next.config.mjs` as described in the codebase.
+## Common scripts
 
----
-Feel free to customize and extend the dashboard for your own smart home needs!
+- `dev` — start local Next.js dev server
+- `build` — build for production
+- `start` — run production server (after build)
 
-## Author
+Check `package.json` for the exact script names used in this repository.
 
+## Environment & Tailwind
 
-❤️ Author
+- Tailwind is configured via `tailwind.config.ts` and used across the app.
+- If you update Tailwind config or global CSS, restart the dev server to see changes.
 
-[CodesCandy](https://codescandy.github.io)
+## Deployment
+
+Recommended: Deploy to Vercel for optimal Next.js support. You can also use Netlify or other hosting providers. For GitHub Pages, update `next.config.mjs` with `basePath` and `assetPrefix`.
+
+## Contributing
+
+- Fork the repo, create a feature branch, and open a pull request.
+- Keep changes focused and include a short description of what you changed.
+
+## License & Author
+
+See repository metadata for license information.
+
+Author: Subhash Kumar Sharma
