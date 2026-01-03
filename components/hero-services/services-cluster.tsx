@@ -136,26 +136,56 @@ export default function ServicesCluster({
 }
 
 function CenterTyping({ textClass = 'text-slate-900' }: { textClass?: string }) {
+  const messages = [
+    'This is buddy 🤖 I can help you.',
+    "Let's build your career, one step at a time.",
+    'Small progress every day leads to big wins.',
+    "You've got skills — we'll help you showcase them.",
+    'Prepare, practice, and land the role you deserve.',
+    'Your next opportunity is one plan away.',
+  ];
+
+  const [msgIndex, setMsgIndex] = useState(0);
   const [typed, setTyped] = useState('');
 
   useEffect(() => {
-    const full = 'This is buddy 🤖 I can help you.';
+    // Respect reduced motion: show first message fully and stop
     if (
       typeof window !== 'undefined' &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches
     ) {
-      setTyped(full);
+      setTyped(messages[0]);
       return;
     }
-    let i = 0;
-    setTyped('');
-    const id = setInterval(() => {
-      i += 1;
-      setTyped(full.slice(0, i));
-      if (i >= full.length) clearInterval(id);
-    }, 40);
-    return () => clearInterval(id);
-  }, []);
+
+    let charIdx = 0;
+    let typingId: number | null = null;
+    let pauseId: number | null = null;
+
+    const startTyping = (msg: string) => {
+      setTyped('');
+      charIdx = 0;
+      typingId = window.setInterval(() => {
+        charIdx += 1;
+        setTyped(msg.slice(0, charIdx));
+        if (charIdx >= msg.length && typingId) {
+          clearInterval(typingId);
+          typingId = null;
+          // pause before switching to next message
+          pauseId = window.setTimeout(() => {
+            setMsgIndex((s) => (s + 1) % messages.length);
+          }, 1600);
+        }
+      }, 36);
+    };
+
+    startTyping(messages[msgIndex]);
+
+    return () => {
+      if (typingId) clearInterval(typingId);
+      if (pauseId) clearTimeout(pauseId);
+    };
+  }, [msgIndex]);
 
   const pulseClass = textClass.includes('white') ? 'bg-white' : 'bg-slate-700';
 
