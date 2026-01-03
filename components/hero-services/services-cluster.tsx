@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import ServiceBubble from './service-bubble';
 import { Bot } from 'lucide-react';
+import ServiceBubble from './service-bubble';
 
 type Item = { label: string; dotColor?: string; from?: string; to?: string };
 

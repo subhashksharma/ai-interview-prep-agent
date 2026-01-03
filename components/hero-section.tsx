@@ -3,10 +3,11 @@
 import { useState, useEffect } from 'react';
 import { Sparkles, Zap } from 'lucide-react';
 import BotDemoChatbox from '@/components/ui/bot-demo-chatbox';
-import ServicesCluster from '@/components/ui/services-cluster';
+import ServicesCluster from '@/components/hero-services/services-cluster';
 import WatchButton from '@/components/ui/watch-button';
 import ArrowButton from '@/components/ui/arrow-button';
 import UploadButton from '@/components/ui/upload-button';
+import HeroDescription from '@/components/ui/hero-description';
 import { motion } from 'framer-motion';
 
 export default function HeroSection() {
@@ -109,11 +110,7 @@ export default function HeroSection() {
               <h1 className='md:text-4xl lg:text-4xl font-bold mb-8 text-slate-900 tracking-tight drop-shadow-sm'>
                 Let's walk this journey together.
               </h1>
-              <p className='text-[15px] text-slate-600 mb-10 max-w-xl leading-relaxed drop-shadow-sm'>
-                CareerBuddy guides you end‑to‑end—from self‑discovery and role exploration to job
-                tracking, mock interviews, tailored docs, negotiation, and 30‑60‑90 success. Built
-                to support you at every stage, with empathy.
-              </p>
+              <HeroDescription />
               <motion.div
                 className='mt-10 flex mb-10 items-center text-slate-500 text-sm'
                 initial={{ opacity: 0 }}
