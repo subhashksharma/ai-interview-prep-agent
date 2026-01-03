@@ -111,11 +111,11 @@ export default function HeroSection() {
               <h1 className='md:text-4xl lg:text-4xl font-bold mb-10 text-slate-900 tracking-tight drop-shadow-sm'>
                 <RotatingKeywords
                   keywords={[
-                    'your job search',
-                    'interview preparation',
-                    'role-specific preparation',
-                    'targeted training plans',
-                    'tailored application documents',
+                    'Your Job Search',
+                    'Interview Preparation',
+                    'Role-Specific Preparation',
+                    'Targeted Training Plans',
+                    'Tailored Application Documents',
                   ]}
                   interval={4000}
                   className=''

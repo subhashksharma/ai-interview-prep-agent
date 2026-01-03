@@ -143,7 +143,7 @@ export default function JourneyWorkflow() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className='text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-4'>
+            className='text-3xl md:text-4xl font-bold mb-4'>
             Lets Walk This Journey Together
             <span className='block mt-1 bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] bg-clip-text text-transparent'>
               Starts Here
@@ -153,7 +153,7 @@ export default function JourneyWorkflow() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className='text-lg sm:text-xl text-slate-500 max-w-2xl mx-auto'>
+            className='text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto'>
             Choose your path and let our AI guide you to your dream career
           </motion.p>
         </motion.div>

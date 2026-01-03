@@ -58,10 +58,10 @@ export default function FeaturesSection() {
             <div className='inline-flex items-center px-4 py-2 rounded-full bg-[#2dcbc5]/10 border border-[#2dcbc5]/20 text-[#2dcbc5] mb-6'>
               <span className='text-sm font-semibold'>Built for Your Career Journey</span>
             </div>
-            <h2 className='text-4xl md:text-5xl font-bold mb-6 text-slate-900 tracking-tight'>
+            <h2 className='text-3xl md:text-4xl font-bold mb-4'>
               End‑to‑End Support, Powered by Empathy
             </h2>
-            <p className='text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed'>
+            <p className='text-lg text-slate-600 max-w-2xl mx-auto'>
               From discovery to offer, CareerBuddy brings structure, confidence, and guidance to
               every step.
             </p>
