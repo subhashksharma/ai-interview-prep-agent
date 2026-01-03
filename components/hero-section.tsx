@@ -8,6 +8,7 @@ import WatchButton from '@/components/ui/watch-button';
 import ArrowButton from '@/components/ui/arrow-button';
 import UploadButton from '@/components/ui/upload-button';
 import HeroDescription from '@/components/ui/hero-description';
+import RotatingKeywords from '@/components/ui/rotating-keywords';
 import { motion } from 'framer-motion';
 
 export default function HeroSection() {
@@ -41,7 +42,7 @@ export default function HeroSection() {
 
   // Typing effect for the small intro pill
   useEffect(() => {
-    const full = 'This is buddy 🤖 I can help you.';
+    const full = 'This is Buddy 🤖 I can help you with:';
     if (
       typeof window !== 'undefined' &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -107,9 +108,20 @@ export default function HeroSection() {
                   />
                 </span>
               </motion.div>
-              <h1 className='md:text-4xl lg:text-4xl font-bold mb-8 text-slate-900 tracking-tight drop-shadow-sm'>
-                Let's walk this journey together.
+              <h1 className='md:text-4xl lg:text-4xl font-bold mb-10 text-slate-900 tracking-tight drop-shadow-sm'>
+                <RotatingKeywords
+                  keywords={[
+                    'your job search',
+                    'interview preparation',
+                    'role-specific preparation',
+                    'targeted training plans',
+                    'tailored application documents',
+                  ]}
+                  interval={4000}
+                  className=''
+                />
               </h1>
+
               <HeroDescription />
               <motion.div
                 className='mt-10 flex mb-10 items-center text-slate-500 text-sm'
