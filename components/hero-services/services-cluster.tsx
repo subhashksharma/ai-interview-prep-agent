@@ -62,8 +62,8 @@ export default function ServicesCluster({
         </svg>
         {/* Center decorative rings (simple) */}
         <div className='absolute inset-0 flex items-center justify-center'>
-          <div className='w-[260px] h-[260px] rounded-full bg-gradient-to-br from-[#ecfeff] to-white/80 border border-[#2dcbc5]/10 flex items-center justify-center'>
-            <div className='w-44 h-36 rounded-2xl bg-gradient-to-br from-white to-[#f7ffff] border border-[#e6fdfc]/40 shadow-inner flex items-center justify-center relative'>
+          <div className='w-[360px] h-[360px] rounded-full bg-gradient-to-br from-[#ecfeff] to-white/80 border border-[#2dcbc5]/10 flex items-center justify-center'>
+            <div className='w-72 h-52 rounded-2xl bg-gradient-to-br from-white to-[#f7ffff] border border-[#e6fdfc]/40 shadow-inner flex items-center justify-center relative'>
               {/* Monitor bezel */}
               {/* <div className='absolute -top-8 flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-[#2dcbc5] to-[#2ab7ca] shadow-lg border-2 border-white'>
                 <Bot
@@ -73,14 +73,14 @@ export default function ServicesCluster({
               </div> */}
 
               {/* Screen */}
-              <div className='w-36 h-20 bg-slate-900 rounded-md flex items-center justify-center p-2'>
+              <div className='w-44 h-32 bg-slate-900 rounded-md flex items-center justify-center p-2'>
                 <div className='w-full text-center'>
                   <CenterTyping textClass='text-white' />
                 </div>
               </div>
 
               {/* Stand */}
-              <div className='absolute bottom-[-10px] w-24 h-4 bg-white/90 rounded-b-md border border-[#ecfeff]/40' />
+              {/* <div className='absolute bottom-[-10px] w-24 h-4 bg-white/90 rounded-b-md border border-[#ecfeff]/40' /> */}
             </div>
           </div>
         </div>
@@ -111,7 +111,7 @@ export default function ServicesCluster({
 
       {/* Mobile: compact grid/list without connectors */}
       <div
-        className={`w-full md:hidden grid grid-cols-2 sm:grid-cols-3 gap-3 items-center ${className}`}>
+        className={`w-full md:hidden grid grid-cols-2 gap-2.5 items-center max-w-md mx-auto ${className}`}>
         {items.map((it, i) => (
           <div
             key={`m-${i}`}
@@ -126,7 +126,7 @@ export default function ServicesCluster({
                 .toLowerCase()
                 .replace(/[^a-z0-9]+/g, '-')
                 .replace(/^-+|-+$/g, '')}`}
-              className='px-3 py-2 text-center'
+              className='mobile-compact'
             />
           </div>
         ))}
