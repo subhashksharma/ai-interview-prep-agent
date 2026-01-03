@@ -107,13 +107,27 @@ export default function HeroSection() {
                 </span>
               </motion.div>
               <h1 className='md:text-4xl lg:text-4xl font-bold mb-8 text-slate-900 tracking-tight drop-shadow-sm'>
-                Let's walk this journey together. Let's get to know each other.
+                Let's walk this journey together.
               </h1>
               <p className='text-[15px] text-slate-600 mb-10 max-w-xl leading-relaxed drop-shadow-sm'>
                 CareerBuddy guides you end‑to‑end—from self‑discovery and role exploration to job
                 tracking, mock interviews, tailored docs, negotiation, and 30‑60‑90 success. Built
                 to support you at every stage, with empathy.
               </p>
+              <motion.div
+                className='mt-10 flex mb-10 items-center text-slate-500 text-sm'
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4, duration: 0.6 }}>
+                <div className='flex items-center bg-green-50 text-green-700 px-3 py-2 rounded-lg border border-green-200/50 shadow-sm'>
+                  <Zap
+                    size={24}
+                    className='mr-2 text-green-600'
+                  />
+                  <span className='font-medium'>No credit card required • Free tier available</span>
+                </div>
+              </motion.div>
+
               <div className='flex flex-col sm:flex-row gap-4 items-start'>
                 <motion.div
                   className='w-auto'
@@ -128,19 +142,6 @@ export default function HeroSection() {
                   <ArrowButton />
                 </motion.div>
               </div>
-              <motion.div
-                className='mt-10 flex items-center text-slate-500 text-sm'
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4, duration: 0.6 }}>
-                <div className='flex items-center bg-green-50 text-green-700 px-3 py-2 rounded-lg border border-green-200/50 shadow-sm'>
-                  <Zap
-                    size={24}
-                    className='mr-2 text-green-600'
-                  />
-                  <span className='font-medium'>No credit card required • Free tier available</span>
-                </div>
-              </motion.div>
             </motion.div>
           </div>
           <div className='md:w-1/2'>

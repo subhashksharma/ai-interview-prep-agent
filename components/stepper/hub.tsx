@@ -87,8 +87,7 @@ export default function Hub({ onStartJourney }: HubProps) {
       key='hub'
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className='max-w-3xl mx-auto'>
+      exit={{ opacity: 0 }}>
       {/* Vertical Timeline */}
       <div className='relative'>
         {/* Timeline line */}
@@ -115,13 +114,13 @@ export default function Hub({ onStartJourney }: HubProps) {
                 duration: 0.5,
                 ease: [0.23, 1, 0.32, 1],
               }}
-              className='relative flex gap-4 sm:gap-5 group'>
+              className='relative flex gap-4 sm:gap-5 lg:gap-6 group'>
               {/* Timeline Node */}
               <div className='relative z-10 flex-shrink-0'>
                 <motion.div
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`w-12 h-12 sm:w-16 sm:h-16 rounded-2xl ${option.bgColor} shadow-xl flex items-center justify-center cursor-pointer transition-all duration-300`}
+                  className={`w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-2xl ${option.bgColor} shadow-xl flex items-center justify-center cursor-pointer transition-all duration-300`}
                   style={{ boxShadow: `0 10px 40px -10px ${option.glowColor}` }}
                   onClick={() => onStartJourney(option.stage)}>
                   <div className='text-white'>{option.icon}</div>
@@ -148,7 +147,7 @@ export default function Hub({ onStartJourney }: HubProps) {
                 onClick={() => onStartJourney(option.stage)}
                 className='flex-1 cursor-pointer'>
                 <div
-                  className='relative bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 shadow-lg shadow-slate-200/50 border border-slate-100/80 hover:shadow-xl hover:shadow-slate-200/60 transition-all duration-300 overflow-hidden'
+                  className='relative bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-7 shadow-lg shadow-slate-200/50 border border-slate-100/80 hover:shadow-xl hover:shadow-slate-200/60 transition-all duration-300 overflow-hidden'
                   style={{
                     borderLeft: '3px solid transparent',
                     borderImage: `linear-gradient(to bottom, ${option.glowColor}, transparent) 1`,
@@ -174,7 +173,7 @@ export default function Hub({ onStartJourney }: HubProps) {
                           className={`text-[10px] sm:text-xs font-bold uppercase tracking-wider ${option.accentColor} mb-0.5 sm:mb-1`}>
                           {option.subtitle}
                         </p>
-                        <h3 className='text-lg sm:text-xl font-bold text-slate-900'>
+                        <h3 className='text-lg sm:text-xl lg:text-2xl font-bold text-slate-900'>
                           {option.title}
                         </h3>
                       </div>
@@ -192,7 +191,7 @@ export default function Hub({ onStartJourney }: HubProps) {
                     </div>
 
                     {/* Description */}
-                    <p className='text-sm text-slate-500 mb-4 leading-relaxed line-clamp-2'>
+                    <p className='text-sm lg:text-base text-slate-500 mb-4 leading-relaxed line-clamp-2'>
                       {option.description}
                     </p>
 

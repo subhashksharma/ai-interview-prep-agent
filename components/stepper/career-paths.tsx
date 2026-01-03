@@ -40,7 +40,7 @@ export default function CareerPaths({ careerPaths, onPathSelect, onReset }: Care
         </p>
       </motion.div>
 
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-7 mb-8'>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 gap-6 sm:gap-7 lg:gap-8 mb-8 max-w-7xl mx-auto'>
         {careerPaths.map((path, index) => (
           <motion.div
             key={path.id}

@@ -38,7 +38,7 @@ export default function Roadmap({ selectedPath, roadmap, onReset }: RoadmapProps
         </p>
       </motion.div>
 
-      <div className='max-w-3xl mx-auto relative'>
+      <div className='max-w-3xl lg:max-w-4xl mx-auto relative'>
         {/* Timeline line */}
         <div className='absolute left-6 sm:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-[#2dcbc5] via-[#2ab7ca] via-green-400 to-violet-400' />
 
@@ -63,13 +63,13 @@ export default function Roadmap({ selectedPath, roadmap, onReset }: RoadmapProps
                 duration: 0.5,
                 ease: [0.23, 1, 0.32, 1],
               }}
-              className='relative flex gap-4 sm:gap-5 group'>
+              className='relative flex gap-4 sm:gap-5 lg:gap-6 group'>
               {/* Timeline Node */}
               <div className='relative z-10 flex-shrink-0'>
                 <motion.div
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`w-12 h-12 sm:w-16 sm:h-16 rounded-2xl shadow-xl flex items-center justify-center transition-all duration-300 ${
+                  className={`w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-2xl shadow-xl flex items-center justify-center transition-all duration-300 ${
                     step.status === 'current'
                       ? 'bg-gradient-to-br from-[#2dcbc5] to-[#2ab7ca]'
                       : step.status === 'completed'
@@ -123,7 +123,7 @@ export default function Roadmap({ selectedPath, roadmap, onReset }: RoadmapProps
                 whileTap={{ scale: 0.995 }}
                 className='flex-1'>
                 <div
-                  className='relative bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 shadow-lg shadow-slate-200/50 border border-slate-100/80 hover:shadow-xl hover:shadow-slate-200/60 transition-all duration-300 overflow-hidden'
+                  className='relative bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-7 shadow-lg shadow-slate-200/50 border border-slate-100/80 hover:shadow-xl hover:shadow-slate-200/60 transition-all duration-300 overflow-hidden'
                   style={{
                     borderLeft: '3px solid transparent',
                     borderImage:

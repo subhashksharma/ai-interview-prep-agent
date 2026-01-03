@@ -109,7 +109,7 @@ export default function JourneyWorkflow() {
         <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-[#2dcbc5]/3 to-blue-500/3 rounded-full blur-3xl' />
       </div>
 
-      <div className='w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
+      <div className='w-full container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10'>
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -139,13 +139,12 @@ export default function JourneyWorkflow() {
             />
             <span className='text-sm font-semibold text-[#2dcbc5]'>AI-Powered Career Guide</span>
           </motion.div>
-          4
           <motion.h2
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
             className='text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-4'>
-            Your Career Journey
+            Lets Walk This Journey Together
             <span className='block mt-1 bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] bg-clip-text text-transparent'>
               Starts Here
             </span>
@@ -166,7 +165,7 @@ export default function JourneyWorkflow() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className='max-w-3xl mx-auto'>
+              className='max-w-3xl lg:max-w-5xl mx-auto'>
               <Hub onStartJourney={handleStartJourney} />
             </motion.div>
           )}

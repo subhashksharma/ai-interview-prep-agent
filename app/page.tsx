@@ -9,7 +9,6 @@ import TestimonialsSection from '@/components/testimonials-section';
 import CtaSection from '@/components/cta-section';
 import Footer from '@/components/footer';
 import Btn from '@/components/btn-download';
-import StepperSection from '@/components/stepper-section';
 import VideoBackground from '@/components/video-background';
 import JourneyWorkflow from '@/components/journey-workflow';
 
@@ -35,7 +34,6 @@ export default function Home() {
           <JourneyWorkflow />
           <FeaturesSection />
           <UseCasesSection />
-          <StepperSection />
           <TestimonialsSection />
           <PricingSection />
           <CtaSection />
