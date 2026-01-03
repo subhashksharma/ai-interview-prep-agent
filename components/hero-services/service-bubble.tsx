@@ -67,7 +67,10 @@ export default function ServiceBubble({
               className={dotClasses}
               style={{ background: dotColor }}
             />
-            <span className={isMobileCompact ? 'text-center w-full whitespace-normal leading-tight' : 'truncate'}>
+            <span
+              className={
+                isMobileCompact ? 'text-center w-full whitespace-normal leading-tight' : 'truncate'
+              }>
               {label}
             </span>
           </Link>
@@ -79,7 +82,10 @@ export default function ServiceBubble({
               className={dotClasses}
               style={{ background: dotColor }}
             />
-            <span className={isMobileCompact ? 'text-center w-full whitespace-normal leading-tight' : 'truncate'}>
+            <span
+              className={
+                isMobileCompact ? 'text-center w-full whitespace-normal leading-tight' : 'truncate'
+              }>
               {label}
             </span>
           </div>
