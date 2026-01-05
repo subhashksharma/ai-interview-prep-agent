@@ -1,27 +1,11 @@
+// Re-export types from shared location
+export type { CareerPath, RoadmapStep, JourneyQuestion } from '@/lib/types';
+
+// Legacy interface for backwards compatibility
 export interface Question {
   id: number;
   question: string;
   options: string[];
-}
-
-export interface CareerPath {
-  id: string;
-  title: string;
-  description: string;
-  matchScore: number;
-  skills: string[];
-  salary: string;
-  demand: string;
-  icon: string;
-}
-
-export interface RoadmapStep {
-  id: number;
-  title: string;
-  description: string;
-  duration: string;
-  status: 'pending' | 'current' | 'completed';
-  skills: string[];
 }
 
 export const journeyQuestions: Question[] = [
