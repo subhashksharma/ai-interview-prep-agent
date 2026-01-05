@@ -16,8 +16,144 @@ import Analyzing from '@/components/stepper/analyzing';
 import CareerPaths from '@/components/stepper/career-paths';
 import Roadmap from '@/components/stepper/roadmap';
 import Quiz from '@/components/stepper/quiz';
+import { UserQuizAssessment } from '@/components/user-quiz-assessment';
+import type { AssessmentSession } from '@/components/user-quiz-assessment/types';
+import AssessmentResults from '@/components/stepper/assessment-results';
 
-type JourneyStage = 'hub' | 'questions' | 'analyzing' | 'paths' | 'roadmap' | 'quiz';
+type JourneyStage =
+  | 'hub'
+  | 'questions'
+  | 'analyzing'
+  | 'paths'
+  | 'roadmap'
+  | 'quiz'
+  | 'enhanced-quiz';
+
+// Helper function to generate career paths from assessment session
+function generateCareerPathsFromAssessment(session: AssessmentSession): CareerPath[] {
+  const { topic, customInput, answers, questions } = session;
+
+  // Extract career-relevant information from the assessment
+  const topicName = topic?.name || customInput?.topic || 'Your Skills';
+  const difficulty = topic ? 'intermediate' : customInput?.difficulty || 'intermediate';
+
+  // Calculate performance score from answers
+  const totalAnswers = answers.length;
+  const highConfidenceCount = answers.filter((a) => a.confidence === 'high').length;
+  const mediumConfidenceCount = answers.filter((a) => a.confidence === 'medium').length;
+  const performanceScore =
+    totalAnswers > 0
+      ? Math.round((highConfidenceCount * 100 + mediumConfidenceCount * 60) / totalAnswers)
+      : 70;
+
+  // Generate relevant career paths based on assessment topic and performance
+  const careerMapping: Record<string, CareerPath[]> = {
+    'JavaScript Development': [
+      {
+        id: 'frontend-developer',
+        title: 'Frontend Developer',
+        description:
+          'Build beautiful and responsive user interfaces using modern JavaScript frameworks',
+        matchScore: Math.min(95, 70 + performanceScore / 3),
+        skills: ['React', 'JavaScript', 'CSS', 'HTML', 'TypeScript'],
+        salary: '$70k - $140k',
+        demand: 'Very High',
+        icon: '🎨',
+      },
+      {
+        id: 'fullstack-developer',
+        title: 'Full Stack Developer',
+        description: 'Work across the entire application stack from frontend to backend',
+        matchScore: Math.min(92, 65 + performanceScore / 3),
+        skills: ['JavaScript', 'Node.js', 'React', 'Databases', 'APIs'],
+        salary: '$80k - $150k',
+        demand: 'Very High',
+        icon: '⚡',
+      },
+    ],
+    'React Development': [
+      {
+        id: 'react-developer',
+        title: 'React Developer',
+        description: 'Specialize in building dynamic applications with React ecosystem',
+        matchScore: Math.min(96, 72 + performanceScore / 3),
+        skills: ['React', 'Redux', 'Next.js', 'TypeScript', 'Testing'],
+        salary: '$75k - $145k',
+        demand: 'Very High',
+        icon: '⚛️',
+      },
+      {
+        id: 'frontend-architect',
+        title: 'Frontend Architect',
+        description: 'Design and lead frontend architecture for large-scale applications',
+        matchScore: Math.min(90, 60 + performanceScore / 3),
+        skills: ['React', 'Architecture', 'Performance', 'Team Leadership'],
+        salary: '$120k - $200k',
+        demand: 'High',
+        icon: '🏗️',
+      },
+    ],
+    'System Design': [
+      {
+        id: 'solutions-architect',
+        title: 'Solutions Architect',
+        description: 'Design scalable and robust system architectures for enterprise applications',
+        matchScore: Math.min(94, 68 + performanceScore / 3),
+        skills: ['System Design', 'Cloud', 'Microservices', 'Databases', 'Security'],
+        salary: '$130k - $220k',
+        demand: 'Very High',
+        icon: '🏛️',
+      },
+      {
+        id: 'devops-engineer',
+        title: 'DevOps Engineer',
+        description: 'Build and maintain infrastructure and deployment pipelines',
+        matchScore: Math.min(88, 62 + performanceScore / 3),
+        skills: ['AWS', 'Docker', 'Kubernetes', 'CI/CD', 'Monitoring'],
+        salary: '$95k - $170k',
+        demand: 'Very High',
+        icon: '🔧',
+      },
+    ],
+  };
+
+  // Find matching careers or provide generic ones
+  const matchedCareers = careerMapping[topicName] || [
+    {
+      id: 'software-engineer',
+      title: 'Software Engineer',
+      description: 'Build innovative applications and solve complex technical challenges',
+      matchScore: Math.min(90, 65 + performanceScore / 3),
+      skills: ['Programming', 'Problem Solving', 'Algorithms', 'Data Structures'],
+      salary: '$80k - $150k',
+      demand: 'Very High',
+      icon: '💻',
+    },
+    {
+      id: 'technical-lead',
+      title: 'Technical Lead',
+      description: 'Lead development teams and drive technical decisions',
+      matchScore: Math.min(85, 55 + performanceScore / 3),
+      skills: ['Leadership', 'Architecture', 'Code Review', 'Mentoring'],
+      salary: '$110k - $180k',
+      demand: 'High',
+      icon: '👨‍💼',
+    },
+    {
+      id: 'product-engineer',
+      title: 'Product Engineer',
+      description: 'Bridge the gap between product and engineering with user-focused development',
+      matchScore: Math.min(87, 58 + performanceScore / 3),
+      skills: ['Full Stack', 'UX', 'Product Thinking', 'Analytics'],
+      salary: '$85k - $155k',
+      demand: 'High',
+      icon: '🚀',
+    },
+  ];
+
+  // Sort by match score
+  return matchedCareers.sort((a, b) => b.matchScore - a.matchScore);
+}
 
 export default function JourneyWorkflow() {
   const [stage, setStage] = useState<JourneyStage>('hub');
@@ -26,6 +162,7 @@ export default function JourneyWorkflow() {
   const [careerPaths, setCareerPaths] = useState<CareerPath[]>([]);
   const [selectedPath, setSelectedPath] = useState<CareerPath | null>(null);
   const [roadmap, setRoadmap] = useState<RoadmapStep[]>([]);
+  const [assessmentSession, setAssessmentSession] = useState<AssessmentSession | null>(null);
 
   const handleStartJourney = (targetStage: JourneyStage) => {
     if (targetStage === 'questions') {
@@ -60,6 +197,8 @@ export default function JourneyWorkflow() {
       setStage('roadmap');
     } else if (targetStage === 'quiz') {
       setStage('quiz');
+    } else if (targetStage === 'enhanced-quiz') {
+      setStage('enhanced-quiz');
     }
   };
 
@@ -96,6 +235,7 @@ export default function JourneyWorkflow() {
     setCareerPaths([]);
     setSelectedPath(null);
     setRoadmap([]);
+    setAssessmentSession(null);
   };
 
   return (
@@ -109,7 +249,7 @@ export default function JourneyWorkflow() {
         <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-[#2dcbc5]/3 to-blue-500/3 rounded-full blur-3xl' />
       </div>
 
-      <div className='w-full container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10'>
+      <div className='w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -165,7 +305,7 @@ export default function JourneyWorkflow() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className='max-w-3xl lg:max-w-5xl mx-auto'>
+              className='w-full max-w-5xl mx-auto'>
               <Hub onStartJourney={handleStartJourney} />
             </motion.div>
           )}
@@ -180,11 +320,21 @@ export default function JourneyWorkflow() {
           {stage === 'analyzing' && <Analyzing />}
 
           {stage === 'paths' && (
-            <CareerPaths
-              careerPaths={careerPaths}
-              onPathSelect={handlePathSelect}
-              onReset={handleReset}
-            />
+            <motion.div
+              key='paths-container'
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className='w-full space-y-12 sm:space-y-16'>
+              {/* Show assessment results if coming from enhanced quiz */}
+              {assessmentSession && <AssessmentResults session={assessmentSession} />}
+
+              <CareerPaths
+                careerPaths={careerPaths}
+                onPathSelect={handlePathSelect}
+                onReset={handleReset}
+              />
+            </motion.div>
           )}
 
           {stage === 'roadmap' && selectedPath && (
@@ -196,6 +346,29 @@ export default function JourneyWorkflow() {
           )}
 
           {stage === 'quiz' && <Quiz onStartQuestions={() => setStage('questions')} />}
+
+          {stage === 'enhanced-quiz' && (
+            <motion.div
+              key='enhanced-quiz'
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className='w-full mx-auto'>
+              <UserQuizAssessment
+                onComplete={(session) => {
+                  setAssessmentSession(session);
+                  setStage('analyzing');
+                  setTimeout(() => {
+                    // Generate career paths based on assessment
+                    const paths = generateCareerPathsFromAssessment(session);
+                    setCareerPaths(paths);
+                    setStage('paths');
+                  }, 2000);
+                }}
+                onExit={() => setStage('hub')}
+              />
+            </motion.div>
+          )}
         </AnimatePresence>
       </div>
     </section>
