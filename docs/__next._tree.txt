@@ -1,4 +1,4 @@
 :HL["/ai-interview-prep-agent/_next/static/chunks/7b987e8f60b282b6.css","style"]
 :HL["/ai-interview-prep-agent/_next/static/chunks/eba47be168fb38f8.css","style"]
 :HL["/ai-interview-prep-agent/_next/static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-0:{"buildId":"k516hONmGV5CffXWFQOTv","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
+0:{"buildId":"qNZ_oGoSUFif-OFgl-w3z","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
