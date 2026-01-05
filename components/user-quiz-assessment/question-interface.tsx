@@ -22,6 +22,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Question, Answer } from './types';
 
@@ -51,12 +53,25 @@ export function QuestionInterface({
   previousAnswer,
 }: QuestionInterfaceProps) {
   const [answer, setAnswer] = React.useState(previousAnswer?.answer || '');
+  const [selectedOptions, setSelectedOptions] = React.useState<string[]>(
+    Array.isArray(previousAnswer?.answer) ? previousAnswer.answer : []
+  );
+  const [fillInBlanks, setFillInBlanks] = React.useState<string[]>(
+    Array.isArray(previousAnswer?.answer) ? previousAnswer.answer : []
+  );
   const [confidence, setConfidence] = React.useState<'low' | 'medium' | 'high'>(
     previousAnswer?.confidence || 'medium'
   );
   const [showHints, setShowHints] = React.useState(false);
   const [startTime] = React.useState(Date.now());
   const [elapsedTime, setElapsedTime] = React.useState(0);
+
+  // Initialize blanks array for fill-in-blanks questions
+  React.useEffect(() => {
+    if (question.type === 'fill-in-blanks' && question.blanksCount) {
+      setFillInBlanks(Array(question.blanksCount).fill(''));
+    }
+  }, [question.type, question.blanksCount]);
 
   // Timer
   React.useEffect(() => {
@@ -73,12 +88,45 @@ export function QuestionInterface({
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
+  const handleToggleOption = (option: string) => {
+    setSelectedOptions((prev) =>
+      prev.includes(option) ? prev.filter((o) => o !== option) : [...prev, option]
+    );
+  };
+
+  const handleBlankChange = (index: number, value: string) => {
+    const newBlanks = [...fillInBlanks];
+    newBlanks[index] = value;
+    setFillInBlanks(newBlanks);
+  };
+
+  const getAnswerValue = () => {
+    if (question.type === 'multiple-choice') {
+      return selectedOptions;
+    } else if (question.type === 'fill-in-blanks') {
+      return fillInBlanks;
+    } else {
+      return answer;
+    }
+  };
+
+  const isAnswerValid = () => {
+    if (question.type === 'multiple-choice') {
+      return selectedOptions.length > 0;
+    } else if (question.type === 'fill-in-blanks') {
+      return fillInBlanks.every((blank) => blank.trim().length > 0);
+    } else if (typeof answer === 'string') {
+      return answer.trim().length > 0;
+    }
+    return false;
+  };
+
   const handleSubmitAnswer = () => {
-    if (!answer.trim()) return;
+    if (!isAnswerValid()) return;
 
     const answerData: Answer = {
       questionId: question.id,
-      answer: answer.trim(),
+      answer: getAnswerValue(),
       timeSpent: elapsedTime,
       confidence,
       timestamp: new Date(),
@@ -100,10 +148,21 @@ export function QuestionInterface({
   const progressPercentage = (questionNumber / totalQuestions) * 100;
 
   const questionTypeIcons = {
-    'multiple-choice': ListChecks,
+    'single-choice': ListChecks,
+    'multiple-choice': CheckCircle2,
+    'fill-in-blanks': FileText,
     coding: Code2,
-    'open-ended': FileText,
-    'scenario-based': Brain,
+    writing: FileText,
+    'case-study': Brain,
+  };
+
+  const questionTypeLabels = {
+    'single-choice': 'Single Choice',
+    'multiple-choice': 'Multiple Choice',
+    'fill-in-blanks': 'Fill in Blanks',
+    coding: 'Coding',
+    writing: 'Writing',
+    'case-study': 'Case Study',
   };
 
   const QuestionIcon = questionTypeIcons[question.type] || FileText;
@@ -116,7 +175,7 @@ export function QuestionInterface({
   };
 
   return (
-    <div className='w-full max-w-5xl mx-auto px-4 py-8'>
+    <div className='w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-8'>
       <AnimatePresence mode='wait'>
         <motion.div
           key={question.id}
@@ -125,19 +184,19 @@ export function QuestionInterface({
           exit={{ opacity: 0, x: -20 }}
           transition={{ duration: 0.3 }}>
           {/* Progress Header */}
-          <div className='mb-6'>
+          <div className='mb-4 sm:mb-6'>
             <div className='flex items-center justify-between mb-2'>
-              <div className='flex items-center gap-3'>
+              <div className='flex items-center gap-2 sm:gap-3 flex-wrap'>
                 <Badge
                   variant='outline'
-                  className='text-sm'>
+                  className='text-xs sm:text-sm'>
                   Question {questionNumber} of {totalQuestions}
                 </Badge>
                 <Badge
                   variant='secondary'
-                  className='text-sm'>
+                  className='text-xs sm:text-sm'>
                   <QuestionIcon className='w-3 h-3 mr-1' />
-                  {question.type.replace('-', ' ')}
+                  {questionTypeLabels[question.type]}
                 </Badge>
                 <div className={`w-2 h-2 rounded-full ${difficultyColors[question.difficulty]}`} />
               </div>
@@ -153,12 +212,14 @@ export function QuestionInterface({
           </div>
 
           {/* Question Card */}
-          <Card className='mb-6'>
+          <Card className='mb-4 sm:mb-6'>
             <CardHeader>
               <div className='flex items-start justify-between'>
                 <div className='flex-1'>
-                  <CardTitle className='text-2xl mb-2'>{question.question}</CardTitle>
-                  <CardDescription className='flex items-center gap-2'>
+                  <CardTitle className='text-lg sm:text-xl lg:text-2xl mb-2'>
+                    {question.question}
+                  </CardTitle>
+                  <CardDescription className='flex items-center gap-2 flex-wrap'>
                     <Badge
                       variant='secondary'
                       className='text-xs'>
@@ -173,10 +234,23 @@ export function QuestionInterface({
             </CardHeader>
 
             <CardContent className='space-y-4'>
-              {/* Multiple Choice Options */}
-              {question.type === 'multiple-choice' && question.options && (
+              {/* Case Study Text */}
+              {question.type === 'case-study' && question.caseStudyText && (
+                <div className='p-4 sm:p-6 bg-muted/50 rounded-lg border-2 border-muted-foreground/20 mb-4'>
+                  <div className='flex items-center gap-2 mb-3'>
+                    <FileText className='w-4 h-4 text-blue-500' />
+                    <span className='text-sm font-semibold text-muted-foreground'>Case Study</span>
+                  </div>
+                  <div className='prose prose-sm max-w-none text-foreground whitespace-pre-wrap'>
+                    {question.caseStudyText}
+                  </div>
+                </div>
+              )}
+
+              {/* Single Choice (Radio) */}
+              {question.type === 'single-choice' && question.options && (
                 <RadioGroup
-                  value={answer}
+                  value={typeof answer === 'string' ? answer : ''}
                   onValueChange={setAnswer}>
                   <div className='space-y-3'>
                     {question.options.map((option, index) => (
@@ -200,8 +274,62 @@ export function QuestionInterface({
                 </RadioGroup>
               )}
 
-              {/* Text Input for Other Question Types */}
-              {question.type !== 'multiple-choice' && (
+              {/* Multiple Choice (Checkboxes) */}
+              {question.type === 'multiple-choice' && question.options && (
+                <div className='space-y-3'>
+                  <div className='text-sm text-muted-foreground mb-2'>Select all that apply:</div>
+                  {question.options.map((option, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.05 }}>
+                      <Label
+                        htmlFor={`checkbox-${index}`}
+                        className='flex items-center space-x-3 p-4 rounded-lg border border-border hover:border-primary cursor-pointer transition-colors'>
+                        <Checkbox
+                          id={`checkbox-${index}`}
+                          checked={selectedOptions.includes(option)}
+                          onCheckedChange={() => handleToggleOption(option)}
+                        />
+                        <span className='flex-1'>{option}</span>
+                      </Label>
+                    </motion.div>
+                  ))}
+                </div>
+              )}
+
+              {/* Fill in the Blanks */}
+              {question.type === 'fill-in-blanks' && fillInBlanks.length > 0 && (
+                <div className='space-y-4'>
+                  <div className='text-sm text-muted-foreground mb-3'>
+                    Fill in the blanks below:
+                  </div>
+                  {fillInBlanks.map((blank, index) => (
+                    <div
+                      key={index}
+                      className='space-y-2'>
+                      <Label
+                        htmlFor={`blank-${index}`}
+                        className='text-sm font-medium'>
+                        Blank #{index + 1}
+                      </Label>
+                      <Input
+                        id={`blank-${index}`}
+                        placeholder={`Enter answer for blank ${index + 1}...`}
+                        value={blank}
+                        onChange={(e) => handleBlankChange(index, e.target.value)}
+                        className='text-base'
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Text Input for Writing/Coding/Case Study */}
+              {(question.type === 'writing' ||
+                question.type === 'coding' ||
+                question.type === 'case-study') && (
                 <div className='space-y-2'>
                   <Label htmlFor='answer'>Your Answer</Label>
                   <Textarea
@@ -209,9 +337,11 @@ export function QuestionInterface({
                     placeholder={
                       question.type === 'coding'
                         ? 'Write your code here...'
+                        : question.type === 'case-study'
+                        ? 'Analyze the case study and provide your answer...'
                         : 'Type your answer here... Take your time and explain your thinking.'
                     }
-                    value={answer}
+                    value={typeof answer === 'string' ? answer : ''}
                     onChange={(e) => setAnswer(e.target.value)}
                     rows={question.type === 'coding' ? 12 : 8}
                     className={`font-${question.type === 'coding' ? 'mono' : 'sans'} resize-none`}
@@ -228,7 +358,7 @@ export function QuestionInterface({
                 <Label className='text-sm font-medium'>
                   How confident are you with this answer?
                 </Label>
-                <div className='grid grid-cols-3 gap-3'>
+                <div className='grid grid-cols-1 sm:grid-cols-3 gap-3'>
                   {[
                     { level: 'low' as const, label: 'Need Practice', emoji: '🤔' },
                     { level: 'medium' as const, label: 'Somewhat Sure', emoji: '💭' },
@@ -237,7 +367,7 @@ export function QuestionInterface({
                     <Button
                       key={conf.level}
                       variant={confidence === conf.level ? 'default' : 'outline'}
-                      className='flex items-center gap-2'
+                      className='flex items-center justify-center gap-2'
                       onClick={() => setConfidence(conf.level)}>
                       <span>{conf.emoji}</span>
                       <span className='text-sm'>{conf.label}</span>
@@ -308,40 +438,44 @@ export function QuestionInterface({
           </Card>
 
           {/* Navigation Buttons */}
-          <div className='flex items-center justify-between gap-4'>
+          <div className='flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4'>
             <Button
               variant='outline'
               onClick={onPrevious}
               disabled={isFirstQuestion}
-              size='lg'>
+              size='lg'
+              className='w-full sm:w-auto'>
               <ArrowLeft className='w-4 h-4 mr-2' />
               Previous
             </Button>
 
-            <div className='flex gap-3'>
+            <div className='flex gap-2 sm:gap-3'>
               {!isLastQuestion ? (
                 <Button
                   onClick={handleNextQuestion}
-                  disabled={!answer.trim()}
-                  size='lg'>
-                  Next Question
+                  disabled={!isAnswerValid()}
+                  size='lg'
+                  className='flex-1 sm:flex-none'>
+                  <span className='hidden sm:inline'>Next Question</span>
+                  <span className='sm:hidden'>Next</span>
                   <ArrowRight className='w-4 h-4 ml-2' />
                 </Button>
               ) : (
                 <Button
                   onClick={handleFinishAssessment}
-                  disabled={!answer.trim()}
+                  disabled={!isAnswerValid()}
                   size='lg'
-                  className='bg-gradient-to-r from-green-500 to-emerald-500 hover:opacity-90'>
+                  className='flex-1 sm:flex-none bg-gradient-to-r from-green-500 to-emerald-500 hover:opacity-90'>
                   <Send className='w-4 h-4 mr-2' />
-                  Finish Assessment
+                  <span className='hidden sm:inline'>Finish Assessment</span>
+                  <span className='sm:hidden'>Finish</span>
                 </Button>
               )}
             </div>
           </div>
 
           {/* Progress Indicator */}
-          <div className='mt-6 text-center'>
+          <div className='mt-4 sm:mt-6 text-center'>
             <p className='text-sm text-muted-foreground'>
               {totalQuestions - questionNumber} question
               {totalQuestions - questionNumber !== 1 ? 's' : ''} remaining

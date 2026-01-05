@@ -86,7 +86,7 @@ export default function AssessmentResults({ session }: AssessmentResultsProps) {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className='w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6'>
+      className='w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 space-y-4 sm:space-y-6'>
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}

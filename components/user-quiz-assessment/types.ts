@@ -41,17 +41,27 @@ export interface CustomAssessmentInput {
 export interface Question {
   id: string;
   question: string;
-  type: 'multiple-choice' | 'coding' | 'open-ended' | 'scenario-based';
+  type:
+    | 'single-choice'
+    | 'multiple-choice'
+    | 'fill-in-blanks'
+    | 'coding'
+    | 'writing'
+    | 'case-study';
   difficulty: DifficultyLevel;
   timeEstimate: number; // in seconds
   category: string;
   hints?: string[];
-  options?: string[]; // for multiple-choice
+  options?: string[]; // for single/multiple-choice
+  correctAnswers?: string[]; // for validation (optional)
+  caseStudyText?: string; // for case-study type
+  blanksCount?: number; // for fill-in-blanks type
+  questionText?: string; // additional context for case studies
 }
 
 export interface Answer {
   questionId: string;
-  answer: string;
+  answer: string | string[]; // string for single answer, array for multiple-choice or fill-in-blanks
   timeSpent: number;
   confidence: 'low' | 'medium' | 'high';
   timestamp: Date;

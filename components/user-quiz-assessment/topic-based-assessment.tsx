@@ -292,7 +292,7 @@ export function TopicBasedAssessment({ onSelectTopic, onBack }: TopicBasedAssess
   ];
 
   return (
-    <div className='w-full max-w-7xl mx-auto px-4 py-8'>
+    <div className='w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-8'>
       <AnimatePresence mode='wait'>
         {!selectedTopic ? (
           <motion.div
@@ -301,22 +301,22 @@ export function TopicBasedAssessment({ onSelectTopic, onBack }: TopicBasedAssess
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 20 }}>
             {/* Header */}
-            <div className='mb-8'>
+            <div className='mb-6 sm:mb-8'>
               <Button
                 variant='ghost'
                 onClick={onBack}
-                className='mb-4'>
+                className='mb-3 sm:mb-4'>
                 ← Back to Mode Selection
               </Button>
-              <h2 className='text-3xl font-bold mb-2'>Choose Your Target Role</h2>
-              <p className='text-muted-foreground'>
+              <h2 className='text-2xl sm:text-3xl font-bold mb-2'>Choose Your Target Role</h2>
+              <p className='text-sm sm:text-base text-muted-foreground'>
                 Select the role you're preparing for. Each assessment covers role-specific skills,
                 responsibilities, and real-world scenarios.
               </p>
             </div>
 
             {/* Search and Filter */}
-            <div className='mb-6 space-y-4'>
+            <div className='mb-5 sm:mb-6 space-y-3 sm:space-y-4'>
               <div className='relative'>
                 <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4' />
                 <Input
@@ -350,7 +350,7 @@ export function TopicBasedAssessment({ onSelectTopic, onBack }: TopicBasedAssess
             </div>
 
             {/* Topics Grid */}
-            <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-4'>
+            <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4'>
               {filteredTopics.map((topic, index) => {
                 const categoryInfo = topicCategories[topic.category];
                 const CategoryIcon = categoryInfo.icon;
@@ -421,7 +421,7 @@ export function TopicBasedAssessment({ onSelectTopic, onBack }: TopicBasedAssess
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}>
             {/* Difficulty Selection */}
-            <div className='max-w-3xl mx-auto'>
+            <div className='max-w-5xl mx-auto'>
               <Button
                 variant='ghost'
                 onClick={() => setSelectedTopic(null)}
@@ -429,13 +429,15 @@ export function TopicBasedAssessment({ onSelectTopic, onBack }: TopicBasedAssess
                 ← Back to Topics
               </Button>
 
-              <div className='text-center mb-8'>
-                <div className='text-4xl mb-3'>{selectedTopic.icon}</div>
-                <h2 className='text-3xl font-bold mb-2'>{selectedTopic.name}</h2>
-                <p className='text-muted-foreground'>{selectedTopic.description}</p>
+              <div className='text-center mb-6 sm:mb-8'>
+                <div className='text-3xl sm:text-4xl mb-3'>{selectedTopic.icon}</div>
+                <h2 className='text-2xl sm:text-3xl font-bold mb-2'>{selectedTopic.name}</h2>
+                <p className='text-sm sm:text-base text-muted-foreground'>
+                  {selectedTopic.description}
+                </p>
               </div>
 
-              <Card className='mb-6'>
+              <Card className='mb-4 sm:mb-6'>
                 <CardHeader>
                   <CardTitle>Select Your Difficulty Level</CardTitle>
                   <CardDescription>
@@ -443,7 +445,7 @@ export function TopicBasedAssessment({ onSelectTopic, onBack }: TopicBasedAssess
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className='grid sm:grid-cols-2 gap-4'>
+                  <div className='grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4'>
                     {difficulties.map((diff) => (
                       <motion.div
                         key={diff.level}

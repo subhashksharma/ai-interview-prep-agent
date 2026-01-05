@@ -245,7 +245,7 @@ function generateMockQuestions(topic: TopicOption, difficulty: DifficultyLevel):
     {
       id: 'q1',
       question: `Explain the core concepts of ${topic.name}`,
-      type: 'open-ended',
+      type: 'writing',
       difficulty,
       timeEstimate: 300,
       category: topic.category,
@@ -254,7 +254,7 @@ function generateMockQuestions(topic: TopicOption, difficulty: DifficultyLevel):
     {
       id: 'q2',
       question: `What are the best practices when working with ${topic.name}?`,
-      type: 'multiple-choice',
+      type: 'single-choice',
       difficulty,
       timeEstimate: 180,
       category: topic.category,
@@ -275,7 +275,7 @@ function generateCustomMockQuestions(input: CustomAssessmentInput): Question[] {
     {
       id: 'custom-q1',
       question: `Describe your understanding of ${input.topic}`,
-      type: 'open-ended',
+      type: 'writing',
       difficulty: input.difficulty,
       timeEstimate: 300,
       category: 'custom',

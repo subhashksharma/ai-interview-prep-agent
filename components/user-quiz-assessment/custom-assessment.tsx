@@ -18,7 +18,8 @@ interface CustomAssessmentProps {
 }
 
 export function CustomAssessment({ onStartCustomAssessment, onBack }: CustomAssessmentProps) {
-  const [topic, setTopic] = React.useState('');
+  const [roles, setRoles] = React.useState<string[]>([]);
+  const [currentRole, setCurrentRole] = React.useState('');
   const [specificAreas, setSpecificAreas] = React.useState<string[]>([]);
   const [currentArea, setCurrentArea] = React.useState('');
   const [difficulty, setDifficulty] = React.useState<DifficultyLevel>('intermediate');
@@ -42,10 +43,44 @@ export function CustomAssessment({ onStartCustomAssessment, onBack }: CustomAsse
     'Business Analyst',
   ];
 
+  const suggestedTechnologies = [
+    'React',
+    'Python',
+    'AWS',
+    'Docker',
+    'SQL',
+    'Agile',
+    'Leadership',
+    'Communication',
+  ];
+
+  const handleAddRole = () => {
+    if (currentRole.trim() && !roles.includes(currentRole.trim())) {
+      setRoles([...roles, currentRole.trim()]);
+      setCurrentRole('');
+    }
+  };
+
+  const handleRemoveRole = (role: string) => {
+    setRoles(roles.filter((r) => r !== role));
+  };
+
+  const handleAddSuggestedRole = (role: string) => {
+    if (!roles.includes(role)) {
+      setRoles([...roles, role]);
+    }
+  };
+
   const handleAddArea = () => {
     if (currentArea.trim() && !specificAreas.includes(currentArea.trim())) {
       setSpecificAreas([...specificAreas, currentArea.trim()]);
       setCurrentArea('');
+    }
+  };
+
+  const handleAddSuggestedTech = (tech: string) => {
+    if (!specificAreas.includes(tech)) {
+      setSpecificAreas([...specificAreas, tech]);
     }
   };
 
@@ -54,10 +89,10 @@ export function CustomAssessment({ onStartCustomAssessment, onBack }: CustomAsse
   };
 
   const handleSubmit = () => {
-    if (!topic.trim()) return;
+    if (roles.length === 0) return;
 
     const input: CustomAssessmentInput = {
-      topic: topic.trim(),
+      topic: roles.join(', '),
       specificAreas: specificAreas.length > 0 ? specificAreas : undefined,
       difficulty,
       duration,
@@ -68,65 +103,99 @@ export function CustomAssessment({ onStartCustomAssessment, onBack }: CustomAsse
     onStartCustomAssessment(input);
   };
 
-  const isValid = topic.trim().length > 0;
+  const isValid = roles.length > 0;
 
   return (
-    <div className='w-full max-w-4xl mx-auto px-4 py-8'>
+    <div className='w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-8'>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}>
         {/* Header */}
-        <div className='mb-8'>
+        <div className='mb-6 sm:mb-8'>
           <Button
             variant='ghost'
             onClick={onBack}
-            className='mb-4'>
+            className='mb-3 sm:mb-4'>
             ← Back to Mode Selection
           </Button>
-          <div className='flex items-center gap-3 mb-2'>
-            <div className='p-2 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500'>
-              <Wand2 className='w-5 h-5 text-white' />
+          <div className='flex items-center gap-2 sm:gap-3 mb-2'>
+            <div className='p-1.5 sm:p-2 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500'>
+              <Wand2 className='w-4 h-4 sm:w-5 sm:h-5 text-white' />
             </div>
-            <h2 className='text-3xl font-bold'>Create Your Custom Role Assessment</h2>
+            <h2 className='text-xl sm:text-2xl lg:text-3xl font-bold'>
+              Create Your Custom Role Assessment
+            </h2>
           </div>
-          <p className='text-muted-foreground'>
+          <p className='text-sm sm:text-base text-muted-foreground'>
             Define your target role and the areas you want to focus on. Our AI will create a
             tailored assessment covering the skills, technologies, and responsibilities for your
             role.
           </p>
         </div>
 
-        <div className='space-y-6'>
-          {/* Main Topic */}
+        <div className='space-y-4 sm:space-y-6'>
+          {/* Main Topic - Multiple Roles */}
           <Card>
             <CardHeader>
-              <CardTitle className='text-lg'>What role are you targeting?</CardTitle>
+              <CardTitle className='text-lg'>What roles are you targeting?</CardTitle>
               <CardDescription>
-                Specify your target role (e.g., Product Manager, DevOps Engineer, Data Scientist)
+                Add one or more roles you want to prepare for (e.g., Product Manager, DevOps
+                Engineer)
               </CardDescription>
             </CardHeader>
             <CardContent className='space-y-4'>
-              <div>
+              {/* Selected Roles */}
+              {roles.length > 0 && (
+                <div className='flex flex-wrap gap-2 p-3 bg-muted/50 rounded-lg border-2 border-dashed border-muted-foreground/20'>
+                  {roles.map((role) => (
+                    <Badge
+                      key={role}
+                      variant='default'
+                      className='pl-3 pr-1 py-1.5 text-sm'>
+                      {role}
+                      <Button
+                        variant='ghost'
+                        size='sm'
+                        className='h-4 w-4 p-0 ml-2 hover:bg-transparent'
+                        onClick={() => handleRemoveRole(role)}>
+                        <Minus className='w-3 h-3' />
+                      </Button>
+                    </Badge>
+                  ))}
+                </div>
+              )}
+
+              {/* Add Role Input */}
+              <div className='flex gap-2'>
                 <Input
-                  placeholder='e.g., Product Manager, Full Stack Developer, Cloud Architect...'
-                  value={topic}
-                  onChange={(e) => setTopic(e.target.value)}
-                  className='text-lg'
+                  placeholder='Type a role and press Enter or click + to add...'
+                  value={currentRole}
+                  onChange={(e) => setCurrentRole(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && handleAddRole()}
+                  className='text-base'
                 />
+                <Button
+                  onClick={handleAddRole}
+                  size='icon'
+                  variant='secondary'
+                  disabled={!currentRole.trim()}>
+                  <Plus className='w-4 h-4' />
+                </Button>
               </div>
 
-              {/* Suggested Topics */}
+              {/* Suggested Roles */}
               <div>
                 <Label className='text-xs text-muted-foreground mb-2 block'>
-                  Quick suggestions:
+                  Quick add suggestions:
                 </Label>
                 <div className='flex flex-wrap gap-2'>
                   {suggestedTopics.map((suggested) => (
                     <Badge
                       key={suggested}
-                      variant='outline'
+                      variant={roles.includes(suggested) ? 'default' : 'outline'}
                       className='cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors'
-                      onClick={() => setTopic(suggested)}>
+                      onClick={() => handleAddSuggestedRole(suggested)}>
+                      {roles.includes(suggested) ? '✓ ' : '+ '}
                       {suggested}
                     </Badge>
                   ))}
@@ -147,13 +216,35 @@ export function CustomAssessment({ onStartCustomAssessment, onBack }: CustomAsse
                 </Badge>
               </CardTitle>
               <CardDescription>
-                Add specific technologies, tools, or responsibilities for this role
+                Add multiple technologies, tools, or responsibilities you want to focus on
               </CardDescription>
             </CardHeader>
             <CardContent className='space-y-4'>
+              {/* Selected Technologies */}
+              {specificAreas.length > 0 && (
+                <div className='flex flex-wrap gap-2 p-3 bg-muted/50 rounded-lg border-2 border-dashed border-muted-foreground/20'>
+                  {specificAreas.map((area) => (
+                    <Badge
+                      key={area}
+                      variant='default'
+                      className='pl-3 pr-1 py-1.5 text-sm'>
+                      {area}
+                      <Button
+                        variant='ghost'
+                        size='sm'
+                        className='h-4 w-4 p-0 ml-2 hover:bg-transparent'
+                        onClick={() => handleRemoveArea(area)}>
+                        <Minus className='w-3 h-3' />
+                      </Button>
+                    </Badge>
+                  ))}
+                </div>
+              )}
+
+              {/* Add Technology Input */}
               <div className='flex gap-2'>
                 <Input
-                  placeholder='e.g., React, Product Roadmaps, Stakeholder Management...'
+                  placeholder='Type a technology or skill and press Enter or + to add...'
                   value={currentArea}
                   onChange={(e) => setCurrentArea(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleAddArea()}
@@ -161,28 +252,35 @@ export function CustomAssessment({ onStartCustomAssessment, onBack }: CustomAsse
                 <Button
                   onClick={handleAddArea}
                   size='icon'
-                  variant='secondary'>
+                  variant='secondary'
+                  disabled={!currentArea.trim()}>
                   <Plus className='w-4 h-4' />
                 </Button>
               </div>
 
-              {specificAreas.length > 0 && (
+              {/* Suggested Technologies */}
+              <div>
+                <Label className='text-xs text-muted-foreground mb-2 block'>
+                  Quick add suggestions:
+                </Label>
                 <div className='flex flex-wrap gap-2'>
-                  {specificAreas.map((area) => (
+                  {suggestedTechnologies.map((tech) => (
                     <Badge
-                      key={area}
-                      variant='default'
-                      className='pl-3 pr-1 py-1'>
-                      {area}
-                      <Button
-                        variant='ghost'
-                        size='sm'
-                        className='h-5 w-5 p-0 ml-1'
-                        onClick={() => handleRemoveArea(area)}>
-                        <Minus className='w-3 h-3' />
-                      </Button>
+                      key={tech}
+                      variant={specificAreas.includes(tech) ? 'default' : 'outline'}
+                      className='cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors'
+                      onClick={() => handleAddSuggestedTech(tech)}>
+                      {specificAreas.includes(tech) ? '✓ ' : '+ '}
+                      {tech}
                     </Badge>
                   ))}
+                </div>
+              </div>
+
+              {specificAreas.length === 0 && (
+                <div className='text-center py-4 text-sm text-muted-foreground'>
+                  <Info className='w-4 h-4 inline-block mr-1' />
+                  Add technologies to get more targeted questions
                 </div>
               )}
             </CardContent>

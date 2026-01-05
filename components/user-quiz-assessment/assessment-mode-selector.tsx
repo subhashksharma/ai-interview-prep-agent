@@ -44,12 +44,12 @@ export function AssessmentModeSelector({ onSelectMode }: AssessmentModeSelectorP
   ];
 
   return (
-    <div className='w-full max-w-6xl mx-auto px-4 py-8'>
+    <div className='w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-8'>
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className='text-center mb-12'>
+        className='text-center mb-8 sm:mb-12'>
         <div className='inline-flex items-center justify-center p-2 mb-4 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10'>
           <Sparkles className='w-6 h-6 text-blue-500' />
         </div>
@@ -65,7 +65,7 @@ export function AssessmentModeSelector({ onSelectMode }: AssessmentModeSelectorP
       </motion.div>
 
       {/* Mode Selection Cards */}
-      <div className='grid md:grid-cols-2 gap-6 mb-8'>
+      <div className='grid md:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8'>
         {modes.map((mode, index) => {
           const Icon = mode.icon;
           return (
