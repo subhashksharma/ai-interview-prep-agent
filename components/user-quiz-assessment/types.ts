@@ -7,16 +7,16 @@ export type DifficultyLevel = 'beginner' | 'intermediate' | 'advanced' | 'expert
 export type TopicCategory =
   | 'technical-coding'
   | 'system-design'
-  | 'behavioral'
-  | 'data-structures'
-  | 'algorithms'
-  | 'frontend'
-  | 'backend'
-  | 'database'
-  | 'devops'
-  | 'ai-ml'
   | 'product-management'
-  | 'leadership';
+  | 'data-science'
+  | 'design'
+  | 'devops'
+  | 'quality'
+  | 'business'
+  | 'ai-ml'
+  | 'security'
+  | 'leadership'
+  | 'marketing';
 
 export interface TopicOption {
   id: string;

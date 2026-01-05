@@ -34,12 +34,12 @@ export function CustomAssessment({ onStartCustomAssessment, onBack }: CustomAsse
   ];
 
   const suggestedTopics = [
-    'React Performance Optimization',
-    'GraphQL API Design',
-    'Microservices Architecture',
-    'Cloud Security Best Practices',
-    'Leadership & Team Management',
-    'Product Strategy',
+    'Product Manager',
+    'Backend Developer',
+    'Data Analyst',
+    'Security Engineer',
+    'Engineering Manager',
+    'Business Analyst',
   ];
 
   const handleAddArea = () => {
@@ -87,11 +87,12 @@ export function CustomAssessment({ onStartCustomAssessment, onBack }: CustomAsse
             <div className='p-2 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500'>
               <Wand2 className='w-5 h-5 text-white' />
             </div>
-            <h2 className='text-3xl font-bold'>Create Your Custom Assessment</h2>
+            <h2 className='text-3xl font-bold'>Create Your Custom Role Assessment</h2>
           </div>
           <p className='text-muted-foreground'>
-            Tell us what you want to practice, and our AI will create a personalized assessment just
-            for you.
+            Define your target role and the areas you want to focus on. Our AI will create a
+            tailored assessment covering the skills, technologies, and responsibilities for your
+            role.
           </p>
         </div>
 
@@ -99,15 +100,15 @@ export function CustomAssessment({ onStartCustomAssessment, onBack }: CustomAsse
           {/* Main Topic */}
           <Card>
             <CardHeader>
-              <CardTitle className='text-lg'>What topic would you like to practice?</CardTitle>
+              <CardTitle className='text-lg'>What role are you targeting?</CardTitle>
               <CardDescription>
-                Be as specific or broad as you like. Our AI adapts to your needs.
+                Specify your target role (e.g., Product Manager, DevOps Engineer, Data Scientist)
               </CardDescription>
             </CardHeader>
             <CardContent className='space-y-4'>
               <div>
                 <Input
-                  placeholder='e.g., React Hooks, System Design, AWS Services, Leadership Skills...'
+                  placeholder='e.g., Product Manager, Full Stack Developer, Cloud Architect...'
                   value={topic}
                   onChange={(e) => setTopic(e.target.value)}
                   className='text-lg'
@@ -138,7 +139,7 @@ export function CustomAssessment({ onStartCustomAssessment, onBack }: CustomAsse
           <Card>
             <CardHeader>
               <CardTitle className='text-lg flex items-center gap-2'>
-                Specific Areas to Focus On
+                Key Technologies & Responsibilities
                 <Badge
                   variant='secondary'
                   className='text-xs'>
@@ -146,13 +147,13 @@ export function CustomAssessment({ onStartCustomAssessment, onBack }: CustomAsse
                 </Badge>
               </CardTitle>
               <CardDescription>
-                Add specific subtopics or skills you want to be tested on
+                Add specific technologies, tools, or responsibilities for this role
               </CardDescription>
             </CardHeader>
             <CardContent className='space-y-4'>
               <div className='flex gap-2'>
                 <Input
-                  placeholder='e.g., useState, useEffect, custom hooks...'
+                  placeholder='e.g., React, Product Roadmaps, Stakeholder Management...'
                   value={currentArea}
                   onChange={(e) => setCurrentArea(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleAddArea()}
@@ -257,7 +258,7 @@ export function CustomAssessment({ onStartCustomAssessment, onBack }: CustomAsse
           <Card>
             <CardHeader>
               <CardTitle className='text-lg flex items-center gap-2'>
-                Additional Context
+                Career Context
                 <Badge
                   variant='secondary'
                   className='text-xs'>
@@ -265,13 +266,13 @@ export function CustomAssessment({ onStartCustomAssessment, onBack }: CustomAsse
                 </Badge>
               </CardTitle>
               <CardDescription>
-                Share any specific goals, experience level, or context to help us tailor your
-                assessment
+                Share your experience level, career goals, or specific interview context to get more
+                relevant questions
               </CardDescription>
             </CardHeader>
             <CardContent>
               <Textarea
-                placeholder="e.g., I'm preparing for a senior frontend role at a startup. I have 3 years of React experience but want to improve my performance optimization skills..."
+                placeholder="e.g., I'm a fresher targeting Product Manager roles at startups. Want to focus on product roadmaps and prioritization. OR I have 5 years as a backend developer, now switching to DevOps..."
                 value={additionalContext}
                 onChange={(e) => setAdditionalContext(e.target.value)}
                 rows={4}
@@ -292,10 +293,12 @@ export function CustomAssessment({ onStartCustomAssessment, onBack }: CustomAsse
                   <div className='space-y-2 text-sm text-muted-foreground'>
                     <p className='font-medium text-foreground'>Tips for best results:</p>
                     <ul className='space-y-1 list-disc list-inside'>
-                      <li>Be specific about what you want to learn or practice</li>
-                      <li>Choose a difficulty that challenges you without overwhelming</li>
-                      <li>Start with shorter sessions if you're new to the topic</li>
-                      <li>Add context to get more relevant, personalized questions</li>
+                      <li>
+                        Be specific about your target role and career level (fresher/experienced)
+                      </li>
+                      <li>Mention key technologies and tools relevant to the role</li>
+                      <li>Choose difficulty based on your current skill level</li>
+                      <li>Add career context to get real-world scenario questions</li>
                     </ul>
                   </div>
                 </div>

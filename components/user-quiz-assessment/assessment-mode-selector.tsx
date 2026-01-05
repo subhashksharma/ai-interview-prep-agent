@@ -17,28 +17,28 @@ export function AssessmentModeSelector({ onSelectMode }: AssessmentModeSelectorP
   const modes = [
     {
       id: 'topic-based' as const,
-      title: 'Topic-Based Assessment',
-      description: 'Choose from curated topics tailored to your career goals',
+      title: 'Role-Based Assessment',
+      description: 'Select your target role and assess your readiness for it',
       icon: Target,
       color: 'from-blue-500 to-cyan-500',
       features: [
-        'Pre-designed question sets',
-        'Difficulty progression',
-        'Industry-standard topics',
-        'Instant recommendations',
+        'IT & Business roles covered',
+        'Role-specific questions',
+        'Career path guidance',
+        'Real-world scenarios',
       ],
     },
     {
       id: 'custom' as const,
-      title: 'Custom Assessment',
-      description: 'Create your own personalized assessment journey',
+      title: 'Custom Role Assessment',
+      description: 'Define your own role requirements and focus areas',
       icon: Edit3,
       color: 'from-purple-500 to-pink-500',
       features: [
-        'Your specific topics',
-        'AI-generated questions',
-        'Flexible difficulty',
-        'Tailored to your needs',
+        'Your target role',
+        'Required technologies',
+        'Responsibilities & tasks',
+        'AI-tailored questions',
       ],
     },
   ];
@@ -54,12 +54,13 @@ export function AssessmentModeSelector({ onSelectMode }: AssessmentModeSelectorP
           <Sparkles className='w-6 h-6 text-blue-500' />
         </div>
         <h1 className='text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'>
-          Start Your Assessment Journey
+          Prepare for Your Dream Role
         </h1>
         <p className='text-lg text-muted-foreground max-w-2xl mx-auto'>
           Practice without judgment. Learn at your pace. Grow with confidence.
           <br />
-          Choose how you'd like to begin your interview preparation today.
+          Whether you're a fresher or experienced professional, assess your readiness for any IT or
+          business role.
         </p>
       </motion.div>
 

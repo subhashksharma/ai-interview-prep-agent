@@ -19,6 +19,12 @@ import {
   ArrowRight,
   Clock,
   Target,
+  LineChart,
+  TestTube,
+  Laptop,
+  Megaphone,
+  BarChart3,
+  Microscope,
 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -32,83 +38,213 @@ interface TopicBasedAssessmentProps {
   onBack: () => void;
 }
 
-// Topic configurations with icons
+// Role categories for IT and Business sectors
 const topicCategories = {
-  'technical-coding': { icon: Code2, label: 'Coding', color: 'text-blue-500' },
-  'system-design': { icon: Layers, label: 'System Design', color: 'text-purple-500' },
-  behavioral: { icon: Users, label: 'Behavioral', color: 'text-green-500' },
-  'data-structures': { icon: Database, label: 'Data Structures', color: 'text-cyan-500' },
-  algorithms: { icon: Brain, label: 'Algorithms', color: 'text-indigo-500' },
-  frontend: { icon: Palette, label: 'Frontend', color: 'text-pink-500' },
-  backend: { icon: Server, label: 'Backend', color: 'text-orange-500' },
-  database: { icon: Database, label: 'Database', color: 'text-teal-500' },
-  devops: { icon: Cloud, label: 'DevOps', color: 'text-sky-500' },
-  'ai-ml': { icon: Brain, label: 'AI/ML', color: 'text-violet-500' },
+  'technical-coding': { icon: Code2, label: 'Engineering', color: 'text-blue-500' },
+  'system-design': { icon: Layers, label: 'Architecture', color: 'text-purple-500' },
   'product-management': { icon: Briefcase, label: 'Product', color: 'text-amber-500' },
+  'data-science': { icon: BarChart3, label: 'Data & Analytics', color: 'text-cyan-500' },
+  design: { icon: Palette, label: 'Design', color: 'text-pink-500' },
+  devops: { icon: Cloud, label: 'DevOps & Cloud', color: 'text-sky-500' },
+  quality: { icon: TestTube, label: 'Quality & Testing', color: 'text-teal-500' },
+  business: { icon: LineChart, label: 'Business', color: 'text-green-500' },
+  'ai-ml': { icon: Brain, label: 'AI/ML', color: 'text-violet-500' },
+  security: { icon: Shield, label: 'Security', color: 'text-red-500' },
   leadership: { icon: Crown, label: 'Leadership', color: 'text-rose-500' },
+  marketing: { icon: Megaphone, label: 'Marketing', color: 'text-orange-500' },
 };
 
-// Sample topics - in real app, fetch from API
+// IT and Business Role options
 const sampleTopics: TopicOption[] = [
   {
-    id: 'react-fundamentals',
-    name: 'React Fundamentals',
-    category: 'frontend',
-    description: 'Core React concepts, hooks, state management, and component patterns',
-    icon: '⚛️',
-    estimatedTime: 30,
-    questionCount: 15,
-    tags: ['React', 'JavaScript', 'Hooks', 'Components'],
-  },
-  {
-    id: 'nodejs-backend',
-    name: 'Node.js Backend Development',
-    category: 'backend',
-    description: 'Express, REST APIs, middleware, authentication, and best practices',
-    icon: '🟢',
+    id: 'product-manager',
+    name: 'Product Manager',
+    category: 'product-management',
+    description:
+      'Product strategy, roadmaps, user stories, stakeholder management, metrics, and prioritization',
+    icon: '📊',
     estimatedTime: 45,
     questionCount: 20,
-    tags: ['Node.js', 'Express', 'REST API', 'Backend'],
+    tags: ['Product Strategy', 'Roadmaps', 'Metrics', 'User Stories'],
   },
   {
-    id: 'system-design-basics',
-    name: 'System Design Fundamentals',
-    category: 'system-design',
-    description: 'Scalability, load balancing, caching, databases, and architecture patterns',
-    icon: '🏗️',
+    id: 'software-engineer',
+    name: 'Software Engineer',
+    category: 'technical-coding',
+    description: 'Data structures, algorithms, system design, coding patterns, and problem-solving',
+    icon: '💻',
     estimatedTime: 60,
-    questionCount: 12,
-    tags: ['Architecture', 'Scalability', 'Design Patterns'],
-  },
-  {
-    id: 'data-structures',
-    name: 'Data Structures Mastery',
-    category: 'data-structures',
-    description: 'Arrays, linked lists, trees, graphs, heaps, and hash tables',
-    icon: '📊',
-    estimatedTime: 40,
     questionCount: 25,
-    tags: ['DSA', 'Algorithms', 'Problem Solving'],
+    tags: ['DSA', 'Coding', 'System Design', 'Problem Solving'],
   },
   {
-    id: 'behavioral-interview',
-    name: 'Behavioral Interview Skills',
-    category: 'behavioral',
-    description: 'STAR method, leadership, teamwork, conflict resolution, and communication',
-    icon: '💼',
-    estimatedTime: 35,
-    questionCount: 15,
-    tags: ['Soft Skills', 'Communication', 'Leadership'],
-  },
-  {
-    id: 'sql-database',
-    name: 'SQL & Database Design',
-    category: 'database',
-    description: 'Queries, joins, indexing, normalization, and optimization',
-    icon: '🗄️',
+    id: 'frontend-developer',
+    name: 'Frontend Developer',
+    category: 'technical-coding',
+    description:
+      'React, JavaScript, CSS, responsive design, performance optimization, and modern frameworks',
+    icon: '⚛️',
     estimatedTime: 40,
     questionCount: 20,
-    tags: ['SQL', 'Database', 'Optimization'],
+    tags: ['React', 'JavaScript', 'CSS', 'Web Performance'],
+  },
+  {
+    id: 'backend-developer',
+    name: 'Backend Developer',
+    category: 'technical-coding',
+    description:
+      'APIs, databases, microservices, authentication, server architecture, and scalability',
+    icon: '🔧',
+    estimatedTime: 50,
+    questionCount: 22,
+    tags: ['APIs', 'Databases', 'Node.js', 'Microservices'],
+  },
+  {
+    id: 'fullstack-developer',
+    name: 'Full Stack Developer',
+    category: 'technical-coding',
+    description:
+      'Frontend + backend integration, deployment, DevOps basics, and end-to-end development',
+    icon: '⚡',
+    estimatedTime: 60,
+    questionCount: 30,
+    tags: ['Full Stack', 'MERN', 'Deployment', 'APIs'],
+  },
+  {
+    id: 'data-scientist',
+    name: 'Data Scientist',
+    category: 'data-science',
+    description:
+      'Statistics, ML algorithms, Python, data analysis, model building, and visualization',
+    icon: '📈',
+    estimatedTime: 55,
+    questionCount: 25,
+    tags: ['Python', 'ML', 'Statistics', 'Data Analysis'],
+  },
+  {
+    id: 'data-analyst',
+    name: 'Data Analyst',
+    category: 'data-science',
+    description: 'SQL, Excel, Tableau, data visualization, business intelligence, and reporting',
+    icon: '📊',
+    estimatedTime: 40,
+    questionCount: 20,
+    tags: ['SQL', 'Tableau', 'Excel', 'BI'],
+  },
+  {
+    id: 'devops-engineer',
+    name: 'DevOps Engineer',
+    category: 'devops',
+    description: 'CI/CD, Docker, Kubernetes, AWS/Azure, infrastructure as code, and monitoring',
+    icon: '🚀',
+    estimatedTime: 50,
+    questionCount: 22,
+    tags: ['Docker', 'Kubernetes', 'AWS', 'CI/CD'],
+  },
+  {
+    id: 'cloud-architect',
+    name: 'Cloud Architect',
+    category: 'system-design',
+    description:
+      'Cloud platforms, architecture patterns, security, cost optimization, and migration strategies',
+    icon: '☁️',
+    estimatedTime: 55,
+    questionCount: 20,
+    tags: ['AWS', 'Azure', 'Architecture', 'Security'],
+  },
+  {
+    id: 'ui-ux-designer',
+    name: 'UI/UX Designer',
+    category: 'design',
+    description: 'User research, wireframing, prototyping, Figma, user flows, and design thinking',
+    icon: '🎨',
+    estimatedTime: 40,
+    questionCount: 18,
+    tags: ['Figma', 'User Research', 'Prototyping', 'Design Systems'],
+  },
+  {
+    id: 'qa-engineer',
+    name: 'QA Engineer',
+    category: 'quality',
+    description: 'Test automation, manual testing, Selenium, test strategies, and quality metrics',
+    icon: '🧪',
+    estimatedTime: 45,
+    questionCount: 20,
+    tags: ['Testing', 'Selenium', 'Automation', 'Quality'],
+  },
+  {
+    id: 'business-analyst',
+    name: 'Business Analyst',
+    category: 'business',
+    description:
+      'Requirements gathering, process mapping, stakeholder communication, and documentation',
+    icon: '📋',
+    estimatedTime: 40,
+    questionCount: 18,
+    tags: ['Requirements', 'Documentation', 'Analysis', 'Communication'],
+  },
+  {
+    id: 'project-manager',
+    name: 'Project Manager',
+    category: 'leadership',
+    description: 'Agile/Scrum, project planning, risk management, team coordination, and delivery',
+    icon: '📅',
+    estimatedTime: 40,
+    questionCount: 18,
+    tags: ['Agile', 'Scrum', 'Planning', 'Team Management'],
+  },
+  {
+    id: 'ml-engineer',
+    name: 'Machine Learning Engineer',
+    category: 'ai-ml',
+    description: 'ML models, TensorFlow, PyTorch, deployment, MLOps, and model optimization',
+    icon: '🤖',
+    estimatedTime: 60,
+    questionCount: 25,
+    tags: ['ML', 'TensorFlow', 'PyTorch', 'MLOps'],
+  },
+  {
+    id: 'security-engineer',
+    name: 'Security Engineer',
+    category: 'security',
+    description:
+      'Cybersecurity, penetration testing, vulnerability assessment, and security protocols',
+    icon: '🔒',
+    estimatedTime: 50,
+    questionCount: 22,
+    tags: ['Security', 'Pentesting', 'Compliance', 'Protocols'],
+  },
+  {
+    id: 'technical-lead',
+    name: 'Technical Lead',
+    category: 'leadership',
+    description:
+      'Team leadership, code reviews, architecture decisions, mentoring, and technical strategy',
+    icon: '👨‍💼',
+    estimatedTime: 50,
+    questionCount: 20,
+    tags: ['Leadership', 'Architecture', 'Mentoring', 'Strategy'],
+  },
+  {
+    id: 'digital-marketing',
+    name: 'Digital Marketing Manager',
+    category: 'marketing',
+    description: 'SEO, SEM, social media, analytics, campaigns, and growth strategies',
+    icon: '📱',
+    estimatedTime: 40,
+    questionCount: 18,
+    tags: ['SEO', 'Analytics', 'Campaigns', 'Growth'],
+  },
+  {
+    id: 'scrum-master',
+    name: 'Scrum Master',
+    category: 'leadership',
+    description:
+      'Agile facilitation, sprint planning, retrospectives, team coaching, and process improvement',
+    icon: '🎯',
+    estimatedTime: 35,
+    questionCount: 16,
+    tags: ['Agile', 'Scrum', 'Facilitation', 'Coaching'],
   },
 ];
 
@@ -172,10 +308,10 @@ export function TopicBasedAssessment({ onSelectTopic, onBack }: TopicBasedAssess
                 className='mb-4'>
                 ← Back to Mode Selection
               </Button>
-              <h2 className='text-3xl font-bold mb-2'>Choose Your Topic</h2>
+              <h2 className='text-3xl font-bold mb-2'>Choose Your Target Role</h2>
               <p className='text-muted-foreground'>
-                Select a topic that matches your preparation goals. Each assessment is designed to
-                help you grow.
+                Select the role you're preparing for. Each assessment covers role-specific skills,
+                responsibilities, and real-world scenarios.
               </p>
             </div>
 
@@ -184,7 +320,7 @@ export function TopicBasedAssessment({ onSelectTopic, onBack }: TopicBasedAssess
               <div className='relative'>
                 <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4' />
                 <Input
-                  placeholder='Search topics, skills, or technologies...'
+                  placeholder='Search roles (e.g., Product Manager, Software Engineer)...'
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className='pl-10'
@@ -198,7 +334,7 @@ export function TopicBasedAssessment({ onSelectTopic, onBack }: TopicBasedAssess
                   size='sm'
                   onClick={() => setSelectedCategory('all')}>
                   <Filter className='w-3 h-3 mr-1' />
-                  All Topics
+                  All Roles
                 </Button>
                 {Object.entries(topicCategories).map(([key, { label, icon: Icon, color }]) => (
                   <Button
