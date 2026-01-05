@@ -1,10 +1,13 @@
-name: Build and deploy to GitHub Pages
+name: Build and Deploy to GitHub Pages
 
 on:
   workflow_dispatch:
   push:
     branches:
       - main
+
+permissions:
+  contents: write
 
 jobs:
   build-and-deploy:
@@ -13,30 +16,41 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
+      - name: Build Next.js site
         env:
           NEXT_PUBLIC_BASE_PATH: '/${{ github.event.repository.name }}'
           NEXT_PUBLIC_ASSET_PREFIX: '/${{ github.event.repository.name }}'
+          NODE_ENV: production
         run: npm run build
+
+      - name: Verify build output
+        run: |
+          echo "Checking if out/ directory exists..."
+          ls -la out/ || echo "⚠️  out/ directory not found!"
 
       - name: Copy exported site into docs/
         run: |
           rm -rf docs
           mkdir -p docs
           cp -r out/. docs/
-          # prevent GitHub Pages from running Jekyll on the published folder
+          # Prevent GitHub Pages from running Jekyll
           touch docs/.nojekyll
+          echo "✅ Build output copied to docs/"
+          ls -la docs/ | head -20
 
-      - name: Commit and push `docs/` to `main`
+      - name: Commit and push docs/ to main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -44,8 +58,9 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs
           if git diff --cached --quiet; then
-            echo "No changes to commit"
+            echo "✅ No changes to commit - site is already up to date"
           else
-            git commit -m "chore(deploy): update docs (site export) [skip ci]"
+            git commit -m "chore(deploy): update GitHub Pages site [skip ci]"
             git push origin HEAD:main
+            echo "✅ Successfully deployed to GitHub Pages"
           fi

@@ -10,9 +10,6 @@ const nextConfig = {
   // Set basePath/assetPrefix only when provided (avoid empty-string behaviour)
   ...(basePath ? { basePath } : {}),
   ...(assetPrefix ? { assetPrefix } : {}),
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   typescript: {
     ignoreBuildErrors: true,
   },

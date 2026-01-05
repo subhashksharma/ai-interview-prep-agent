@@ -96,6 +96,29 @@ Notes:
 - If you host under a repository subpath (e.g. `https://<user>.github.io/<repo>/`), set `NEXT_PUBLIC_BASE_PATH` and `NEXT_PUBLIC_ASSET_PREFIX` before building.
 - The GitHub Actions workflow sets those env vars automatically to `/${{ github.event.repository.name }}` during CI so exported assets work on project Pages.
 
+## 📚 Project Documentation
+
+Career Buddy follows a **clean, component-based architecture** with comprehensive documentation:
+
+### 🏗️ Architecture & Components
+
+- **[ARCHITECTURE.md](./ARCHITECTURE.md)** - Complete architecture guide, component patterns, and best practices
+- **[COMPONENT-MAP.md](./COMPONENT-MAP.md)** - Visual guide to all 50+ UI components and feature components
+- **[COMPONENT-CHECKLIST.md](./COMPONENT-CHECKLIST.md)** - Quick reference card for component creation
+- **[CONSISTENCY-REPORT.md](./CONSISTENCY-REPORT.md)** - Code health analysis and component usage report
+
+### 🚀 Deployment
+
+- **[DEPLOYMENT.md](./DEPLOYMENT.md)** - Complete GitHub Pages deployment guide
+- **[DEPLOY-CHECKLIST.md](./DEPLOY-CHECKLIST.md)** - Step-by-step deployment checklist
+
+### Quick Links:
+
+- **New to the project?** Start with [ARCHITECTURE.md](./ARCHITECTURE.md)
+- **Creating a component?** Use [COMPONENT-CHECKLIST.md](./COMPONENT-CHECKLIST.md)
+- **Looking for a UI component?** Check [COMPONENT-MAP.md](./COMPONENT-MAP.md)
+- **Ready to deploy?** Follow [DEPLOY-CHECKLIST.md](./DEPLOY-CHECKLIST.md)
+
 ## Contributing
 
 - Fork the repo, create a feature branch, and open a pull request.
