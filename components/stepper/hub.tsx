@@ -3,7 +3,14 @@
 import { motion } from 'framer-motion';
 import { HelpCircle, Target, Route, Zap, ArrowRight, Clock, Sparkles } from 'lucide-react';
 
-type JourneyStage = 'hub' | 'questions' | 'analyzing' | 'paths' | 'roadmap' | 'quiz';
+type JourneyStage =
+  | 'hub'
+  | 'questions'
+  | 'analyzing'
+  | 'paths'
+  | 'roadmap'
+  | 'quiz'
+  | 'enhanced-quiz';
 
 interface JourneyOption {
   id: string;
@@ -75,6 +82,20 @@ const journeyOptions: JourneyOption[] = [
     action: 'Take Quiz',
     duration: '5 min',
   },
+  {
+    id: 'enhanced-quiz',
+    title: 'Deep Assessment',
+    subtitle: 'Comprehensive Evaluation',
+    description:
+      'Get in-depth skill evaluation with AI-powered questions, custom topics, and detailed feedback',
+    icon: <Sparkles size={26} />,
+    accentColor: 'text-emerald-500',
+    bgColor: 'bg-emerald-500',
+    glowColor: 'rgba(16,185,129,0.4)',
+    stage: 'enhanced-quiz',
+    action: 'Start Assessment',
+    duration: '15-30 min',
+  },
 ];
 
 interface HubProps {
@@ -91,7 +112,7 @@ export default function Hub({ onStartJourney }: HubProps) {
       {/* Vertical Timeline */}
       <div className='relative'>
         {/* Timeline line */}
-        <div className='absolute left-6 sm:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-[#2dcbc5] via-violet-400 via-blue-400 to-amber-400' />
+        <div className='absolute left-6 sm:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-[#2dcbc5] to-emerald-400' />
 
         {/* Animated glow on timeline */}
         <motion.div
@@ -161,7 +182,9 @@ export default function Hub({ onStartJourney }: HubProps) {
                         ? 'from-violet-500/5 to-transparent'
                         : option.bgColor === 'bg-blue-500'
                         ? 'from-blue-500/5 to-transparent'
-                        : 'from-amber-500/5 to-transparent'
+                        : option.bgColor === 'bg-amber-500'
+                        ? 'from-amber-500/5 to-transparent'
+                        : 'from-emerald-500/5 to-transparent'
                     } opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
                   />
 
