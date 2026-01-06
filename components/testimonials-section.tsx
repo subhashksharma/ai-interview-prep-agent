@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Quote, Sparkles } from 'lucide-react';
 
 export default function TestimonialsSection() {
   const testimonials = [
@@ -45,7 +45,7 @@ export default function TestimonialsSection() {
   return (
     <section
       id='testimonials'
-      className='min-h-screen flex items-center py-20 md:py-24 bg-gradient-to-b from-white to-slate-50 relative overflow-hidden'>
+      className='min-h-screen flex items-center py-20 md:py-24 bg-gradient-to-b from-blue-50/30 via-purple-50/20 to-white relative overflow-hidden'>
       <div className='w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
         <div className='text-center mb-16'>
           <motion.div
@@ -53,9 +53,14 @@ export default function TestimonialsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}>
-            <h2 className='text-3xl md:text-4xl font-bold mb-4'>What Our Customers Say</h2>
-            <p className='text-lg text-slate-600 max-w-2xl mx-auto'>
-              Discover how businesses are achieving remarkable results with our agentic AI platform.
+            <div className='inline-flex items-center justify-center p-2 mb-6 rounded-full bg-gradient-to-r from-purple-500/10 to-pink-500/10'>
+              <Sparkles className='w-8 h-8 text-purple-500' />
+            </div>
+            <h2 className='text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 bg-clip-text text-transparent'>
+              What Our Customers Say
+            </h2>
+            <p className='text-lg md:text-xl text-slate-600 max-w-2xl mx-auto'>
+              Discover how professionals are achieving remarkable results with CareerBuddy.
             </p>
           </motion.div>
         </div>
@@ -63,63 +68,80 @@ export default function TestimonialsSection() {
         <div className='relative max-w-4xl mx-auto'>
           <motion.div
             key={currentIndex}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.5 }}
-            className='bg-white rounded-2xl p-8 md:p-12 shadow-lg border border-slate-200'>
-            <div className='absolute -top-6 left-8 text-[#2dcbc5]'>
-              <Quote
-                size={48}
-                className='opacity-30'
-              />
+            whileHover={{ scale: 1.02 }}
+            className='bg-gradient-to-br from-white to-purple-50/20 rounded-3xl p-8 md:p-12 shadow-2xl border-2 border-purple-200 hover:border-purple-400/50 transition-all duration-300'>
+            <div className='absolute -top-6 left-8'>
+              <div className='w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-xl'>
+                <Quote
+                  size={32}
+                  className='text-white'
+                />
+              </div>
             </div>
-            <div className='relative z-10'>
-              <p className='text-xl md:text-2xl text-slate-800 mb-8 italic'>
+            <div className='relative z-10 mt-4'>
+              <p className='text-xl md:text-2xl text-slate-800 mb-8 leading-relaxed font-medium'>
                 "{testimonials[currentIndex].quote}"
               </p>
               <div className='flex items-center'>
-                <div className='mr-4'>
-                  <img
-                    src={testimonials[currentIndex].avatar || '/placeholder.svg'}
-                    alt={testimonials[currentIndex].author}
-                    className='w-16 h-16 rounded-full object-cover border-2 border-[#2dcbc5]/30'
-                  />
+                <div className='mr-5'>
+                  <div className='relative'>
+                    <div className='absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full blur-md opacity-50'></div>
+                    <img
+                      src={testimonials[currentIndex].avatar || '/placeholder.svg'}
+                      alt={testimonials[currentIndex].author}
+                      className='relative w-20 h-20 rounded-full object-cover border-4 border-white shadow-xl'
+                    />
+                  </div>
                 </div>
                 <div>
-                  <h4 className='font-bold text-lg'>{testimonials[currentIndex].author}</h4>
-                  <p className='text-slate-600'>{testimonials[currentIndex].title}</p>
-                  <p className='text-[#2dcbc5]'>{testimonials[currentIndex].company}</p>
+                  <h4 className='font-bold text-xl bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent'>
+                    {testimonials[currentIndex].author}
+                  </h4>
+                  <p className='text-slate-700 font-medium'>{testimonials[currentIndex].title}</p>
+                  <p className='text-purple-600 font-semibold'>
+                    {testimonials[currentIndex].company}
+                  </p>
                 </div>
               </div>
             </div>
           </motion.div>
 
-          <div className='flex justify-center mt-8 gap-4'>
-            <button
+          <div className='flex justify-center mt-10 gap-4'>
+            <motion.button
               onClick={prevTestimonial}
-              className='p-2 rounded-full bg-white border border-slate-300 text-slate-700 hover:bg-slate-100 transition-colors'
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className='p-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-xl shadow-purple-500/25 hover:shadow-2xl transition-all duration-300'
               aria-label='Previous testimonial'>
               <ChevronLeft size={24} />
-            </button>
-            <div className='flex items-center gap-2'>
+            </motion.button>
+            <div className='flex items-center gap-3'>
               {testimonials.map((_, index) => (
-                <button
+                <motion.button
                   key={index}
                   onClick={() => setCurrentIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-colors duration-200 ${
-                    index === currentIndex ? 'bg-[#2dcbc5]' : 'bg-slate-300'
+                  whileHover={{ scale: 1.2 }}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentIndex
+                      ? 'bg-gradient-to-r from-purple-500 to-pink-500 w-8 shadow-lg'
+                      : 'bg-slate-300 hover:bg-slate-400'
                   }`}
                   aria-label={`Go to testimonial ${index + 1}`}
                 />
               ))}
             </div>
-            <button
+            <motion.button
               onClick={nextTestimonial}
-              className='p-2 rounded-full bg-white border border-slate-300 text-slate-700 hover:bg-slate-100 transition-colors'
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className='p-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-xl shadow-purple-500/25 hover:shadow-2xl transition-all duration-300'
               aria-label='Next testimonial'>
               <ChevronRight size={24} />
-            </button>
+            </motion.button>
           </div>
         </div>
       </div>

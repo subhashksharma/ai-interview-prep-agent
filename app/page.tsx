@@ -10,7 +10,7 @@ import CtaSection from '@/components/cta-section';
 import Footer from '@/components/footer';
 import Btn from '@/components/btn-download';
 import VideoBackground from '@/components/video-background';
-import JourneyWorkflow from '@/components/journey-workflow';
+import DiscoveryJourney from '@/components/journey/discovery-journey';
 
 export default function Home() {
   return (
@@ -31,7 +31,7 @@ export default function Home() {
         <Navbar />
         <main>
           <HeroSection />
-          <JourneyWorkflow />
+          <DiscoveryJourney />
           <FeaturesSection />
           <UseCasesSection />
           <TestimonialsSection />

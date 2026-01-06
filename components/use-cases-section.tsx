@@ -3,7 +3,15 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { GraduationCap, Repeat, AlertTriangle, Undo2, TrendingUp, Search } from 'lucide-react';
+import {
+  GraduationCap,
+  Repeat,
+  AlertTriangle,
+  Undo2,
+  TrendingUp,
+  Search,
+  Sparkles,
+} from 'lucide-react';
 
 export default function UseCasesSection() {
   const [activeTab, setActiveTab] = useState('fresh-graduates');
@@ -190,7 +198,7 @@ export default function UseCasesSection() {
   return (
     <section
       id='use-cases'
-      className='min-h-screen flex items-center py-20 md:py-24 bg-white relative overflow-hidden'>
+      className='min-h-screen flex items-center py-20 md:py-24 bg-gradient-to-b from-white via-blue-50/30 to-white relative overflow-hidden'>
       <div className='w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
         <div className='text-center mb-16'>
           <motion.div
@@ -198,32 +206,39 @@ export default function UseCasesSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}>
-            <h2 className='text-3xl md:text-4xl font-bold mb-4'>
+            <div className='inline-flex items-center justify-center p-2 mb-6 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10'>
+              <Sparkles className='w-8 h-8 text-blue-500' />
+            </div>
+            <h2 className='text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent'>
               Made for Every Stage of Your Career
             </h2>
-            <p className='text-lg text-slate-600 max-w-2xl mx-auto'>
+            <p className='text-lg md:text-xl text-slate-600 max-w-2xl mx-auto'>
               Whether you’re a student, switching careers, returning, or leveling up—CareerBuddy
               supports your journey with empathy.
             </p>
           </motion.div>
         </div>
 
-        <div className='flex flex-wrap justify-center gap-2 mb-12'>
+        <div className='flex flex-wrap justify-center gap-3 mb-12'>
           {Object.entries(useCases).map(([key, useCase]) => (
-            <Button
+            <motion.div
               key={key}
-              variant={activeTab === key ? 'default' : 'outline'}
-              className={`flex items-center gap-2 text-sm sm:text-base ${
-                activeTab === key
-                  ? 'bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] hover:from-[#2ab7ca] hover:to-[#2dcbc5] shadow-lg shadow-[#2dcbc5]/20'
-                  : 'border-slate-300 hover:border-[#2dcbc5] hover:text-[#2dcbc5]'
-              }`}
-              onClick={() => setActiveTab(key)}>
-              <span className={activeTab === key ? 'text-white' : 'text-slate-700'}>
-                {useCase.icon}
-              </span>
-              <span className='hidden sm:inline'>{useCase.title}</span>
-            </Button>
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}>
+              <Button
+                variant={activeTab === key ? 'default' : 'outline'}
+                className={`flex items-center gap-2 text-sm sm:text-base transition-all duration-300 ${
+                  activeTab === key
+                    ? 'bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 shadow-xl shadow-blue-500/25 border-0'
+                    : 'border-2 border-slate-200 hover:border-blue-500/50 hover:shadow-lg hover:bg-blue-50/50'
+                }`}
+                onClick={() => setActiveTab(key)}>
+                <span className={activeTab === key ? 'text-white' : 'text-slate-700'}>
+                  {useCase.icon}
+                </span>
+                <span className='hidden sm:inline'>{useCase.title}</span>
+              </Button>
+            </motion.div>
           ))}
         </div>
 
@@ -232,67 +247,87 @@ export default function UseCasesSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className='bg-white rounded-xl overflow-hidden border border-slate-200 shadow-lg'>
+          whileHover={{ scale: 1.01 }}
+          className='bg-white rounded-3xl overflow-hidden border-2 border-slate-200 hover:border-blue-500/50 shadow-xl hover:shadow-2xl transition-all duration-300'>
           <div className='flex flex-col lg:flex-row'>
-            <div className='lg:w-1/2 p-8 lg:p-12'>
-              <h3 className='text-2xl font-bold mb-4'>{useCases[activeTab].title}</h3>
-              <p className='text-slate-600 mb-6'>{useCases[activeTab].description}</p>
+            <div className='lg:w-1/2 p-8 lg:p-12 bg-gradient-to-br from-white to-blue-50/20'>
+              <h3 className='text-3xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'>
+                {useCases[activeTab].title}
+              </h3>
+              <p className='text-slate-700 text-lg mb-6'>{useCases[activeTab].description}</p>
 
-              <h4 className='font-semibold text-lg mb-3'>Key Benefits:</h4>
-              <ul className='space-y-2 mb-8'>
+              <h4 className='font-bold text-xl mb-4 text-slate-800'>Key Benefits:</h4>
+              <ul className='space-y-3 mb-8'>
                 {useCases[activeTab].benefits.map((benefit: string, index: number) => (
-                  <li
+                  <motion.li
                     key={index}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
                     className='flex items-start'>
-                    <div className='mr-2 mt-1 text-[#2dcbc5]'>
-                      <svg
-                        width='16'
-                        height='16'
-                        viewBox='0 0 16 16'
-                        fill='none'
-                        xmlns='http://www.w3.org/2000/svg'>
-                        <path
-                          d='M13.3334 4L6.00008 11.3333L2.66675 8'
-                          stroke='currentColor'
-                          strokeWidth='2'
-                          strokeLinecap='round'
-                          strokeLinejoin='round'
-                        />
-                      </svg>
+                    <div className='mr-3 mt-1'>
+                      <div className='w-6 h-6 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center'>
+                        <svg
+                          width='14'
+                          height='14'
+                          viewBox='0 0 16 16'
+                          fill='none'
+                          xmlns='http://www.w3.org/2000/svg'>
+                          <path
+                            d='M13.3334 4L6.00008 11.3333L2.66675 8'
+                            stroke='white'
+                            strokeWidth='2'
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                          />
+                        </svg>
+                      </div>
                     </div>
-                    <span>{benefit}</span>
-                  </li>
+                    <span className='text-slate-700'>{benefit}</span>
+                  </motion.li>
                 ))}
               </ul>
 
-              <Button className='bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] hover:from-[#2ab7ca] hover:to-[#2dcbc5] text-white shadow-lg shadow-[#2dcbc5]/25'>
-                Learn More
-              </Button>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}>
+                <Button className='bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white shadow-xl shadow-blue-500/25 px-8 py-6 text-lg rounded-xl'>
+                  Learn More
+                </Button>
+              </motion.div>
             </div>
-            <div className='lg:w-1/2 bg-slate-100 flex items-center justify-center p-8'>
+            <div className='lg:w-1/2 bg-gradient-to-br from-slate-50 to-blue-50/50 flex items-center justify-center p-8'>
               {conversations[activeTab] ? (
                 <div className='w-full max-w-md'>
-                  <h4 className='text-sm text-slate-500 mb-2'>Scenario</h4>
-                  <p className='text-slate-700 mb-4'>{conversations[activeTab].scenario}</p>
+                  <h4 className='text-sm font-semibold text-slate-600 mb-2 uppercase tracking-wide'>
+                    Scenario
+                  </h4>
+                  <p className='text-slate-700 mb-6 font-medium'>
+                    {conversations[activeTab].scenario}
+                  </p>
 
-                  <div className='bg-white rounded-lg p-4 shadow-inner border border-slate-200 space-y-3 max-h-64 overflow-auto'>
+                  <div className='bg-white rounded-2xl p-5 shadow-xl border-2 border-slate-100 space-y-3 max-h-64 overflow-auto'>
                     {conversations[activeTab].messages.slice(0, visibleCount).map((m, i) => (
-                      <div
+                      <motion.div
                         key={i}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3 }}
                         className={`flex ${m.from === 'assistant' ? 'justify-end' : ''}`}>
                         <div
-                          className={`px-4 py-2 rounded-lg max-w-[80%] ${
+                          className={`px-5 py-3 rounded-2xl max-w-[80%] shadow-md ${
                             m.from === 'assistant'
-                              ? 'bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] text-white'
-                              : 'bg-slate-100 text-slate-900'
+                              ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white'
+                              : 'bg-gradient-to-br from-slate-50 to-slate-100 text-slate-900 border border-slate-200'
                           }`}>
                           {m.text}
                         </div>
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
 
-                  <div className='mt-3 text-sm text-slate-500'>
+                  <div className='mt-4 text-sm text-slate-500 flex items-center gap-2'>
+                    <Sparkles className='w-4 h-4 text-blue-500' />
                     Auto preview — messages reveal sequentially.
                   </div>
                 </div>
@@ -300,7 +335,7 @@ export default function UseCasesSection() {
                 <img
                   src={useCases[activeTab].image || '/placeholder.svg'}
                   alt={`${useCases[activeTab].title} illustration`}
-                  className='rounded-lg shadow-md max-w-full h-auto'
+                  className='rounded-3xl shadow-2xl max-w-full h-auto border-2 border-slate-200'
                 />
               )}
             </div>
