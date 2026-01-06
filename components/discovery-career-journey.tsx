@@ -215,6 +215,8 @@ function BackgroundDecoration() {
 
 function JourneyHeader({ stage, onReset }: { stage: DiscoveryStage; onReset: () => void }) {
   const showHomeButton = stage !== 'choice';
+  // Hide header for these stages to avoid duplication
+  const hideHeader = stage === 'choice' || stage === 'analyzing' || stage === 'paths';
 
   return (
     <motion.div
@@ -235,42 +237,31 @@ function JourneyHeader({ stage, onReset }: { stage: DiscoveryStage; onReset: () 
         </motion.button>
       )}
 
-      <motion.div
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ delay: 0.1, type: 'spring', stiffness: 200 }}
-        className='inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#2dcbc5]/10 to-[#2ab7ca]/10 border border-[#2dcbc5]/20 mb-6'>
-        <Sparkles
-          size={16}
-          className='text-[#2dcbc5]'
-        />
-        <span className='text-sm font-semibold text-[#2dcbc5]'>AI-Powered Career Discovery</span>
-      </motion.div>
+      {!hideHeader && (
+        <>
+          <motion.h2
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className='text-2xl md:text-3xl font-bold mb-3 text-slate-800'>
+            {stage === 'quick-questions' && 'Quick Discovery Questions'}
+            {stage === 'deep-assessment' && 'Deep Assessment'}
+            {stage === 'roadmap' && 'Your Career Roadmap'}
+          </motion.h2>
 
-      <motion.h2
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-        className='text-3xl md:text-4xl font-bold mb-4'>
-        Discover Your Career Path
-        <span className='block mt-1 bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] bg-clip-text text-transparent'>
-          With AI Guidance
-        </span>
-      </motion.h2>
-
-      <motion.p
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
-        className='text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto'>
-        {stage === 'choice' && "Select how you'd like to discover your perfect career match"}
-        {stage === 'quick-questions' &&
-          'Answer thoughtfully for personalized career recommendations'}
-        {stage === 'deep-assessment' && 'Complete the assessment for comprehensive career insights'}
-        {stage === 'analyzing' && 'Our AI is analyzing your responses'}
-        {stage === 'paths' && 'Here are your personalized career matches'}
-        {stage === 'roadmap' && 'Your personalized career roadmap'}
-      </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className='text-base sm:text-lg text-slate-600 max-w-2xl mx-auto'>
+            {stage === 'quick-questions' &&
+              'Answer thoughtfully for personalized career recommendations'}
+            {stage === 'deep-assessment' &&
+              'Complete the assessment for comprehensive career insights'}
+            {stage === 'roadmap' && 'Your personalized career roadmap'}
+          </motion.p>
+        </>
+      )}
     </motion.div>
   );
 }
