@@ -82,7 +82,7 @@ export default function HeaderComponent() {
             className='font-medium text-[15px] text-[#334155] hover:text-[#2dcbc5] hover:bg-[#2dcbc5]/5 transition-all duration-300 rounded-lg'>
             Log in
           </Button>
-          <Button className='bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] hover:from-[#2ab7ca] hover:to-[#2dcbc5] text-white font-semibold text-[15px] px-6 py-2.5 rounded-lg shadow-lg shadow-[#2dcbc5]/30 hover:shadow-xl hover:shadow-[#2dcbc5]/40 transition-all duration-300 hover:scale-105'>
+          <Button className='bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] hover:from-[#2ab7ca] hover:to-[#2dcbc5] text-white font-semibold text-button-default px-6 py-2.5 rounded-lg shadow-lg shadow-[#2dcbc5]/30 hover:shadow-xl hover:shadow-[#2dcbc5]/40 transition-all duration-300 hover:scale-105'>
             Get Started
           </Button>
         </div>

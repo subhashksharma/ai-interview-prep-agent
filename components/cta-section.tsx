@@ -37,10 +37,10 @@ export default function CtaSection() {
 
               <div className='relative z-10 flex flex-col md:flex-row items-center gap-6 md:gap-12'>
                 <div className='flex-1 text-center md:text-left'>
-                  <h2 className='text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 tracking-tight bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent'>
+                  <h2 className='text-section-heading font-extrabold mb-4 tracking-tight bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent'>
                     Ready to move your career forward?
                   </h2>
-                  <p className='text-slate-700 text-lg md:text-xl font-medium leading-relaxed'>
+                  <p className='text-slate-700 text-body-large font-medium'>
                     Start free with CareerBuddy — an empathetic AI companion for role prep, tailored
                     docs, interview practice, and 30–60–90 success.
                   </p>
@@ -50,7 +50,7 @@ export default function CtaSection() {
                   <motion.div
                     whileHover={{ scale: 1.08 }}
                     whileTap={{ scale: 0.95 }}>
-                    <Button className='bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-6 md:px-10 md:py-7 rounded-2xl text-base md:text-xl font-bold shadow-2xl shadow-blue-500/40 hover:shadow-[0_20px_50px_rgba(59,130,246,0.5)] transition-all duration-300 border-2 border-white/20'>
+                    <Button className='bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-6 md:px-10 md:py-7 rounded-2xl text-button-large font-bold shadow-2xl shadow-blue-500/40 hover:shadow-[0_20px_50px_rgba(59,130,246,0.5)] transition-all duration-300 border-2 border-white/20'>
                       <Sparkles className='w-5 h-5 mr-2' />
                       Start My Career Plan
                     </Button>
@@ -62,7 +62,7 @@ export default function CtaSection() {
                     <Button
                       variant='outline'
                       className='group flex items-center gap-3 px-6 py-6 md:px-8 md:py-7 rounded-2xl bg-white/80 backdrop-blur-sm border-2 border-slate-300 hover:border-purple-500 text-slate-800 hover:text-purple-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 shadow-xl hover:shadow-2xl transition-all duration-300'>
-                      <span className='text-base md:text-lg font-bold'>Try a Mock Interview</span>
+                      <span className='text-button-large font-bold'>Try a Mock Interview</span>
                       <ArrowRight
                         size={20}
                         className='text-slate-700 group-hover:text-purple-600 group-hover:translate-x-2 transition-all duration-300'

@@ -46,9 +46,9 @@ export function AssessmentProgress({
     encouragementMessages[Math.floor(Math.random() * encouragementMessages.length)];
 
   return (
-    <div className='w-full max-w-md'>
-      <Card className='border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-transparent'>
-        <CardContent className='pt-6 space-y-6'>
+    <div className='w-full'>
+      <Card className='border border-primary/20 bg-gradient-to-br from-primary/5 to-transparent shadow-sm'>
+        <CardContent className='p-4 sm:p-6 space-y-4 sm:space-y-6'>
           {/* Main Progress */}
           <div className='space-y-3'>
             <div className='flex items-center justify-between'>

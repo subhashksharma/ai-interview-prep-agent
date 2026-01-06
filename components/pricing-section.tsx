@@ -70,10 +70,10 @@ export default function PricingSection() {
             <div className='inline-flex items-center justify-center p-2 mb-6 rounded-full bg-gradient-to-r from-cyan-500/10 to-blue-500/10'>
               <Sparkles className='w-8 h-8 text-cyan-500' />
             </div>
-            <h2 className='text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent'>
+            <h2 className='text-section-heading bg-gradient-to-r from-cyan-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent'>
               Accessible Pricing, Global First
             </h2>
-            <p className='text-lg md:text-xl text-slate-600 max-w-2xl mx-auto'>
+            <p className='text-body-large max-w-2xl mx-auto'>
               CareerBuddy starts at US $8/mo, UK £5/mo, and India ₹300/mo. Start free—cancel
               anytime.
             </p>

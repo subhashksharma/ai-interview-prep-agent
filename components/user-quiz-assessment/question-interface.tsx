@@ -175,7 +175,7 @@ export function QuestionInterface({
   };
 
   return (
-    <div className='w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-8'>
+    <div className='w-full max-w-4xl mx-auto px-2 sm:px-4 lg:px-6 py-4 sm:py-6'>
       <AnimatePresence mode='wait'>
         <motion.div
           key={question.id}
@@ -212,8 +212,8 @@ export function QuestionInterface({
           </div>
 
           {/* Question Card */}
-          <Card className='mb-4 sm:mb-6'>
-            <CardHeader>
+          <Card className='mb-3 sm:mb-5 shadow-sm'>
+            <CardHeader className='p-4 sm:p-6'>
               <div className='flex items-start justify-between'>
                 <div className='flex-1'>
                   <CardTitle className='text-lg sm:text-xl lg:text-2xl mb-2'>
@@ -233,7 +233,7 @@ export function QuestionInterface({
               </div>
             </CardHeader>
 
-            <CardContent className='space-y-4'>
+            <CardContent className='space-y-3 sm:space-y-4 p-4 sm:p-6 pt-0 sm:pt-0'>
               {/* Case Study Text */}
               {question.type === 'case-study' && question.caseStudyText && (
                 <div className='p-4 sm:p-6 bg-muted/50 rounded-lg border-2 border-muted-foreground/20 mb-4'>
@@ -261,7 +261,7 @@ export function QuestionInterface({
                         transition={{ delay: index * 0.05 }}>
                         <Label
                           htmlFor={`option-${index}`}
-                          className='flex items-center space-x-3 p-4 rounded-lg border border-border hover:border-primary cursor-pointer transition-colors'>
+                          className='flex items-center space-x-3 p-3 sm:p-4 rounded-lg border border-border hover:border-primary cursor-pointer transition-colors'>
                           <RadioGroupItem
                             value={option}
                             id={`option-${index}`}
@@ -354,11 +354,11 @@ export function QuestionInterface({
               )}
 
               {/* Confidence Level */}
-              <div className='space-y-3 pt-4 border-t'>
+              <div className='space-y-2 sm:space-y-3 pt-3 sm:pt-4 border-t'>
                 <Label className='text-sm font-medium'>
                   How confident are you with this answer?
                 </Label>
-                <div className='grid grid-cols-1 sm:grid-cols-3 gap-3'>
+                <div className='grid grid-cols-3 gap-2 sm:gap-3'>
                   {[
                     { level: 'low' as const, label: 'Need Practice', emoji: '🤔' },
                     { level: 'medium' as const, label: 'Somewhat Sure', emoji: '💭' },
@@ -367,10 +367,11 @@ export function QuestionInterface({
                     <Button
                       key={conf.level}
                       variant={confidence === conf.level ? 'default' : 'outline'}
-                      className='flex items-center justify-center gap-2'
+                      size='sm'
+                      className='flex items-center justify-center gap-1 sm:gap-2 px-2 sm:px-3 text-xs sm:text-sm'
                       onClick={() => setConfidence(conf.level)}>
                       <span>{conf.emoji}</span>
-                      <span className='text-sm'>{conf.label}</span>
+                      <span className='hidden sm:inline'>{conf.label}</span>
                     </Button>
                   ))}
                 </div>
@@ -384,7 +385,7 @@ export function QuestionInterface({
 
           {/* Hints Card (Collapsible) */}
           {question.hints && question.hints.length > 0 && (
-            <Card className='mb-6 border-blue-500/20 bg-blue-500/5'>
+            <Card className='mb-3 sm:mb-5 border-blue-500/20 bg-blue-500/5'>
               <CardHeader className='pb-3'>
                 <Button
                   variant='ghost'
@@ -422,8 +423,8 @@ export function QuestionInterface({
           )}
 
           {/* Encouragement Card */}
-          <Card className='mb-6 border-green-500/20 bg-green-500/5'>
-            <CardContent className='pt-6'>
+          <Card className='mb-3 sm:mb-5 border-green-500/20 bg-green-500/5'>
+            <CardContent className='p-4 sm:pt-6'>
               <div className='flex gap-3'>
                 <CheckCircle2 className='w-5 h-5 text-green-500 flex-shrink-0' />
                 <div className='space-y-1 text-sm'>
@@ -438,7 +439,7 @@ export function QuestionInterface({
           </Card>
 
           {/* Navigation Buttons */}
-          <div className='flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4'>
+          <div className='flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 sm:gap-4'>
             <Button
               variant='outline'
               onClick={onPrevious}
@@ -475,7 +476,7 @@ export function QuestionInterface({
           </div>
 
           {/* Progress Indicator */}
-          <div className='mt-4 sm:mt-6 text-center'>
+          <div className='mt-3 sm:mt-5 text-center'>
             <p className='text-sm text-muted-foreground'>
               {totalQuestions - questionNumber} question
               {totalQuestions - questionNumber !== 1 ? 's' : ''} remaining

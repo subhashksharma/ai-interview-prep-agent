@@ -56,10 +56,10 @@ export default function TestimonialsSection() {
             <div className='inline-flex items-center justify-center p-2 mb-6 rounded-full bg-gradient-to-r from-purple-500/10 to-pink-500/10'>
               <Sparkles className='w-8 h-8 text-purple-500' />
             </div>
-            <h2 className='text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 bg-clip-text text-transparent'>
+            <h2 className='text-section-heading bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 bg-clip-text text-transparent'>
               What Our Customers Say
             </h2>
-            <p className='text-lg md:text-xl text-slate-600 max-w-2xl mx-auto'>
+            <p className='text-body-large max-w-2xl mx-auto'>
               Discover how professionals are achieving remarkable results with CareerBuddy.
             </p>
           </motion.div>
