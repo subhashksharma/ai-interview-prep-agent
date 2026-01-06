@@ -155,7 +155,7 @@ function generateCareerPathsFromAssessment(session: AssessmentSession): CareerPa
   return matchedCareers.sort((a, b) => b.matchScore - a.matchScore);
 }
 
-export default function JourneyWorkflow() {
+export default function DiscoverCareerHubComponent() {
   const [stage, setStage] = useState<JourneyStage>('hub');
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string>>({});

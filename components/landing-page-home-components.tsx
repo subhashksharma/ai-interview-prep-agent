@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Sparkles, Zap } from 'lucide-react';
 import BotDemoChatbox from '@/components/ui/bot-demo-chatbox';
-import ServicesCluster from '@/components/hero-services/services-cluster';
+import HeroServicesCluster from '@/components/landing-page-hero-components/hero-services-cluster';
 import WatchButton from '@/components/ui/watch-button';
 import ArrowButton from '@/components/ui/arrow-button';
 import UploadButton from '@/components/ui/upload-button';
@@ -11,7 +11,7 @@ import HeroDescription from '@/components/ui/hero-description';
 import RotatingKeywords from '@/components/ui/rotating-keywords';
 import { motion } from 'framer-motion';
 
-export default function HeroSection() {
+export default function LandingPageHomeComponents() {
   const [isHovered, setIsHovered] = useState(false);
   const [visibleMessages, setVisibleMessages] = useState(0);
   const [showTyping, setShowTyping] = useState(false);
@@ -163,7 +163,7 @@ export default function HeroSection() {
             */}
 
             <div className='w-full'>
-              <ServicesCluster />
+              <HeroServicesCluster />
             </div>
           </div>
         </div>

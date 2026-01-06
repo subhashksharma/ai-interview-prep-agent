@@ -12,7 +12,7 @@ import { generateCareerPaths, generateRoadmap, getCareerPathById } from '@/lib/c
 
 // Import components
 import DiscoveryChoice from '@/components/stepper/discovery-choice';
-import EnhancedQuestions from '@/components/journey/enhanced-questions';
+import QuickGeneralQuestions from '@/components/discover-journey/quick-general-question';
 import Analyzing from '@/components/stepper/analyzing';
 import CareerPathsView from '@/components/stepper/career-paths-simple';
 import Roadmap from '@/components/stepper/roadmap';
@@ -76,7 +76,7 @@ function generateCareerPathsFromAssessment(session: AssessmentSession): CareerPa
 // Main Component
 // ============================================================
 
-export default function DiscoveryJourney() {
+export default function DiscoveryCareerJourney() {
   const [stage, setStage] = useState<DiscoveryStage>('choice');
   const [careerPaths, setCareerPaths] = useState<CareerPath[]>([]);
   const [selectedPath, setSelectedPath] = useState<CareerPath | null>(null);
@@ -157,7 +157,7 @@ export default function DiscoveryJourney() {
 
           {stage === 'quick-questions' && (
             <StageWrapper key='quick-questions'>
-              <EnhancedQuestions
+              <QuickGeneralQuestions
                 onComplete={handleQuestionsComplete}
                 onExit={handleReset}
               />

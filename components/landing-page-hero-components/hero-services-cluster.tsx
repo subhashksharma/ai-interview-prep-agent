@@ -15,7 +15,7 @@ const defaultItems: Item[] = [
   { label: 'Offer Negotiation', dotColor: '#f472b6' },
 ];
 
-export default function ServicesCluster({
+export default function HeroServicesCluster({
   items = defaultItems,
   className = '',
 }: {
