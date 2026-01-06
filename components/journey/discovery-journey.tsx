@@ -14,8 +14,8 @@ import { generateCareerPaths, generateRoadmap, getCareerPathById } from '@/lib/c
 import DiscoveryChoice from '@/components/stepper/discovery-choice';
 import EnhancedQuestions from '@/components/journey/enhanced-questions';
 import Analyzing from '@/components/stepper/analyzing';
-import CareerPathsView from '@/components/stepper/career-paths';
-import RoadmapView from '@/components/stepper/roadmap';
+import CareerPathsView from '@/components/stepper/career-paths-simple';
+import Roadmap from '@/components/stepper/roadmap';
 import { UserQuizAssessment } from '@/components/user-quiz-assessment';
 import AssessmentResults from '@/components/stepper/assessment-results';
 
@@ -187,7 +187,7 @@ export default function DiscoveryJourney() {
           )}
 
           {stage === 'roadmap' && selectedPath && (
-            <RoadmapView
+            <Roadmap
               selectedPath={selectedPath}
               roadmap={roadmap}
               onReset={handleReset}
