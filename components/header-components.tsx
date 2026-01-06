@@ -45,9 +45,9 @@ export default function HeaderComponent() {
         {/* Desktop Navigation */}
         <div className='hidden md:flex items-center space-x-1'>
           <Link
-            href='#features'
+            href='#services'
             className='relative px-4 py-2.5 text-[15px] font-medium text-[#334155] hover:text-[#2dcbc5] transition-all duration-300 rounded-lg group'>
-            Features
+            Services
             <span className='absolute inset-x-0 -bottom-px h-0.5 bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-full'></span>
           </Link>
           <Link
@@ -63,9 +63,15 @@ export default function HeaderComponent() {
             <span className='absolute inset-x-0 -bottom-px h-0.5 bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-full'></span>
           </Link>
           <Link
-            href='#testimonials'
+            href='/blog'
             className='relative px-4 py-2.5 text-[15px] font-medium text-[#334155] hover:text-[#2dcbc5] transition-all duration-300 rounded-lg group'>
-            Testimonials
+            Blogs
+            <span className='absolute inset-x-0 -bottom-px h-0.5 bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-full'></span>
+          </Link>
+          <Link
+            href='/about'
+            className='relative px-4 py-2.5 text-[15px] font-medium text-[#334155] hover:text-[#2dcbc5] transition-all duration-300 rounded-lg group'>
+            About Us
             <span className='absolute inset-x-0 -bottom-px h-0.5 bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-full'></span>
           </Link>
         </div>
@@ -94,10 +100,10 @@ export default function HeaderComponent() {
         <div className='md:hidden bg-white/95 backdrop-blur-lg border-t border-slate-200/60 py-6 shadow-lg'>
           <div className='max-w-7xl mx-auto px-4 flex flex-col space-y-1'>
             <Link
-              href='#features'
+              href='#services'
               className='text-slate-700 hover:text-[#2dcbc5] hover:bg-[#2dcbc5]/5 transition-all duration-200 py-3 px-4 rounded-lg font-medium'
               onClick={() => setIsMenuOpen(false)}>
-              Features
+              Services
             </Link>
             <Link
               href='#use-cases'
@@ -112,10 +118,16 @@ export default function HeaderComponent() {
               Pricing
             </Link>
             <Link
-              href='#testimonials'
+              href='/blog'
               className='text-slate-700 hover:text-[#2dcbc5] hover:bg-[#2dcbc5]/5 transition-all duration-200 py-3 px-4 rounded-lg font-medium'
               onClick={() => setIsMenuOpen(false)}>
-              Testimonials
+              Blogs
+            </Link>
+            <Link
+              href='/about'
+              className='text-slate-700 hover:text-[#2dcbc5] hover:bg-[#2dcbc5]/5 transition-all duration-200 py-3 px-4 rounded-lg font-medium'
+              onClick={() => setIsMenuOpen(false)}>
+              About Us
             </Link>
             <div className='flex flex-col space-y-3 pt-4 mt-2 border-t border-slate-200/60'>
               <Button
