@@ -4,25 +4,18 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, Home } from 'lucide-react';
 
-// Import types from shared location
+// Import types
 import type { CareerPath, RoadmapStep, AssessmentSession } from '@/lib/types';
 
-// Import data and utilities
-import {
-  journeyQuestions,
-  generateCareerPaths,
-  generateRoadmap,
-  getCareerPathById,
-} from '@/lib/career-data';
+// Import utilities
+import { generateCareerPaths, generateRoadmap, getCareerPathById } from '@/lib/career-data';
 
-// Import step components
-import Hub from '@/components/stepper/hub';
+// Import components
 import DiscoveryChoice from '@/components/stepper/discovery-choice';
-import Questions from '@/components/stepper/questions';
+import EnhancedQuestions from '@/components/journey/enhanced-questions';
 import Analyzing from '@/components/stepper/analyzing';
 import CareerPathsView from '@/components/stepper/career-paths';
 import RoadmapView from '@/components/stepper/roadmap';
-import Quiz from '@/components/stepper/quiz';
 import { UserQuizAssessment } from '@/components/user-quiz-assessment';
 import AssessmentResults from '@/components/stepper/assessment-results';
 
@@ -30,15 +23,13 @@ import AssessmentResults from '@/components/stepper/assessment-results';
 // Types
 // ============================================================
 
-type JourneyStage =
-  | 'hub'
-  | 'discovery-choice'
-  | 'questions'
+type DiscoveryStage =
+  | 'choice'
+  | 'quick-questions'
+  | 'deep-assessment'
   | 'analyzing'
   | 'paths'
-  | 'roadmap'
-  | 'quiz'
-  | 'enhanced-quiz';
+  | 'roadmap';
 
 // ============================================================
 // Helper Functions
@@ -47,7 +38,6 @@ type JourneyStage =
 function generateCareerPathsFromAssessment(session: AssessmentSession): CareerPath[] {
   const { topic, customInput, answers } = session;
 
-  // Calculate performance score
   const totalAnswers = answers.length;
   const highConfidenceCount = answers.filter((a) => a.confidence === 'high').length;
   const mediumConfidenceCount = answers.filter((a) => a.confidence === 'medium').length;
@@ -56,10 +46,8 @@ function generateCareerPathsFromAssessment(session: AssessmentSession): CareerPa
       ? Math.round((highConfidenceCount * 100 + mediumConfidenceCount * 60) / totalAnswers)
       : 70;
 
-  // Generate career paths based on topic
   const topicName = topic?.name || customInput?.topic || 'General';
 
-  // Topic-to-career mapping
   const topicCareerMap: Record<string, string[]> = {
     'JavaScript Development': ['frontend-developer', 'software-engineer', 'backend-developer'],
     'React Development': ['frontend-developer', 'software-engineer', 'technical-lead'],
@@ -88,11 +76,8 @@ function generateCareerPathsFromAssessment(session: AssessmentSession): CareerPa
 // Main Component
 // ============================================================
 
-export default function JourneyWorkflow() {
-  // State management
-  const [stage, setStage] = useState<JourneyStage>('hub');
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState<Record<number, string>>({});
+export default function DiscoveryJourney() {
+  const [stage, setStage] = useState<DiscoveryStage>('choice');
   const [careerPaths, setCareerPaths] = useState<CareerPath[]>([]);
   const [selectedPath, setSelectedPath] = useState<CareerPath | null>(null);
   const [roadmap, setRoadmap] = useState<RoadmapStep[]>([]);
@@ -102,73 +87,20 @@ export default function JourneyWorkflow() {
   // Event Handlers
   // ============================================================
 
-  const handleStartJourney = (targetStage: JourneyStage) => {
-    switch (targetStage) {
-      case 'questions':
-        // Discovery Path now goes to choice screen first
-        setStage('discovery-choice');
-        break;
-      case 'paths':
-        // Show sample career paths
-        const sampleAnswers = {
-          1: 'option1',
-          2: 'option2',
-          3: 'option3',
-          4: 'option4',
-          5: 'option5',
-        };
-        setCareerPaths(generateCareerPaths(sampleAnswers));
-        setStage('paths');
-        break;
-      case 'roadmap':
-        // Show sample roadmap
-        const samplePath = getCareerPathById('software-engineer');
-        if (samplePath) {
-          setSelectedPath(samplePath);
-          setRoadmap(generateRoadmap('software-engineer'));
-          setStage('roadmap');
-        }
-        break;
-      case 'quiz':
-      case 'enhanced-quiz':
-        setStage(targetStage);
-        break;
-    }
-  };
-
   const handleDiscoveryChoice = (path: 'questions' | 'enhanced-quiz') => {
     if (path === 'questions') {
-      setCurrentQuestion(0);
-      setAnswers({});
-      setStage('questions');
+      setStage('quick-questions');
     } else {
-      setStage('enhanced-quiz');
+      setStage('deep-assessment');
     }
   };
 
-  const handleAnswerSelect = (questionId: number, answer: string) => {
-    const newAnswers = { ...answers, [questionId]: answer };
-    setAnswers(newAnswers);
-
-    if (currentQuestion < journeyQuestions.length - 1) {
-      setTimeout(() => setCurrentQuestion(currentQuestion + 1), 300);
-    } else {
-      // All questions answered - analyze
-      setStage('analyzing');
-      setTimeout(() => {
-        setCareerPaths(generateCareerPaths(newAnswers));
-        setStage('paths');
-      }, 2000);
-    }
-  };
-
-  const handlePathSelect = (path: CareerPath) => {
-    setSelectedPath(path);
+  const handleQuestionsComplete = (answers: Record<number, string>) => {
     setStage('analyzing');
     setTimeout(() => {
-      setRoadmap(generateRoadmap(path.id));
-      setStage('roadmap');
-    }, 1500);
+      setCareerPaths(generateCareerPaths(answers));
+      setStage('paths');
+    }, 2000);
   };
 
   const handleAssessmentComplete = (session: AssessmentSession) => {
@@ -180,10 +112,17 @@ export default function JourneyWorkflow() {
     }, 2000);
   };
 
+  const handlePathSelect = (path: CareerPath) => {
+    setSelectedPath(path);
+    setStage('analyzing');
+    setTimeout(() => {
+      setRoadmap(generateRoadmap(path.id));
+      setStage('roadmap');
+    }, 1500);
+  };
+
   const handleReset = () => {
-    setStage('hub');
-    setCurrentQuestion(0);
-    setAnswers({});
+    setStage('choice');
     setCareerPaths([]);
     setSelectedPath(null);
     setRoadmap([]);
@@ -210,23 +149,28 @@ export default function JourneyWorkflow() {
 
         {/* Content */}
         <AnimatePresence mode='wait'>
-          {stage === 'hub' && (
-            <StageWrapper key='hub'>
-              <Hub onStartJourney={handleStartJourney} />
-            </StageWrapper>
-          )}
-
-          {stage === 'discovery-choice' && (
-            <StageWrapper key='discovery-choice'>
+          {stage === 'choice' && (
+            <StageWrapper key='choice'>
               <DiscoveryChoice onSelectPath={handleDiscoveryChoice} />
             </StageWrapper>
           )}
 
-          {stage === 'questions' && (
-            <Questions
-              currentQuestion={currentQuestion}
-              onAnswerSelect={handleAnswerSelect}
-            />
+          {stage === 'quick-questions' && (
+            <StageWrapper key='quick-questions'>
+              <EnhancedQuestions
+                onComplete={handleQuestionsComplete}
+                onExit={handleReset}
+              />
+            </StageWrapper>
+          )}
+
+          {stage === 'deep-assessment' && (
+            <StageWrapper key='deep-assessment'>
+              <UserQuizAssessment
+                onComplete={handleAssessmentComplete}
+                onExit={handleReset}
+              />
+            </StageWrapper>
           )}
 
           {stage === 'analyzing' && <Analyzing />}
@@ -249,17 +193,6 @@ export default function JourneyWorkflow() {
               onReset={handleReset}
             />
           )}
-
-          {stage === 'quiz' && <Quiz onStartQuestions={() => setStage('questions')} />}
-
-          {stage === 'enhanced-quiz' && (
-            <StageWrapper key='enhanced-quiz'>
-              <UserQuizAssessment
-                onComplete={handleAssessmentComplete}
-                onExit={() => setStage('hub')}
-              />
-            </StageWrapper>
-          )}
         </AnimatePresence>
       </div>
     </section>
@@ -280,14 +213,16 @@ function BackgroundDecoration() {
   );
 }
 
-function JourneyHeader({ stage, onReset }: { stage: JourneyStage; onReset: () => void }) {
+function JourneyHeader({ stage, onReset }: { stage: DiscoveryStage; onReset: () => void }) {
+  const showHomeButton = stage !== 'choice';
+
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       className='text-center mb-12 sm:mb-16 relative'>
-      {stage !== 'hub' && (
+      {showHomeButton && (
         <motion.button
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -309,7 +244,7 @@ function JourneyHeader({ stage, onReset }: { stage: JourneyStage; onReset: () =>
           size={16}
           className='text-[#2dcbc5]'
         />
-        <span className='text-sm font-semibold text-[#2dcbc5]'>AI-Powered Career Guide</span>
+        <span className='text-sm font-semibold text-[#2dcbc5]'>AI-Powered Career Discovery</span>
       </motion.div>
 
       <motion.h2
@@ -317,9 +252,9 @@ function JourneyHeader({ stage, onReset }: { stage: JourneyStage; onReset: () =>
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
         className='text-3xl md:text-4xl font-bold mb-4'>
-        Your Career Journey
+        Discover Your Career Path
         <span className='block mt-1 bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] bg-clip-text text-transparent'>
-          Starts Here
+          With AI Guidance
         </span>
       </motion.h2>
 
@@ -328,9 +263,13 @@ function JourneyHeader({ stage, onReset }: { stage: JourneyStage; onReset: () =>
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
         className='text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto'>
-        {stage === 'discovery-choice'
-          ? "Select how you'd like to discover your perfect career match"
-          : 'Choose your path and let our AI guide you to your dream career'}
+        {stage === 'choice' && "Select how you'd like to discover your perfect career match"}
+        {stage === 'quick-questions' &&
+          'Answer thoughtfully for personalized career recommendations'}
+        {stage === 'deep-assessment' && 'Complete the assessment for comprehensive career insights'}
+        {stage === 'analyzing' && 'Our AI is analyzing your responses'}
+        {stage === 'paths' && 'Here are your personalized career matches'}
+        {stage === 'roadmap' && 'Your personalized career roadmap'}
       </motion.p>
     </motion.div>
   );
