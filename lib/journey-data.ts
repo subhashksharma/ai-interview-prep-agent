@@ -1,27 +1,11 @@
+// Re-export types from shared location
+export type { CareerPath, RoadmapStep, JourneyQuestion } from '@/lib/types';
+
+// Legacy interface for backwards compatibility
 export interface Question {
   id: number;
   question: string;
   options: string[];
-}
-
-export interface CareerPath {
-  id: string;
-  title: string;
-  description: string;
-  matchScore: number;
-  skills: string[];
-  salary: string;
-  demand: string;
-  icon: string;
-}
-
-export interface RoadmapStep {
-  id: number;
-  title: string;
-  description: string;
-  duration: string;
-  status: 'pending' | 'current' | 'completed';
-  skills: string[];
 }
 
 export const journeyQuestions: Question[] = [
@@ -78,7 +62,8 @@ export function generateCareerPaths(answers: Record<number, string>): CareerPath
     {
       id: 'software-engineer',
       title: 'Software Engineer',
-      description: 'Build innovative applications and solve complex technical challenges',
+      description:
+        'Software engineers design, develop, and maintain applications that power modern businesses. This role is highly valued across all industries from startups to Fortune 500 companies. With AI and cloud computing driving innovation, the demand for skilled engineers continues to grow, making it one of the most future-proof careers with excellent growth potential.',
       matchScore: 95,
       skills: ['JavaScript', 'React', 'Node.js', 'Problem Solving'],
       salary: '$80k - $150k',
@@ -88,7 +73,8 @@ export function generateCareerPaths(answers: Record<number, string>): CareerPath
     {
       id: 'product-manager',
       title: 'Product Manager',
-      description: 'Lead product strategy and bridge the gap between business and technology',
+      description:
+        'Product managers are the strategic leaders who define product vision and drive execution from concept to launch. Highly valued for their ability to balance user needs with business goals, PMs are essential in tech companies of all sizes. As digital transformation accelerates, the need for skilled product leaders continues to rise, offering strong career advancement and competitive compensation.',
       matchScore: 88,
       skills: ['Strategy', 'Communication', 'Analytics', 'Leadership'],
       salary: '$90k - $160k',
@@ -98,7 +84,8 @@ export function generateCareerPaths(answers: Record<number, string>): CareerPath
     {
       id: 'ux-designer',
       title: 'UX/UI Designer',
-      description: 'Create beautiful and intuitive user experiences',
+      description:
+        'UX/UI designers craft intuitive digital experiences that users love. This role combines creativity with psychology and data to solve real user problems. As companies recognize that great design drives customer satisfaction and revenue, demand for skilled designers has surged. With emerging technologies like AI, AR/VR, and voice interfaces, the future of UX design is incredibly promising.',
       matchScore: 82,
       skills: ['Figma', 'User Research', 'Prototyping', 'Design Systems'],
       salary: '$70k - $130k',
@@ -108,7 +95,8 @@ export function generateCareerPaths(answers: Record<number, string>): CareerPath
     {
       id: 'data-scientist',
       title: 'Data Scientist',
-      description: 'Extract insights from data to drive business decisions',
+      description:
+        'Data scientists transform raw data into actionable insights using advanced analytics and machine learning. Organizations across healthcare, finance, retail, and tech rely on data scientists to drive strategic decisions. With the explosion of AI and big data, this field is experiencing unprecedented growth, offering exceptional job security and some of the highest salaries in tech.',
       matchScore: 78,
       skills: ['Python', 'Machine Learning', 'Statistics', 'SQL'],
       salary: '$85k - $155k',

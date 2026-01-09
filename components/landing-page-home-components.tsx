@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Sparkles, Zap } from 'lucide-react';
 import BotDemoChatbox from '@/components/ui/bot-demo-chatbox';
-import ServicesCluster from '@/components/hero-services/services-cluster';
+import HeroServicesCluster from '@/components/landing-page-hero-components/hero-services-cluster';
 import WatchButton from '@/components/ui/watch-button';
 import ArrowButton from '@/components/ui/arrow-button';
 import UploadButton from '@/components/ui/upload-button';
@@ -11,7 +11,7 @@ import HeroDescription from '@/components/ui/hero-description';
 import RotatingKeywords from '@/components/ui/rotating-keywords';
 import { motion } from 'framer-motion';
 
-export default function HeroSection() {
+export default function LandingPageHomeComponents() {
   const [isHovered, setIsHovered] = useState(false);
   const [visibleMessages, setVisibleMessages] = useState(0);
   const [showTyping, setShowTyping] = useState(false);
@@ -100,7 +100,7 @@ export default function HeroSection() {
                   size={16}
                   className='mr-2'
                 />
-                <span className='text-sm font-semibold flex items-center'>
+                <span className='text-pill flex items-center'>
                   {typedText}
                   <span
                     className='ml-2 inline-block w-[6px] h-4 bg-slate-900 rounded-sm align-middle animate-pulse'
@@ -108,7 +108,7 @@ export default function HeroSection() {
                   />
                 </span>
               </motion.div>
-              <h1 className='md:text-4xl lg:text-4xl font-bold mb-10 text-slate-900 tracking-tight drop-shadow-sm'>
+              <h1 className='text-hero-main mb-10 drop-shadow-sm'>
                 <RotatingKeywords
                   keywords={[
                     'Your Job Search',
@@ -133,7 +133,9 @@ export default function HeroSection() {
                     size={24}
                     className='mr-2 text-green-600'
                   />
-                  <span className='font-medium'>No credit card required • Free tier available</span>
+                  <span className='text-body-small'>
+                    No credit card required • Free tier available
+                  </span>
                 </div>
               </motion.div>
 
@@ -163,7 +165,7 @@ export default function HeroSection() {
             */}
 
             <div className='w-full'>
-              <ServicesCluster />
+              <HeroServicesCluster />
             </div>
           </div>
         </div>

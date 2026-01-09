@@ -97,6 +97,47 @@
   }
 }
 
+/* Typography consistency utilities */
+.text-hero-main {
+  @apply text-3xl md:text-4xl lg:text-4xl font-bold text-slate-900 tracking-tight;
+}
+
+.text-section-heading {
+  @apply text-4xl md:text-5xl font-bold mb-6;
+}
+
+.text-subsection-heading {
+  @apply text-2xl sm:text-3xl font-bold text-slate-900;
+}
+
+.text-card-title {
+  @apply text-xl font-bold text-slate-900;
+}
+
+.text-body-large {
+  @apply text-lg text-slate-600 leading-relaxed;
+}
+
+.text-body-default {
+  @apply text-[15px] text-slate-600 leading-relaxed;
+}
+
+.text-body-small {
+  @apply text-sm font-medium text-slate-500;
+}
+
+.text-pill {
+  @apply text-sm font-semibold;
+}
+
+.text-button-large {
+  @apply text-base sm:text-lg font-semibold;
+}
+
+.text-button-default {
+  @apply text-[15px] font-semibold;
+}
+
 /* Pill style for service labels */
 .service-pill {
   display: inline-flex;

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Check } from 'lucide-react';
+import { Check, Sparkles } from 'lucide-react';
 
 export default function PricingSection() {
   const [isAnnual, setIsAnnual] = useState(false);
@@ -59,7 +59,7 @@ export default function PricingSection() {
   return (
     <section
       id='pricing'
-      className='min-h-screen flex items-center py-20 md:py-24 bg-gradient-to-b from-white to-slate-50 relative overflow-hidden'>
+      className='min-h-screen flex items-center py-20 md:py-24 bg-gradient-to-b from-cyan-50/30 via-blue-50/20 to-white relative overflow-hidden'>
       <div className='w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
         <div className='text-center mb-16'>
           <motion.div
@@ -67,32 +67,49 @@ export default function PricingSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}>
-            <h2 className='text-3xl md:text-4xl font-bold mb-4'>
+            <div className='inline-flex items-center justify-center p-2 mb-6 rounded-full bg-gradient-to-r from-cyan-500/10 to-blue-500/10'>
+              <Sparkles className='w-8 h-8 text-cyan-500' />
+            </div>
+            <h2 className='text-section-heading bg-gradient-to-r from-cyan-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent'>
               Accessible Pricing, Global First
             </h2>
-            <p className='text-lg text-slate-600 max-w-2xl mx-auto'>
+            <p className='text-body-large max-w-2xl mx-auto'>
               CareerBuddy starts at US $8/mo, UK £5/mo, and India ₹300/mo. Start free—cancel
               anytime.
             </p>
 
             <div className='flex items-center justify-center mt-8 mb-12'>
               <span
-                className={`mr-3 ${isAnnual ? 'text-slate-600' : 'text-slate-900 font-medium'}`}>
+                className={`mr-4 text-lg ${
+                  isAnnual ? 'text-slate-600' : 'text-slate-900 font-semibold'
+                }`}>
                 Monthly
               </span>
-              <button
+              <motion.button
                 onClick={() => setIsAnnual(!isAnnual)}
-                className='relative inline-flex h-6 w-12 items-center rounded-full bg-slate-200'>
+                whileTap={{ scale: 0.95 }}
+                className={`relative inline-flex h-8 w-16 items-center rounded-full transition-all duration-300 ${
+                  isAnnual
+                    ? 'bg-gradient-to-r from-cyan-500 to-blue-500 shadow-lg shadow-cyan-500/25'
+                    : 'bg-slate-300'
+                }`}>
                 <span className='sr-only'>Toggle pricing period</span>
-                <span
-                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition ${
-                    isAnnual ? 'translate-x-7' : 'translate-x-1'
+                <motion.span
+                  layout
+                  transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                  className={`inline-block h-6 w-6 transform rounded-full bg-white shadow-md ${
+                    isAnnual ? 'translate-x-9' : 'translate-x-1'
                   }`}
                 />
-              </button>
+              </motion.button>
               <span
-                className={`ml-3 ${isAnnual ? 'text-slate-900 font-medium' : 'text-slate-600'}`}>
-                Annual <span className='text-green-600 text-sm font-medium'>Save 20%</span>
+                className={`ml-4 text-lg ${
+                  isAnnual ? 'text-slate-900 font-semibold' : 'text-slate-600'
+                }`}>
+                Annual{' '}
+                <span className='inline-flex items-center px-2 py-1 rounded-full bg-green-100 text-green-700 text-sm font-bold ml-2'>
+                  Save 20%
+                </span>
               </span>
             </div>
           </motion.div>
@@ -106,31 +123,50 @@ export default function PricingSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`rounded-xl overflow-hidden ${
+              whileHover={{ scale: plan.highlighted ? 1.05 : 1.02, y: -5 }}
+              className={`rounded-3xl overflow-hidden transition-all duration-300 ${
                 plan.highlighted
-                  ? 'border-2 border-[#2dcbc5] shadow-lg shadow-[#2dcbc5]/20'
-                  : 'border border-slate-200 shadow-sm'
+                  ? 'border-2 border-cyan-500 shadow-2xl shadow-cyan-500/25 ring-4 ring-cyan-500/10'
+                  : 'border-2 border-slate-200 hover:border-blue-500/50 shadow-xl hover:shadow-2xl'
               }`}>
               {plan.highlighted && (
-                <div className='bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] text-white text-center py-2 text-sm font-medium'>
+                <div className='bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-center py-3 text-sm font-bold flex items-center justify-center gap-2'>
+                  <Sparkles className='w-4 h-4' />
                   Most Popular
                 </div>
               )}
-              <div className='p-6 md:p-8 bg-white'>
-                <h3 className='text-2xl font-bold mb-2'>{plan.name}</h3>
-                <p className='text-slate-600 mb-6'>{plan.description}</p>
-                <div className='mb-6'>
+              <div
+                className={`p-6 md:p-8 ${
+                  plan.highlighted
+                    ? 'bg-gradient-to-br from-white to-cyan-50/30'
+                    : 'bg-gradient-to-br from-white to-blue-50/20'
+                }`}>
+                <h3
+                  className={`text-3xl font-bold mb-3 ${
+                    plan.highlighted
+                      ? 'bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent'
+                      : 'text-slate-800'
+                  }`}>
+                  {plan.name}
+                </h3>
+                <p className='text-slate-600 mb-6 text-base'>{plan.description}</p>
+                <div className='mb-8'>
                   {plan.monthlyPrice !== null ? (
                     <>
-                      <span className='text-4xl font-bold'>
+                      <span
+                        className={`text-5xl font-bold ${
+                          plan.highlighted
+                            ? 'bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent'
+                            : 'text-slate-800'
+                        }`}>
                         {plan.name === 'US' && '$'}
                         {plan.name === 'UK' && '£'}
                         {plan.name === 'India' && '₹'}
                         {isAnnual ? (plan.annualPrice / 12).toFixed(0) : plan.monthlyPrice}
                       </span>
-                      <span className='text-slate-600'>/month</span>
+                      <span className='text-slate-600 text-lg font-medium'>/month</span>
                       {isAnnual && (
-                        <div className='text-sm text-slate-500 mt-1'>
+                        <div className='text-sm text-slate-500 mt-2 font-medium'>
                           Billed annually ({plan.name === 'US' && '$'}
                           {plan.name === 'UK' && '£'}
                           {plan.name === 'India' && '₹'}
@@ -139,31 +175,53 @@ export default function PricingSection() {
                       )}
                     </>
                   ) : (
-                    <span className='text-2xl font-bold'>Custom Pricing</span>
+                    <span className='text-3xl font-bold text-slate-800'>Custom Pricing</span>
                   )}
                 </div>
-                <Button
-                  className={`w-full ${
-                    plan.highlighted
-                      ? 'bg-gradient-to-r from-[#2dcbc5] to-[#2ab7ca] hover:from-[#2ab7ca] hover:to-[#2dcbc5] text-white shadow-lg shadow-[#2dcbc5]/25'
-                      : 'bg-white border border-slate-300 hover:bg-slate-50 hover:border-[#2dcbc5] text-slate-800'
-                  }`}>
-                  {plan.cta}
-                </Button>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}>
+                  <Button
+                    className={`w-full py-6 text-lg font-semibold rounded-xl transition-all duration-300 ${
+                      plan.highlighted
+                        ? 'bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white shadow-xl shadow-cyan-500/25'
+                        : 'bg-white border-2 border-slate-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-cyan-50 hover:border-blue-500 text-slate-800 hover:text-blue-700 shadow-lg hover:shadow-xl'
+                    }`}>
+                    {plan.cta}
+                  </Button>
+                </motion.div>
               </div>
-              <div className='p-6 md:p-8 bg-slate-50 border-t border-slate-200'>
-                <h4 className='font-semibold mb-4'>What's included:</h4>
+              <div
+                className={`p-6 md:p-8 border-t-2 ${
+                  plan.highlighted
+                    ? 'bg-gradient-to-br from-cyan-50/50 to-blue-50/30 border-cyan-200'
+                    : 'bg-gradient-to-br from-slate-50 to-blue-50/20 border-slate-200'
+                }`}>
+                <h4 className='font-bold text-lg mb-5 text-slate-800'>What's included:</h4>
                 <ul className='space-y-3'>
                   {plan.features.map((feature, i) => (
-                    <li
+                    <motion.li
                       key={i}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.05 }}
                       className='flex items-start'>
-                      <Check
-                        size={18}
-                        className='mr-2 mt-0.5 text-green-600 flex-shrink-0'
-                      />
-                      <span>{feature}</span>
-                    </li>
+                      <div className='mr-3 mt-0.5 flex-shrink-0'>
+                        <div
+                          className={`w-6 h-6 rounded-full flex items-center justify-center ${
+                            plan.highlighted
+                              ? 'bg-gradient-to-r from-cyan-500 to-blue-500'
+                              : 'bg-gradient-to-r from-blue-400 to-cyan-400'
+                          }`}>
+                          <Check
+                            size={14}
+                            className='text-white'
+                          />
+                        </div>
+                      </div>
+                      <span className='text-slate-700'>{feature}</span>
+                    </motion.li>
                   ))}
                 </ul>
               </div>

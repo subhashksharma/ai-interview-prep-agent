@@ -12,8 +12,8 @@ type ArrowButtonProps = React.ComponentProps<typeof Button> & {
 };
 
 export default function ArrowButton({
-  title = 'Click Me',
-  subtitle = 'See how it works',
+  title = 'Discover Your Path',
+  subtitle = 'Interactive career guidance',
   className = '',
   onClick,
   ...rest

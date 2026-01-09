@@ -30,7 +30,7 @@ export default function HeroDescription({ text, isLoading = false }: HeroDescrip
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2, duration: 0.6 }}
-      className='text-[15px] text-slate-600 mb-10 max-w-xl leading-relaxed drop-shadow-sm'>
+      className='text-body-default mb-10 max-w-xl drop-shadow-sm'>
       {displayText}
     </motion.p>
   );

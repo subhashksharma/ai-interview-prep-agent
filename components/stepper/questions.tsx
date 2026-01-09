@@ -62,7 +62,7 @@ export default function Questions({ currentQuestion, onAnswerSelect }: Questions
                   {currentQuestion + 1}
                 </span>
               </motion.div>
-              <h3 className='text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 leading-snug'>
+              <h3 className='text-card-title sm:text-2xl md:text-3xl leading-snug'>
                 {journeyQuestions[currentQuestion].question}
               </h3>
             </div>

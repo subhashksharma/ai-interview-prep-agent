@@ -1,7 +1,7 @@
 'use client';
 
-import Navbar from '@/components/navbar';
-import HeroSection from '@/components/hero-section';
+import HeaderComponent from '@/components/header-components';
+import LandingPageHomeComponents from '@/components/landing-page-home-components';
 import FeaturesSection from '@/components/features-section';
 import UseCasesSection from '@/components/use-cases-section';
 import PricingSection from '@/components/pricing-section';
@@ -10,7 +10,7 @@ import CtaSection from '@/components/cta-section';
 import Footer from '@/components/footer';
 import Btn from '@/components/btn-download';
 import VideoBackground from '@/components/video-background';
-import JourneyWorkflow from '@/components/journey-workflow';
+import DiscoveryCareerJourney from '@/components/discovery-career-journey';
 
 export default function Home() {
   return (
@@ -28,10 +28,10 @@ export default function Home() {
 
       {/* Content */}
       <div className='relative z-10'>
-        <Navbar />
+        <HeaderComponent />
         <main>
-          <HeroSection />
-          <JourneyWorkflow />
+          <LandingPageHomeComponents />
+          <DiscoveryCareerJourney />
           <FeaturesSection />
           <UseCasesSection />
           <TestimonialsSection />

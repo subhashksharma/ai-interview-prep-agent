@@ -31,8 +31,8 @@ export default function Quiz({ onStartQuestions }: QuizProps) {
           />
         </motion.div>
 
-        <h3 className='text-2xl sm:text-3xl font-bold text-slate-900 mb-3'>Quick Assessment</h3>
-        <p className='text-slate-500 mb-8 leading-relaxed'>
+        <h3 className='text-subsection-heading mb-3'>Quick Assessment</h3>
+        <p className='text-body-default mb-8'>
           Answer 5 quick questions and get instant career recommendations powered by AI.
         </p>
 
@@ -49,7 +49,7 @@ export default function Quiz({ onStartQuestions }: QuizProps) {
               transition={{ delay: 0.3 + i * 0.1 }}
               className='p-3 sm:p-4 bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl border border-amber-100'>
               <div className='text-lg sm:text-xl font-bold text-amber-600'>{stat.value}</div>
-              <div className='text-[10px] sm:text-xs text-amber-500/70 font-medium uppercase tracking-wide'>
+              <div className='text-body-small font-medium uppercase tracking-wide'>
                 {stat.label}
               </div>
             </motion.div>
@@ -59,7 +59,7 @@ export default function Quiz({ onStartQuestions }: QuizProps) {
         <Button
           onClick={onStartQuestions}
           size='lg'
-          className='w-full py-5 sm:py-6 text-base sm:text-lg bg-gradient-to-r from-amber-400 to-orange-500 hover:opacity-90 text-white rounded-xl shadow-lg shadow-amber-500/25'>
+          className='w-full py-5 sm:py-6 text-button-large bg-gradient-to-r from-amber-400 to-orange-500 hover:opacity-90 text-white rounded-xl shadow-lg shadow-amber-500/25'>
           Start Assessment
           <ArrowRight
             className='ml-2'

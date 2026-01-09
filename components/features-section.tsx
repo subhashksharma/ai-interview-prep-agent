@@ -56,12 +56,10 @@ export default function FeaturesSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}>
             <div className='inline-flex items-center px-4 py-2 rounded-full bg-[#2dcbc5]/10 border border-[#2dcbc5]/20 text-[#2dcbc5] mb-6'>
-              <span className='text-sm font-semibold'>Built for Your Career Journey</span>
+              <span className='text-pill'>Built for Your Career Journey</span>
             </div>
-            <h2 className='text-3xl md:text-4xl font-bold mb-4'>
-              End‑to‑End Support, Powered by Empathy
-            </h2>
-            <p className='text-lg text-slate-600 max-w-2xl mx-auto'>
+            <h2 className='text-hero-main mb-4'>End‑to‑End Support, Powered by Empathy</h2>
+            <p className='text-body-large max-w-2xl mx-auto'>
               From discovery to offer, CareerBuddy brings structure, confidence, and guidance to
               every step.
             </p>
@@ -84,12 +82,10 @@ export default function FeaturesSection() {
                   <div className='w-14 h-14 bg-gradient-to-br from-[#2dcbc5]/10 to-[#2ab7ca]/10 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300 shadow-sm'>
                     {feature.icon}
                   </div>
-                  <h3 className='text-xl font-bold mb-3 text-slate-900 group-hover:text-[#2dcbc5] transition-colors duration-300'>
+                  <h3 className='text-card-title mb-3 group-hover:text-[#2dcbc5] transition-colors duration-300'>
                     {feature.title}
                   </h3>
-                  <p className='text-[15px] text-slate-600 leading-relaxed'>
-                    {feature.description}
-                  </p>
+                  <p className='text-body-default'>{feature.description}</p>
                 </div>
               </div>
             </motion.div>
